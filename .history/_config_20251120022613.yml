@@ -22,12 +22,8 @@ title: Burai Live
 email: admin@burai.live
 description: >-
   企業向けデジタルソリューション：ウェブ開発、クラウド運用、
-  ここで開業、およびデジタルトランスフォーメーションを通じて、貴社の事業成長と
+  およびデジタルトランスフォーメーションを通じて、貴社の事業成長と
   オンラインプレゼンスの最適化を支援します。
-description_en: >-
-  Corporate digital solutions: web development, cloud operations, and
-  digital transformation to support business growth and optimize your
-  online presence.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://burai.live" # the base hostname & protocol for your site
 logo: "/assets/images/logo.png"

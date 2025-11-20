@@ -4,15 +4,30 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Burai Live は、企業のデジタルトランスフォーメーションを支援する専門チームです。
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+**ミッション**
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+私たちは、技術と事業の橋渡しを行い、持続的な成長と競争力の向上を実現することを目指します。
 
+**提供サービス**
 
-[jekyll-organization]: https://github.com/jekyll
+- ウェブ開発：要件定義から設計・実装・テストまでの一貫した開発
+- クラウド運用：インフラ設計、CI/CD、監視・障害対応
+- 事業立ち上げ支援（ここで開業）：サービスの市場投入を支援する戦略立案と実行
+- 運用・保守：SLA に基づく運用サポートと改善提案
+
+**実績とアプローチ**
+
+プロジェクトは小規模 PoC からエンタープライズ級まで対応可能です。スクラムやカンバンなどアジャイル手法を取り入れ、短いサイクルで価値を提供します。
+
+**チーム**
+
+私たちのチームはプロダクトマネージャー、エンジニア、デザイナー、クラウド運用エンジニアで構成されています。必要に応じて外部パートナーと協業し、最適な体制で対応します。
+
+**お問い合わせ**
+
+ご相談やお見積りはメールでお気軽にご連絡ください:
+
+`{{ site.email }}`
+
