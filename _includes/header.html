@@ -1,4 +1,8 @@
-<a class="skip-link" href="#main-content">Skip to content</a>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <header class="site-header" role="banner">
   <div class="container header-inner">
     <div class="brand">
@@ -26,7 +30,7 @@
       {% else %}
         <a href="{{ '/' | relative_url }}">Home</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="#contact">Contact</a>
+        <a href="{{ '/contact/' | relative_url }}">Contact</a>
       {% endif %}
     </nav>
   </div>

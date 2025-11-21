@@ -1,0 +1,30 @@
+<form id="contact-form" class="contact-form" action="https://formspree.io/f/yourFormId" method="POST" novalidate>
+  <input type="hidden" name="_subject" value="New contact submission from website">
+
+  <div class="form-row">
+    <label for="cf-name">Name</label>
+    <input id="cf-name" name="name" type="text" required>
+  </div>
+
+  <div class="form-row">
+    <label for="cf-email">Email</label>
+    <input id="cf-email" name="email" type="email" required>
+  </div>
+
+  <div class="form-row">
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" rows="6" required></textarea>
+  </div>
+
+  <!-- Simple honeypot to reduce spam -->
+  <div style="display:none;">
+    <label>Leave this field empty</label>
+    <input name="_gotcha" tabindex="-1" autocomplete="off">
+  </div>
+
+  <div class="form-row">
+    <button type="submit">Send</button>
+  </div>
+
+  <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p>
+</form>
