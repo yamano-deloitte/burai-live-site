@@ -41,3 +41,27 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .footer-nav a{margin-left:1rem;color:var(--color-muted);text-decoration:none}
 @media (max-width:700px){.header-inner{flex-direction:column;align-items:flex-start}.hero{flex-direction:column}.brand .tag{display:none}}
 
+/* Contact modal styles */
+.contact-modal{display:none;position:fixed;inset:0;z-index:1000}
+.contact-modal.open{display:block}
+.contact-modal__overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45)}
+.contact-modal__panel{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:720px;width:94%;background:#fff;border-radius:10px;box-shadow:0 10px 40px rgba(2,6,23,0.2);padding:1.25rem;z-index:1001}
+.contact-modal__close{position:absolute;right:10px;top:8px;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--color-muted)}
+.contact-modal__body{margin-top:1.25rem}
+.contact-form .form-row{margin-bottom:0.75rem}
+.contact-form label{display:block;font-weight:600;margin-bottom:0.25rem}
+.contact-form input,.contact-form textarea{width:100%;padding:0.6rem;border:1px solid #e6e9ee;border-radius:6px}
+.contact-form button{background:var(--color-primary);color:#fff;padding:0.6rem 0.9rem;border-radius:6px;border:0;cursor:pointer}
+.contact-modal h2{margin:0;font-size:1.15rem;color:var(--color-primary)}
+
+@media (max-width:520px){.contact-modal__panel{width:96%;padding:0.9rem}}
+
+/* Language switcher */
+.lang-switch{display:flex;gap:0.5rem;align-items:center;margin-left:1rem}
+.lang-link{font-weight:600;color:var(--color-muted);text-decoration:none;padding:0.25rem 0.5rem;border-radius:6px}
+.lang-link:hover{color:var(--color-primary);background:rgba(11,61,145,0.04)}
+
+@media (max-width:700px){
+  .lang-switch{margin-top:0.5rem}
+}
+

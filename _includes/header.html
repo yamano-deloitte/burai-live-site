@@ -33,7 +33,15 @@
         <a href="{{ '/contact/' | relative_url }}">Contact</a>
       {% endif %}
     </nav>
+    <div class="lang-switch" aria-hidden="false">
+      <a href="{{ '/en/' | relative_url }}" class="lang-link">EN</a>
+      {% if page.url contains '/en/' %}
+        <a href="{{ '/' | relative_url }}" class="lang-link">日本語</a>
+      {% endif %}
+    </div>
   </div>
 </header>
+
+{% include contact-modal.html %}
 
 <script src="{{ '/assets/js/header.js' | relative_url }}" defer></script>
