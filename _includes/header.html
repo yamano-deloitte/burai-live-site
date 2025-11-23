@@ -34,9 +34,11 @@
       {% endif %}
     </nav>
     <div class="lang-switch" aria-hidden="false">
-      <a href="{{ '/en/' | relative_url }}" class="lang-link">EN</a>
+      {% unless page.url contains '/en/' %}
+        <a href="{{ '/en/' | relative_url }}" class="lang-link">EN</a>
+      {% endunless %}
       {% if page.url contains '/en/' %}
-        <a href="{{ '/' | relative_url }}" class="lang-link">日本語</a>
+        <a href="{{ '/' | relative_url }}" class="lang-link">JA</a>
       {% endif %}
     </div>
   </div>
