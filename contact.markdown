@@ -2,11 +2,17 @@
 title: Contact
 layout: default
 permalink: /contact/
+lang: ja
 ---
 
-<section id="contact" class="contact">
-  <h1>Contact</h1>
-  <p>If you'd like to get in touch, please use the form below.</p>
+## お問い合わせ
 
-  {% include contact-form.html %}
-</section>
+ご質問、ご相談、お見積りのご依頼など、お気軽にお問い合わせください。
+
+{% include contact-form.html %}
+
+---
+
+**直接メールでのお問い合わせ**
+
+`{{ site.email }}`

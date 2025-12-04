@@ -39,7 +39,7 @@ navigation:
   - title: Services
     url: /services/
   - title: Contact
-    url: '#contact'
+    url: /contact/
 twitter_username: jekyllrb
 github_username:  jekyll
 

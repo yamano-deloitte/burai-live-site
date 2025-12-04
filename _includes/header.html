@@ -31,7 +31,7 @@
         <a href="{{ '/en/' | relative_url }}">Home</a>
         <a href="{{ '/en/about/' | relative_url }}">About</a>
         <a href="{{ '/en/services/' | relative_url }}">Services</a>
-        <a href="#contact">Contact</a>
+        <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
       {% else %}
         {% if site.navigation %}
           {% for item in site.navigation %}
@@ -54,7 +54,5 @@
     </div>
   </div>
 </header>
-
-{% include contact-modal.html %}
 
 <script src="{{ '/assets/js/header.js' | relative_url }}" defer></script>

@@ -2,13 +2,17 @@
 title: Contact
 layout: default
 permalink: /en/contact/
+lang: en
 ---
 
-<section id="contact" class="contact">
-  <div class="container">
-    <h1>Contact</h1>
-    <p>If you'd like to get in touch, please use the form below.</p>
+## Contact Us
 
-    {% include contact-form.html %}
-  </div>
-</section>
+Please feel free to contact us with any questions, inquiries, or quote requests.
+
+{% include contact-form.html %}
+
+---
+
+**Direct Email Contact**
+
+`{{ site.email }}`

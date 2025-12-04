@@ -66,59 +66,16 @@
   </div>
 </header>
 
-<div id="contact-modal" class="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
-  <div class="contact-modal__overlay" data-close-modal></div>
-
-  <div class="contact-modal__panel">
-    <button class="contact-modal__close" type="button" aria-label="Close contact form">&times;</button>
-    <h2 id="contact-modal-title">Contact</h2>
-    <div class="contact-modal__body">
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate>
-  <input type="hidden" name="_subject" value="New contact submission from website">
-
-  <div class="form-row">
-    <label for="cf-name">Name</label>
-    <input id="cf-name" name="name" type="text" required>
-  </div>
-
-  <div class="form-row">
-    <label for="cf-email">Email</label>
-    <input id="cf-email" name="email" type="email" required>
-  </div>
-
-  <div class="form-row">
-    <label for="cf-message">Message</label>
-    <textarea id="cf-message" name="message" rows="6" required></textarea>
-  </div>
-
-  <!-- Simple honeypot to reduce spam -->
-  <div style="display:none;">
-    <label>Leave this field empty</label>
-    <input name="_gotcha" tabindex="-1" autocomplete="off">
-  </div>
-
-  <div class="form-row">
-    <button type="submit">Send</button>
-  </div>
-
-  <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->
-</form>
-
-    </div>
-  </div>
-</div>
-
-
 <script src="/assets/js/header.js" defer></script>
 
 
     <main class="site-main">
       <div class="container">
-        <section id="contact" class="contact">
-  <h1>Contact</h1>
-  <p>If you'd like to get in touch, please use the form below.</p>
+        <h2 id="お問い合わせ">お問い合わせ</h2>
 
-  <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate="">
+<p>ご質問、ご相談、お見積りのご依頼など、お気軽にお問い合わせください。</p>
+
+<form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate="">
   <input type="hidden" name="_subject" value="New contact submission from website" />
 
   <div class="form-row">
@@ -149,7 +106,11 @@
   <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->
 </form>
 
-</section>
+<hr />
+
+<p><strong>直接メールでのお問い合わせ</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">admin@burai.live</code></p>
 
       </div>
     </main>

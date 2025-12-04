@@ -10,7 +10,7 @@ title: Burai Live Site
 		<div class="left">
 			<h1>信頼できるデジタルパートナー — Burai Live</h1>
 			<p>プロフェッショナルなウェブ戦略とソフトウェア開発で、貴社の成長を支援します。</p>
-			<p><a class="btn" href="#contact">お問い合わせ</a></p>
+			<p><a class="btn" href="{{ '/contact/' | relative_url }}">お問い合わせ</a></p>
 		</div>
 	</div>
 </section>
@@ -32,12 +32,5 @@ title: Burai Live Site
 				<p>安定稼働を支える監視・改善・保守を提供します。</p>
 			</div>
 		</div>
-	</div>
-</section>
-
-<section id="contact" class="content-section">
-	<div class="container">
-		<h2>お問い合わせ</h2>
-		<p>ご依頼やご相談は <a href="mailto:{{ site.email }}">{{ site.email }}</a> までご連絡ください。</p>
 	</div>
 </section>
