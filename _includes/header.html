@@ -13,7 +13,11 @@
           <strong class="site-title">{{ site.title }}</strong>
         {% endif %}
       </a>
-      <p class="tag">{{ site.description }}</p>
+      {% if page.url contains '/en/' %}
+        <p class="tag">{{ site.description_en }}</p>
+      {% else %}
+        <p class="tag">{{ site.description }}</p>
+      {% endif %}
     </div>
 
     <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,22 +27,29 @@
     </button>
 
     <nav id="main-nav" class="main-nav" role="navigation">
-      {% if site.navigation %}
-        {% for item in site.navigation %}
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        {% endfor %}
+      {% if page.url contains '/en/' %}
+        <a href="{{ '/en/' | relative_url }}">Home</a>
+        <a href="{{ '/en/about/' | relative_url }}">About</a>
+        <a href="{{ '/en/services/' | relative_url }}">Services</a>
+        <a href="#contact">Contact</a>
       {% else %}
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        {% if site.navigation %}
+          {% for item in site.navigation %}
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/about/' | relative_url }}">About</a>
+          <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        {% endif %}
       {% endif %}
     </nav>
     <div class="lang-switch" aria-hidden="false">
       {% unless page.url contains '/en/' %}
-        <a href="{{ '/en/' | relative_url }}" class="lang-link">EN</a>
+        <a href="{{ '/en/' | relative_url }}" class="lang-link" title="English">🇬🇧</a>
       {% endunless %}
       {% if page.url contains '/en/' %}
-        <a href="{{ '/' | relative_url }}" class="lang-link">JA</a>
+        <a href="{{ '/' | relative_url }}" class="lang-link" title="日本語">🇯🇵</a>
       {% endif %}
     </div>
   </div>
