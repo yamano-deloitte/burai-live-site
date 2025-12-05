@@ -54,11 +54,32 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .contact-modal__body{margin-top:1.25rem}
 .contact-form .form-row{margin-bottom:0.75rem}
 .contact-form label{display:block;font-weight:600;margin-bottom:0.25rem}
-.contact-form input,.contact-form textarea{width:100%;padding:0.6rem;border:1px solid #e6e9ee;border-radius:6px}
-.contact-form button{background:var(--color-primary);color:#fff;padding:0.6rem 0.9rem;border-radius:6px;border:0;cursor:pointer}
+.contact-form input,.contact-form textarea{width:100%;padding:0.6rem;border:1px solid #e6e9ee;border-radius:6px;transition:all 0.2s ease}
+.contact-form input:hover,.contact-form textarea:hover{border-color:#a3d5ff;background-color:#f0f9ff}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#64b5f6;background-color:#e3f2fd;box-shadow:0 0 0 3px rgba(100,181,246,0.15)}
+.contact-form button{background:var(--color-primary);color:#fff;padding:0.6rem 0.9rem;border-radius:6px;border:0;cursor:pointer;transition:all 0.2s ease}
+.contact-form button:hover{background:#0a3278;transform:translateY(-1px);box-shadow:0 4px 12px rgba(11,61,145,0.2)}
+.contact-form button:active{transform:translateY(0)}
+.contact-form .form-checkbox{margin-top:1rem}
+.contact-form .checkbox-label{display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;font-weight:400}
+.contact-form .checkbox-label input[type="checkbox"]{width:auto;margin-top:0.25rem;flex-shrink:0;cursor:pointer}
+.contact-form .checkbox-text{font-size:0.9rem;line-height:1.5;color:var(--color-muted)}
+.contact-form .checkbox-text a{color:var(--color-primary);text-decoration:underline}
 .contact-modal h2{margin:0;font-size:1.15rem;color:var(--color-primary)}
 
 @media (max-width:520px){.contact-modal__panel{width:96%;padding:0.9rem}}
+
+/* Contact page layout */
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.contact-form-container{background:#fff;padding:1.5rem;border-radius:8px;border:1px solid #eef2f7}
+.contact-info{background:#f8f9fb;padding:1.5rem;border-radius:8px;border:1px solid #eef2f7}
+.contact-info h3{margin:0 0 1rem 0;color:var(--color-primary);font-size:1.1rem}
+.contact-info p{margin:0}
+.contact-info a{color:var(--color-primary);text-decoration:none;font-weight:600;word-break:break-all}
+.contact-info a:hover{text-decoration:underline}
+@media (max-width:768px){
+  .contact-wrapper{grid-template-columns:1fr;gap:1.5rem}
+}
 
 /* Language switcher */
 .lang-switch{display:flex;gap:0.5rem;align-items:center;margin-left:1rem}

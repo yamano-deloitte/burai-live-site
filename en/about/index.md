@@ -28,6 +28,6 @@ Our team consists of product managers, engineers, designers, and cloud operation
 
 **Contact Us**
 
-For inquiries or quotes, please feel free to contact us via email:
+For general inquiries or quotes, please feel free to contact us via email:
 
 `{{ site.email }}`

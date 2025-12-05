@@ -75,7 +75,9 @@
 
 <p>ご質問、ご相談、お見積りのご依頼など、お気軽にお問い合わせください。</p>
 
-<form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate="">
+<div class="contact-wrapper">
+  <div class="contact-form-container">
+    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate="">
   <input type="hidden" name="_subject" value="New contact submission from website" />
 
   <div class="form-row">
@@ -99,6 +101,16 @@
     <input name="_gotcha" tabindex="-1" autocomplete="off" />
   </div>
 
+  <div class="form-row form-checkbox">
+    <label class="checkbox-label">
+      <input id="cf-privacy" name="privacy-consent" type="checkbox" required="" />
+      <span class="checkbox-text">
+        I agree to the <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to the processing of my personal information.
+        / <a href="/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意し、個人情報の取り扱いに同意します。
+      </span>
+    </label>
+  </div>
+
   <div class="form-row">
     <button type="submit">Send</button>
   </div>
@@ -106,11 +118,13 @@
   <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->
 </form>
 
-<hr />
-
-<p><strong>直接メールでのお問い合わせ</strong></p>
-
-<p><code class="language-plaintext highlighter-rouge">admin@burai.live</code></p>
+  </div>
+  
+  <div class="contact-info">
+    <h3>直接メールでのお問い合わせ</h3>
+    <p><a href="mailto:admin@burai.live">admin@burai.live</a></p>
+  </div>
+</div>
 
       </div>
     </main>
@@ -119,6 +133,8 @@
   <div class="container footer-inner">
     <p>&copy; 2025 Burai Live. All rights reserved.</p>
     <nav class="footer-nav">
+      <a href="mailto:admin@burai.live">admin@burai.live</a>
+      <span class="footer-separator">|</span>
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>

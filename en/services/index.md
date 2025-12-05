@@ -22,6 +22,14 @@ We deliver cutting-edge AI-powered business solutions:
 - **Generative AI Integration**: Application development leveraging large language models like ChatGPT and Claude
 - **AI Consulting**: Comprehensive support from AI adoption strategy to implementation
 
+### Healthcare DX
+We support digital transformation in the healthcare and medical sectors:
+- **Electronic Medical Records**: Cloud-based EMR and medical information management systems
+- **Telemedicine Platforms**: Development of online consultation and health advisory systems
+- **Medical Data Analytics**: AI and machine learning for diagnostic support and predictive analysis
+- **Patient Engagement**: Enhanced patient experiences through mobile apps and patient portals
+- **HIPAA/GDPR Compliance**: Implementation of medical data security and privacy protection
+
 ### Business Launch Support
 We support the market launch of new businesses and services. From strategic planning and MVP development to market validation and growth hacking, we provide end-to-end assistance.
 

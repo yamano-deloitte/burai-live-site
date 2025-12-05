@@ -37,7 +37,7 @@ permalink: /en/
 <section id="contact" class="content-section">
   <div class="container">
     <h2>Contact</h2>
-    <p>For inquiries, please email <a href="mailto:admin@burai.live">admin@burai.live</a> or use the contact form below.</p>
+    <p>For general inquiries, please email <a href="mailto:admin@burai.live">admin@burai.live</a> or use the contact form below.</p>
 
     {% include contact-form.html %}
   </div>

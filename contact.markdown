@@ -9,10 +9,13 @@ lang: ja
 
 ご質問、ご相談、お見積りのご依頼など、お気軽にお問い合わせください。
 
-{% include contact-form.html %}
-
----
-
-**直接メールでのお問い合わせ**
-
-`{{ site.email }}`
+<div class="contact-wrapper">
+  <div class="contact-form-container">
+    {% include contact-form.html %}
+  </div>
+  
+  <div class="contact-info">
+    <h3>直接メールでのお問い合わせ</h3>
+    <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  </div>
+</div>

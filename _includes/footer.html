@@ -2,6 +2,8 @@
   <div class="container footer-inner">
     <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
     <nav class="footer-nav">
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <span class="footer-separator">|</span>
       <a href="{{ '/' | relative_url }}">Home</a>
       <a href="{{ '/about/' | relative_url }}">About</a>
       <a href="{{ '/contact/' | relative_url }}">Contact</a>
