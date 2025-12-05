@@ -1,0 +1,99 @@
+<div id="cookie-consent" class="cookie-consent" aria-live="polite" role="dialog" aria-labelledby="cookie-consent-title" style="display:none;">
+  <div class="cookie-consent__content">
+    <h3 id="cookie-consent-title">🍪 Cookie Notice</h3>
+    {% if page.url contains '/en/' or page.lang == 'en' %}
+    <p>We use cookies to enhance your browsing experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies. For more information, please see our <a href="/en/privacy-policy/" class="cookie-link">Privacy Policy</a>.</p>
+    {% else %}
+    <p>当サイトでは、ブラウジング体験の向上とサイトトラフィックの分析のためにクッキーを使用しています。「同意する」をクリックすることで、クッキーの使用に同意したことになります。詳細については、<a href="/privacy-policy/" class="cookie-link">プライバシーポリシー</a>をご覧ください。</p>
+    {% endif %}
+    <div class="cookie-consent__actions">
+      {% if page.url contains '/en/' or page.lang == 'en' %}
+      <button id="cookie-accept" class="btn btn-accept" type="button">Accept</button>
+      <button id="cookie-decline" class="btn btn-decline" type="button">Decline</button>
+      {% else %}
+      <button id="cookie-accept" class="btn btn-accept" type="button">同意する</button>
+      <button id="cookie-decline" class="btn btn-decline" type="button">拒否する</button>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  
+  var COOKIE_NAME = 'cookie-consent';
+  var COOKIE_ACCEPTED = 'accepted';
+  var COOKIE_DECLINED = 'declined';
+  var COOKIE_EXPIRY_DAYS = 365;
+  
+  function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + (value || '') + expires + '; path=/; SameSite=Lax';
+  }
+  
+  function getCookie(name) {
+    var nameEQ = name + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+  
+  function hideBanner() {
+    var banner = document.getElementById('cookie-consent');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.setAttribute('aria-hidden', 'true');
+    }
+  }
+  
+  function showBanner() {
+    var banner = document.getElementById('cookie-consent');
+    if (banner) {
+      banner.style.display = 'block';
+      banner.setAttribute('aria-hidden', 'false');
+    }
+  }
+  
+  function handleAccept() {
+    setCookie(COOKIE_NAME, COOKIE_ACCEPTED, COOKIE_EXPIRY_DAYS);
+    hideBanner();
+    // Enable analytics or other tracking scripts here if needed
+    console.log('Cookies accepted');
+  }
+  
+  function handleDecline() {
+    setCookie(COOKIE_NAME, COOKIE_DECLINED, COOKIE_EXPIRY_DAYS);
+    hideBanner();
+    console.log('Cookies declined');
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = getCookie(COOKIE_NAME);
+    
+    if (!consent) {
+      showBanner();
+    }
+    
+    var acceptBtn = document.getElementById('cookie-accept');
+    var declineBtn = document.getElementById('cookie-decline');
+    
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', handleAccept);
+    }
+    
+    if (declineBtn) {
+      declineBtn.addEventListener('click', handleDecline);
+    }
+  });
+})();
+</script>
