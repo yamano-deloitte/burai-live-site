@@ -57,7 +57,7 @@ BURAI LIVE
 Software Development & IT Solutions
 Tokyo, Japan
 
-For inquiries:
+For general inquiries:
 📧 admin@burai.live
 
 © 2025 BURAI LIVE. All rights reserved. 🙏
