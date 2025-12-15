@@ -30,6 +30,10 @@ permalink: /en/
         <h3>Operations & Maintenance</h3>
         <p>We provide monitoring, improvements, and maintenance to keep systems stable.</p>
       </div>
+      <div class="card">
+        <h3>AI Consultation</h3>
+        <p>From AI agent development to generative AI integration, we deliver cutting-edge AI-powered solutions.</p>
+      </div>
     </div>
   </div>
 </section>
