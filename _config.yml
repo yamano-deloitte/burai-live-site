@@ -28,7 +28,7 @@ description_en: >-
   Corporate digital solutions: web development, cloud operations, and
   digital transformation to support business growth and optimize your
   online presence.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/burai-live-site" # the subpath of your site, e.g. /blog
 url: "https://burai.live" # the base hostname & protocol for your site
 logo: "/assets/images/logo.png"
 navigation:
