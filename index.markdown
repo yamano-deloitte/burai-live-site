@@ -4,9 +4,9 @@ title: Burai Live Site
 permalink: /
 lang: en
 description: >-
-	Burai Live provides corporate digital solutions including web development,
-	cloud operations, and AI agent integration so enterprises can transform their
-	online presence and business workflows.
+  Burai Live provides corporate digital solutions including web development,
+  cloud operations, and AI agent integration so enterprises can transform their
+  online presence and business workflows.
 ---
 <section class="maintenance">
 	<div class="maintenance-card">
