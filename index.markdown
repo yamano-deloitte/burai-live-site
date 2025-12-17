@@ -29,7 +29,7 @@ description: >-
 			reach us via email for urgent requests.
 		</p>
 		<p class="ja-note">
-			今後24時間以内に再公開予定です。差し迫ったご依頼はメールでお寄せください。
+			近日中に再公開予定です。ご依頼はメールでお寄せください。
 		</p>
 	</div>
 </section>
