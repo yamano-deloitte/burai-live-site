@@ -3,7 +3,7 @@ layout: default
 title: Services
 permalink: /en/services/
 lang: en
-description: "Burai Live delivers web development, cloud operations, AI solutions, healthcare DX, business launch support, operations and UMV aviation services for enterprises."
+description: "Burai Live delivers web development, cloud operations, AI solutions, healthcare DX, business launch support, operations and UMA drone services for enterprises."
 ---
 
 ## Our Services
@@ -37,7 +37,7 @@ We support the market launch of new businesses and services. From strategic plan
 ### Operations & Maintenance
 We provide SLA-based operational support and continuous improvement proposals. With 24/7 monitoring and rapid incident response, we ensure stable service operations.
 
-### UMV Aviation Services
+### UMA Drone System Services
 We combine unmanned aerial vehicle operations with data processing to provide safe, efficient aerial inspections, surveying, and monitoring for infrastructure, construction, logistics, and disaster response sites.
 - **Flight mission design**: Craft flight paths, altitudes, and sensor configurations that comply with regulations, weather, and on-site constraints.
 - **Real-time monitoring & safety**: Deliver remote oversight, geofencing, and fail-safe controls for reliable piloting and safety.
