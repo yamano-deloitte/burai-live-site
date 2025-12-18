@@ -3,6 +3,7 @@ layout: default
 title: Services
 permalink: /en/services/
 lang: en
+description: "Burai Live delivers web development, cloud operations, AI solutions, healthcare DX, business launch support, operations and UMV aviation services for enterprises."
 ---
 
 ## Our Services
