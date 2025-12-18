@@ -1,5 +1,18 @@
+{% assign form_lang = page.lang | default: site.lang | default: "ja" %}
+{% if form_lang == "en" %}
+  {% assign subject_heading = "Subject" %}
+  {% assign subject_label_general = "General inquiry" %}
+  {% assign subject_label_service = "Service request" %}
+  {% assign subject_label_quote = "Estimate request" %}
+  {% assign subject_label_other = "Other" %}
+{% else %}
+  {% assign subject_heading = "件名" %}
+  {% assign subject_label_general = "ご質問" %}
+  {% assign subject_label_service = "サービス依頼" %}
+  {% assign subject_label_quote = "見積もり依頼" %}
+  {% assign subject_label_other = "その他" %}
+{% endif %}
 <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate>
-  <input type="hidden" name="_subject" value="New contact submission from website">
 
   <div class="form-row">
     <label for="cf-name">Name</label>
@@ -9,6 +22,26 @@
   <div class="form-row">
     <label for="cf-email">Email</label>
     <input id="cf-email" name="email" type="email" required>
+  </div>
+
+  <div class="form-row form-radio">
+    <p>{{ subject_heading }}</p>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="General inquiry" required>
+      {{ subject_label_general }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="Service request">
+      {{ subject_label_service }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="Partnership or collaboration">
+      {{ subject_label_quote }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="Other">
+      {{ subject_label_other }}
+    </label>
   </div>
 
   <div class="form-row">
