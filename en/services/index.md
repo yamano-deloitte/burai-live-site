@@ -36,6 +36,13 @@ We support the market launch of new businesses and services. From strategic plan
 ### Operations & Maintenance
 We provide SLA-based operational support and continuous improvement proposals. With 24/7 monitoring and rapid incident response, we ensure stable service operations.
 
+### UMV Aviation Services
+We combine unmanned aerial vehicle operations with data processing to provide safe, efficient aerial inspections, surveying, and monitoring for infrastructure, construction, logistics, and disaster response sites.
+- **Flight mission design**: Craft flight paths, altitudes, and sensor configurations that comply with regulations, weather, and on-site constraints.
+- **Real-time monitoring & safety**: Deliver remote oversight, geofencing, and fail-safe controls for reliable piloting and safety.
+- **High-resolution data analytics**: Process LiDAR, RGB, and thermal imagery in the cloud to generate 3D models, displacement detection, and anomaly reports.
+- **System integration & reporting**: Feed results into existing asset-management or operations dashboards for faster decision-making.
+
 ---
 
 **Contact Us**
