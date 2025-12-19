@@ -21,22 +21,29 @@ function getCurrentUser() {
 
 // Login function
 function login(username, password) {
-  // Check credentials (in production, this should be done server-side)
+  // Check demo users first
   if (DEMO_USERS[username] && DEMO_USERS[username] === password) {
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('currentUser', username);
     localStorage.setItem('loginTime', new Date().toISOString());
     return true;
   }
+  
+  // Check registered users
+  const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '{}');
+  if (registeredUsers[username] && registeredUsers[username].password === password) {
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('currentUser', username);
+    localStorage.setItem('loginTime', new Date().toISOString());
+    return true;
+  }
+  
   return false;
 }
 
 // Logout function
 function logout() {
-  localStorage.removeItem('isAuthenticated');
-  localStorage.removeItem('currentUser');
-  localStorage.removeItem('loginTime');
-  window.location.href = '/';
+  window.location.href = '/logout/';
 }
 
 // Handle login form submission
@@ -53,7 +60,7 @@ if (document.getElementById('login-form')) {
       messageDiv.style.backgroundColor = '#d4edda';
       messageDiv.style.color = '#155724';
       messageDiv.style.border = '1px solid #c3e6cb';
-      messageDiv.textContent = 'ログイン成功！リダイレクト中... / Login successful! Redirecting...';
+      messageDiv.textContent = 'Login successful! Redirecting...';
       
       // Redirect to members area or home page
       setTimeout(() => {

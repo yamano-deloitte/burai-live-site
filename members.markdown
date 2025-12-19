@@ -34,17 +34,16 @@ permalink: /members/
     <div style="margin-top: 30px;">
       <h3>🔐 アカウント情報 / Account Information</h3>
       <p>ユーザー名 / Username: <strong id="account-username"></strong></p>
-      <p>ログイン日時 / Login Time: <strong id="login-time"></strong></p>
+      <p> Login Time: <strong id="login-time"></strong></p>
     </div>
   </div>
   
   <div id="access-denied" style="display: none;">
     <div style="background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 20px; border-radius: 4px; text-align: center;">
-      <h2>🔒 アクセス制限 / Access Restricted</h2>
-      <p>このページを表示するにはログインが必要です。</p>
+      <h2>🔒 Access Restricted</h2>
       <p>You need to login to view this page.</p>
       <a href="/login/?redirect=/members/" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px;">
-        ログインページへ / Go to Login
+        Go to Login
       </a>
     </div>
   </div>

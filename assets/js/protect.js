@@ -57,7 +57,7 @@
         
         if (hoursSinceLogin > 24) {
           // Session expired
-          alert('セッションの有効期限が切れました。再度ログインしてください。\nSession expired. Please login again.');
+          alert('Session expired. Please login again.');
           localStorage.removeItem('isAuthenticated');
           localStorage.removeItem('currentUser');
           localStorage.removeItem('loginTime');
