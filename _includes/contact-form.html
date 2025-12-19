@@ -1,51 +1,55 @@
 {% assign form_lang = page.lang | default: site.lang | default: "ja" %}
 {% if form_lang == "en" %}
   {% assign subject_heading = "Subject" %}
-  {% assign subject_label_general = "General inquiry" %}
-  {% assign subject_label_service = "Service request" %}
-  {% assign subject_label_quote = "Estimate request" %}
+  {% assign subject_label_general = "General Inquiry" %}
+  {% assign subject_label_service = "Service Request" %}
+  {% assign subject_label_quote = "Estimate Request" %}
   {% assign subject_label_other = "Other" %}
+  {% assign privacy_text = "I agree to the Privacy Policy and consent to the processing of my personal information." %}
+  {% assign submit_button = "Send" %}
 {% else %}
   {% assign subject_heading = "件名" %}
   {% assign subject_label_general = "ご質問" %}
   {% assign subject_label_service = "サービス依頼" %}
   {% assign subject_label_quote = "見積もり依頼" %}
   {% assign subject_label_other = "その他" %}
+  {% assign privacy_text = "プライバシーポリシーに同意し、個人情報の取り扱いに同意します。" %}
+  {% assign submit_button = "送信" %}
 {% endif %}
 <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate>
 
   <div class="form-row">
-    <label for="cf-name">Name</label>
+    <label for="cf-name">{% if form_lang == "en" %}Name{% else %}名前{% endif %}</label>
     <input id="cf-name" name="name" type="text" required>
   </div>
 
   <div class="form-row">
-    <label for="cf-email">Email</label>
+    <label for="cf-email">{% if form_lang == "en" %}Email{% else %}メールアドレス{% endif %}</label>
     <input id="cf-email" name="email" type="email" required>
   </div>
 
   <div class="form-row form-radio">
     <p>{{ subject_heading }}</p>
     <label class="radio-label">
-      <input type="radio" name="_subject" value="General inquiry" required>
+      <input type="radio" name="_subject" value="{{ subject_label_general }}" required>
       {{ subject_label_general }}
     </label>
     <label class="radio-label">
-      <input type="radio" name="_subject" value="Service request">
+      <input type="radio" name="_subject" value="{{ subject_label_service }}">
       {{ subject_label_service }}
     </label>
     <label class="radio-label">
-      <input type="radio" name="_subject" value="Partnership or collaboration">
+      <input type="radio" name="_subject" value="{{ subject_label_quote }}">
       {{ subject_label_quote }}
     </label>
     <label class="radio-label">
-      <input type="radio" name="_subject" value="Other">
+      <input type="radio" name="_subject" value="{{ subject_label_other }}">
       {{ subject_label_other }}
     </label>
   </div>
 
   <div class="form-row">
-    <label for="cf-message">Message</label>
+    <label for="cf-message">{% if form_lang == "en" %}Message{% else %}メッセージ{% endif %}</label>
     <textarea id="cf-message" name="message" rows="6" required></textarea>
   </div>
 
@@ -59,14 +63,13 @@
     <label class="checkbox-label">
       <input id="cf-privacy" name="privacy-consent" type="checkbox" required>
       <span class="checkbox-text">
-        I agree to the <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to the processing of my personal information.
-        / <a href="/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意し、個人情報の取り扱いに同意します。
+        {{ privacy_text }} <a href="/privacy-policy/" target="_blank" rel="noopener">{% if form_lang == "en" %}Privacy Policy{% else %}プライバシーポリシー{% endif %}</a>
       </span>
     </label>
   </div>
 
   <div class="form-row">
-    <button type="submit">Send</button>
+    <button type="submit">{{ submit_button }}</button>
   </div>
 
   <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->

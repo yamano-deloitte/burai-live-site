@@ -9,7 +9,7 @@ permalink: /en/
     <div class="left">
       <h1>Reliable Digital Partner — Burai Live</h1>
       <p>Professional web strategy and software development to support your company's growth.</p>
-      <p><a class="btn" href="#contact">Contact</a></p>
+      <p><a class="btn" href="{{ '/en/contact/' | relative_url }}">Contact</a></p>
     </div>
   </div>
 </section>
@@ -35,14 +35,5 @@ permalink: /en/
         <p>From AI agent development to generative AI integration, we deliver cutting-edge AI-powered solutions.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="contact" class="content-section">
-  <div class="container">
-    <h2>Contact</h2>
-    <p>For general inquiries, please email <a href="mailto:admin@burai.live">admin@burai.live</a> or use the contact form below.</p>
-
-    {% include contact-form.html %}
   </div>
 </section>

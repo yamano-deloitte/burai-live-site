@@ -61,7 +61,11 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .contact-modal__close{position:absolute;right:10px;top:8px;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--color-muted)}
 .contact-modal__body{margin-top:1.25rem}
 .contact-form .form-row{margin-bottom:0.75rem}
+.contact-form .form-radio{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.contact-form .form-radio p{margin:0;width:100%;font-weight:600;margin-bottom:0.5rem}
 .contact-form label{display:block;font-weight:600;margin-bottom:0.25rem}
+.contact-form .radio-label{display:flex;align-items:center;gap:0.5rem;font-weight:400;cursor:pointer;margin:0}
+.contact-form .radio-label input[type="radio"]{width:auto;margin:0;cursor:pointer;flex-shrink:0}
 .contact-form input,.contact-form textarea{width:100%;padding:0.6rem;border:1px solid #e6e9ee;border-radius:6px;transition:all 0.2s ease}
 .contact-form input:hover,.contact-form textarea:hover{border-color:#a3d5ff;background-color:#f0f9ff}
 .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#64b5f6;background-color:#e3f2fd;box-shadow:0 0 0 3px rgba(100,181,246,0.15)}
