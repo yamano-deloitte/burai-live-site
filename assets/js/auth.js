@@ -19,13 +19,13 @@ function getCurrentUser() {
   return localStorage.getItem('currentUser');
 }
 
-// Login function
-function login(username, password) {
+// Signin function
+function signin(username, password) {
   // Check demo users first
   if (DEMO_USERS[username] && DEMO_USERS[username] === password) {
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('currentUser', username);
-    localStorage.setItem('loginTime', new Date().toISOString());
+    localStorage.setItem('signinTime', new Date().toISOString());
     return true;
   }
   
@@ -34,7 +34,7 @@ function login(username, password) {
   if (registeredUsers[username] && registeredUsers[username].password === password) {
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('currentUser', username);
-    localStorage.setItem('loginTime', new Date().toISOString());
+    localStorage.setItem('signinTime', new Date().toISOString());
     return true;
   }
   
@@ -46,21 +46,21 @@ function logout() {
   window.location.href = '/logout/';
 }
 
-// Handle login form submission
-if (document.getElementById('login-form')) {
-  document.getElementById('login-form').addEventListener('submit', function(e) {
+// Handle signin form submission
+if (document.getElementById('signin-form')) {
+  document.getElementById('signin-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const messageDiv = document.getElementById('login-message');
+    const messageDiv = document.getElementById('signin-message');
     
-    if (login(username, password)) {
+    if (signin(username, password)) {
       messageDiv.style.display = 'block';
       messageDiv.style.backgroundColor = '#d4edda';
       messageDiv.style.color = '#155724';
       messageDiv.style.border = '1px solid #c3e6cb';
-      messageDiv.textContent = 'Login successful! Redirecting...';
+      messageDiv.textContent = 'Signin successful! Redirecting...';
       
       // Redirect to members area or home page
       setTimeout(() => {
@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
   } else {
     authWidget.innerHTML = `
-      <a href="/login/" style="padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; display: inline-block;">
-        Login
+      <a href="/signin/" style="padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; display: inline-block;">
+        Signin
       </a>
     `;
   }

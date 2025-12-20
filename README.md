@@ -1,4 +1,4 @@
-# Burai Live Site
+# Burai Live
 
 Official website for **BURAI LIVE**, a Tokyo-based software development startup providing modern, scalable IT solutions for businesses and individuals.
 

@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Login
-permalink: /login/
+title: Signin
+permalink: /signin/
 ---
 
-<div class="login-container" style="max-width: 400px; margin: 50px auto; padding: 20px;">
-  <h1>Login</h1>
+<div class="signin-container" style="max-width: 400px; margin: 50px auto; padding: 20px;">
+  <h1>Signin</h1>
   
-  <div id="login-message" style="padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none;"></div>
+  <div id="signin-message" style="padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none;"></div>
   
-  <form id="login-form" style="display: flex; flex-direction: column; gap: 15px;">
+  <form id="signin-form" style="display: flex; flex-direction: column; gap: 15px;">
     <div>
       <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
       <input type="text" id="username" name="username" required 
@@ -23,7 +23,7 @@ permalink: /login/
     </div>
     
     <button type="submit" style="padding: 10px 20px; background-color: #0b3d91; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
-      Login
+      Signin
     </button>
   </form>
   

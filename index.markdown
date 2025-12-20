@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Burai Live Site
+title: Burai Ltd
 permalink: /
 lang: en
 description: >-

@@ -39,7 +39,7 @@ permalink: /signup/
     </div>
     
     <button type="submit" style="padding: 10px 20px; background-color: #0b3d91; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
-      登録する / Sign Up
+     Sign Up
     </button>
   </form>
   
@@ -47,8 +47,8 @@ permalink: /signup/
     <p style="margin: 0; font-size: 14px; color: #666;">
       Already have an account?
     </p>
-    <a href="/login/" style="color: #0366d6; text-decoration: none; font-weight: 500;">
-       Login
+    <a href="/signin/" style="color: #0366d6; text-decoration: none; font-weight: 500;">
+       Signin
     </a>
   </div>
   
