@@ -14,9 +14,9 @@
     return localStorage.getItem('currentUser');
   }
   
-  // Get login time
-  function getLoginTime() {
-    return localStorage.getItem('loginTime');
+  // Get signin time
+  function getSigninTime() {
+    return localStorage.getItem('signinTime');
   }
   
   // Show protected content or access denied message
@@ -35,7 +35,7 @@
       
       // Populate user information
       const username = getCurrentUser();
-      const loginTime = getLoginTime();
+      const signinTime = getSigninTime();
       
       const memberNameElements = document.querySelectorAll('#member-name, #member-name-en');
       memberNameElements.forEach(el => el.textContent = username);
@@ -44,23 +44,23 @@
       if (accountUsername) accountUsername.textContent = username;
       
       const loginTimeElement = document.getElementById('login-time');
-      if (loginTimeElement && loginTime) {
-        const date = new Date(loginTime);
+      if (loginTimeElement && signinTime) {
+        const date = new Date(signinTime);
         loginTimeElement.textContent = date.toLocaleString();
       }
       
       // Optional: Check session timeout (e.g., 24 hours)
-      if (loginTime) {
-        const loginDate = new Date(loginTime);
+      if (signinTime) {
+        const signinDate = new Date(signinTime);
         const now = new Date();
-        const hoursSinceLogin = (now - loginDate) / (1000 * 60 * 60);
+        const hoursSinceSignin = (now - signinDate) / (1000 * 60 * 60);
         
-        if (hoursSinceLogin > 24) {
+        if (hoursSinceSignin > 24) {
           // Session expired
           alert('Session expired. Please login again.');
           localStorage.removeItem('isAuthenticated');
           localStorage.removeItem('currentUser');
-          localStorage.removeItem('loginTime');
+          localStorage.removeItem('signinTime');
           window.location.href = '/login/?redirect=' + encodeURIComponent(window.location.pathname);
         }
       }

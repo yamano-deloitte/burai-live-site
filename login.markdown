@@ -46,5 +46,3 @@ permalink: /signin/
     </p>
   </div>
 </div>
-
-<script src="/assets/js/auth.js"></script>

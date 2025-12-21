@@ -33,7 +33,7 @@ permalink: /logout/
 // Clear authentication data
 localStorage.removeItem('isAuthenticated');
 localStorage.removeItem('currentUser');
-localStorage.removeItem('loginTime');
+localStorage.removeItem('signinTime');
 
 // Countdown and redirect
 let seconds = 3;

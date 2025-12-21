@@ -34,7 +34,7 @@ permalink: /members/
     <div style="margin-top: 30px;">
       <h3>🔐 アカウント情報 / Account Information</h3>
       <p>ユーザー名 / Username: <strong id="account-username"></strong></p>
-      <p> Login Time: <strong id="login-time"></strong></p>
+      <p>ログイン時刻 / Login Time: <strong id="login-time"></strong></p>
     </div>
   </div>
   
