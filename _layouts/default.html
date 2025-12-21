@@ -10,8 +10,59 @@
       {% assign meta_desc = page.description | default: site.description %}
     {% endif %}
     <meta name="description" content="{{ meta_desc | escape }}" />
+    <meta name="keywords" content="{{ page.keywords | default: site.keywords }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
     <meta property="og:description" content="{{ meta_desc | escape }}" />
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-image.jpg" />
+    <meta property="og:site_name" content="Burai Live" />
+    <meta property="og:locale" content="{{ page.lang | default: 'ja_JP' }}" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
     <meta name="twitter:description" content="{{ meta_desc | escape }}" />
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.jpg" />
+    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+    
+    <!-- Geo Tags for Japan -->
+    <meta name="geo.region" content="JP" />
+    <meta name="geo.placename" content="Japan" />
+    
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Burai Live",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/assets/images/logo.png",
+      "description": "{{ meta_desc | escape }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "{{ site.email }}",
+        "contactType": "Customer Service",
+        "areaServed": "JP",
+        "availableLanguage": ["Japanese", "English"]
+      },
+      "sameAs": [
+        "https://twitter.com/{{ site.twitter_username }}",
+        "https://github.com/{{ site.github_username }}"
+      ],
+      "keywords": "drone, Japan, DX, ISR, ドローン, ドローンシステム開発, drone system development, AI solutions, web development"
+    }
+    </script>
+    
     <!-- Favicons / PWA -->
     <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">

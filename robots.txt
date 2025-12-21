@@ -1,2 +1,11 @@
+# robots.txt for https://burai.live
 User-agent: *
 Allow: /
+Disallow: /assets/js/
+Disallow: /_site/
+
+# Sitemaps
+Sitemap: https://burai.live/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1

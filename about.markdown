@@ -1,21 +1,27 @@
 ---
 layout: default
-title: About
+title: About | Burai Live - Drone Japan | Digital Transformation Partner
 permalink: /about/
+keywords: Burai, drone services Japan, ドローン, デジタルトランスフォーメーション, DX, AI, web development
+description: >-
+  
+  Professional drone services and digital solutions provider in Japan.
 ---
 
-Burai Live は、企業のデジタルトランスフォーメーションを支援する専門チームです。
+Burai Live は、ドローン技術とデジタルソリューションで企業成長を支援します。
 
-**ミッション**
+**ミッション | Our Mission**
 
-私たちは、技術と事業の橋渡しを行い、持続的な成長と競争力の向上を実現することを目指します。
+最新のドローン技術とデジタルテクノロジーを駆使し、日本のビジネスに革新的な
+ソリューションを提供。技術と事業の橋渡しを行い、持続的な成長と競争力の向上を実現します。
 
-**提供サービス**
+**提供サービス | Services**
 
-- ウェブ開発：要件定義から設計・実装・テストまでの一貫した開発
-- クラウド運用：インフラ設計、CI/CD、監視・障害対応
-- 事業立ち上げ支援（ここで開業）：サービスの市場投入を支援する戦略立案と実行
-- 運用・保守：SLA に基づく運用サポートと改善提案
+- **DX・ISRドローンシステム開発**: 自律飛行システム、ISRプラットフォーム、統合管制システム
+- **AI ソリューション**: AIエージェント開発、機械学習モデル構築、生成AI統合
+- **ウェブ開発**: 要件定義から設計・実装・テストまでの一貫した開発
+- **クラウド運用**: AWS/Azure/GCP インフラ設計、CI/CD、監視・障害対応
+- **事業立ち上げ支援**: サービスの市場投入を支援する戦略立案と実行
 
 **実績とアプローチ**
 

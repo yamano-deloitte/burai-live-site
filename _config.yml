@@ -18,19 +18,28 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Burai Live 
+title: Burai Live
 email: admin@burai.live
 description: >-
+<<<<<<< HEAD
   企業向けデジタルソリューション：ウェブ開発、クラウド運用、AI agent solutions、
   開業サポート、およびデジタルトランスフォーメーションを通じて、貴社の事業成長と
   オンラインプレゼンスの最適化を支援します。
+=======
+  企業向けデジタルソリューション：AI、ウェブ開発、クラウド運用を提供。
+  デジタルトランスフォーメーションで事業成長とオンラインプレゼンスの最適化を支援します。
+>>>>>>> dc281cb (SEO measurement)
 description_en: >-
-  Corporate digital solutions: web development, cloud operations, and
-  digital transformation to support business growth and optimize your
-  online presence.
+  Professional AI solutions, web development, and cloud operations in Japan.
+  Burai empowers businesses with modern technology and digital transformation services.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://burai.live" # the base hostname & protocol for your site
 logo: "/assets/images/logo.png"
+author: Burai Live
+keywords: >-
+  ドローン, drone, Japan, 日本, 空撮, aerial photography, 映像制作, video production,
+  AI, ウェブ開発, web development, クラウド運用, cloud operations, デジタルトランスフォーメーション,
+  digital transformation, DX, ドローン撮影, drone services, burai
 navigation:
   - title: Home
     url: /
@@ -40,13 +49,31 @@ navigation:
     url: /services/
   - title: Contact
     url: /contact/
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: burai_live
+github_username:  burai
+lang: ja
+languages: ["ja", "en"]
+
+# SEO Settings
+seo:
+  type: Organization
+  name: Burai Live
+  links:
+    - https://burai.live
+
+# Social Media
+social:
+  name: Burai Live
+  links:
+    - https://twitter.com/burai_live
+    - https://github.com/burai
 
 # Build settings
 theme: jekyll-theme-modernist
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.

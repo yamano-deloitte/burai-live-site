@@ -1,15 +1,37 @@
 ---
 layout: default
-title: Services
+title: サービス | DX・ISR Drone・AI・Web・Cloud Services | Burai Live Japan
 permalink: /services/
+keywords: DX, ISR, ドローンシステム開発, drone system development, AI solutions, web development, cloud operations, Burai, Japan
+description: >-
+  日本でDX・ISRドローンシステム開発、AI開発、ウェブ・クラウドサービスを提供。
+  DX & ISR drone system development, AI solutions, and digital services in Japan.
 ---
 
-## 提供サービス
+## 提供サービス | Our Services
 
-Burai Live は、企業のデジタルトランスフォーメーションを包括的に支援します。
+Burai Live は、先進的なドローン技術とデジタルソリューションで企業の成長を支援します。
 
-### ウェブ開発
-要件定義から設計・実装・テストまでの一貫した開発サービスを提供します。モダンなフレームワークと技術スタックを活用し、スケーラブルで保守性の高いウェブアプリケーションを構築します。
+### DX・ISRドローンシステム開発 | DX & ISR Drone System Development
+
+日本で高度なドローンシステム開発サービスを提供します：
+
+- **DXドローンソリューション**: 業務効率化・自動化のためのカスタムドローンシステム開発
+- **ISRシステム開発**: Intelligence, Surveillance, Reconnaissance用ドローンプラットフォーム
+- **自律飛行システム**: AI・機械学習を活用した自動航行・障害物回避システム
+- **ドローンデータ分析**: リアルタイムデータ収集・解析プラットフォーム構築
+- **統合管制システム**: 複数ドローンの統合管理・運用システム
+- **カスタムペイロード開発**: 用途に応じたセンサー・カメラシステム統合
+
+Advanced drone system development including DX solutions, ISR platforms, autonomous flight systems,
+data analytics, fleet management, and custom payload integration.
+
+### ウェブ開発 | Web Development
+
+ドローン事業者向けポートフォリオサイトから大規模Webアプリまで対応。
+要件定義から設計・実装・テストまでの一貫した開発サービスを提供します。
+モダンなフレームワークと技術スタックを活用し、スケーラブルで保守性の高い
+ウェブアプリケーションを構築します。
 
 ### クラウド運用
 AWS、Azure、GCPなどの主要クラウドプラットフォームにおけるインフラ設計、CI/CD構築、監視・障害対応を行います。コスト最適化とセキュリティ強化を両立させた運用を実現します。

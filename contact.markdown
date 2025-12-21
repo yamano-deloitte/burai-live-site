@@ -17,5 +17,11 @@ lang: ja
   <div class="contact-info">
     <h3>直接メールでのお問い合わせ</h3>
     <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    
+    <h3 style="margin-top: 2rem;">営業時間</h3>
+    <p>
+      月曜日-金曜日<br>
+      午前9時 - 午後5時
+    </p>
   </div>
 </div>

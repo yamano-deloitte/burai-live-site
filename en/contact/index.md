@@ -17,5 +17,11 @@ Please feel free to contact us with any questions, inquiries, or quote requests.
   <div class="contact-info">
     <h3>Direct Email Contact</h3>
     <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    
+    <h3 style="margin-top: 2rem;">Our Hours</h3>
+    <p>
+      Monday-Friday<br>
+      9am - 5pm
+    </p>
   </div>
 </div>

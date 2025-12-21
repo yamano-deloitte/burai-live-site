@@ -1,35 +1,50 @@
 ---
 layout: default
-title: Burai Ltd
+title: Burai Live - DX・ISRドローンシステム開発 | Drone Japan | AI・Web・Cloud Solutions
 permalink: /
 lang: en
 description: >-
-  Burai Live provides corporate digital solutions including web development,
-  cloud operations, and AI agent integration so enterprises can transform their
-  online presence and business workflows.
+  日本でDX・ISRドローンシステム開発、AI・Web開発、クラウド運用を提供。
+  企業のデジタルトランスフォーメーションと先進的なドローン技術で事業成長を支援。
+  DX and ISR drone system development services in Japan,
+  combined with AI solutions, web development, and cloud operations.
+keywords: >-
+  ドローン, drone, Japan, 日本, DX, ISR, ドローンシステム開発, drone system development,
+  Burai, UAV, AI solutions, web development, cloud operations, digital transformation
 ---
 <section class="maintenance">
 	<div class="maintenance-card">
 		<p class="maintenance-tag">Burai Live is temporarily under maintenance</p>
-		<h1>We are refreshing the experience</h1>
-		<p class="ja-heading">ユーザー体験をさらに良くするため、ただいま準備中です。</p>
+		<h1>DX・ISRドローンシステム開発 | DX & ISR Drone System Development in Japan</h1>
+		<p class="ja-heading">日本でDX・ISRドローンシステム開発、AI・デジタルソリューションを提供</p>
 		<p>
-			Thanks for your patience—our team is improving the content and infrastructure of
-			Burai Live so we can better serve your digital transformation goals.
+			Burai Live specializes in DX (Digital Transformation) and ISR (Intelligence, Surveillance, Reconnaissance)
+			drone system development in Japan. We combine advanced drone technology with AI solutions, web development,
+			and cloud operations to transform your business operations and capabilities.
 		</p>
 		<p class="ja-body">
-			ご不便をおかけしますが、Burai Liveではコンテンツやインフラを整備し、デジタルトランスフォーメーションのご支援を一層強化しています。
+			Burai Liveは日本でDX（デジタルトランスフォーメーション）・ISRドローンシステム開発を専門としています。
+			先進的なドローン技術とAIソリューション、ウェブ開発、クラウド運用を組み合わせ、
+			お客様のビジネスオペレーションと能力を革新します。
 		</p>
+		<h2>サービス | Our Services</h2>
+		<ul>
+			<li><strong>DX・ISRドローンシステム開発</strong> - DX & ISR drone system development</li>
+			<li><strong>AIソリューション</strong> - AI agent development and integration</li>
+			<li><strong>ウェブ開発</strong> - Modern web application development</li>
+			<li><strong>クラウド運用</strong> - AWS, Azure, GCP infrastructure and operations</li>
+		</ul>
 		<div class="maintenance-actions">
-			<a class="btn" href="/contact/">Keep me posted</a>
+			<a class="btn" href="/contact/">お問い合わせ Contact Us</a>
 			<a class="btn btn-outline" href="mailto:admin@burai.live">Email the team</a>
 		</div>
 		<p class="maintenance-note">
-			We expect to be back online within the next 24 hours. In the meantime, you can
-			reach us via email for urgent requests.
+			We are currently updating our website to better serve you. For DX/ISR drone system development,
+			AI solutions, or digital transformation inquiries, please reach us via email.
 		</p>
 		<p class="ja-note">
-			近日中に再公開予定です。ご依頼はメールでお寄せください。
+			ウェブサイト更新中です。DX・ISRドローンシステム開発、AIソリューション、デジタル変革のご相談は
+			メールでお気軽にお問い合わせください。
 		</p>
 	</div>
 </section>

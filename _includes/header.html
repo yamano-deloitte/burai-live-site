@@ -13,11 +13,7 @@
           <strong class="site-title">{{ site.title }}</strong>
         {% endif %}
       </a>
-      {% if page.url contains '/en/' %}
-        <p class="tag">{{ site.description_en }}</p>
-      {% else %}
-        <p class="tag">{{ site.description }}</p>
-      {% endif %}
+      <!-- Tagline removed per request to simplify header and avoid aerial photography wording -->
     </div>
 
     <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
