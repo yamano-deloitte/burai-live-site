@@ -21,14 +21,8 @@
 title: Burai Live
 email: admin@burai.live
 description: >-
-<<<<<<< HEAD
-  企業向けデジタルソリューション：ウェブ開発、クラウド運用、AI agent solutions、
-  開業サポート、およびデジタルトランスフォーメーションを通じて、貴社の事業成長と
-  オンラインプレゼンスの最適化を支援します。
-=======
   企業向けデジタルソリューション：AI、ウェブ開発、クラウド運用を提供。
   デジタルトランスフォーメーションで事業成長とオンラインプレゼンスの最適化を支援します。
->>>>>>> dc281cb (SEO measurement)
 description_en: >-
   Professional AI solutions, web development, and cloud operations in Japan.
   Burai empowers businesses with modern technology and digital transformation services.
@@ -50,7 +44,7 @@ navigation:
   - title: Contact
     url: /contact/
 twitter_username: burai_live
-github_username:  burai
+github_username: burai
 lang: ja
 languages: ["ja", "en"]
 
@@ -83,14 +77,14 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
