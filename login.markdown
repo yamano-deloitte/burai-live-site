@@ -11,8 +11,8 @@ permalink: /signin/
   
   <form id="signin-form" style="display: flex; flex-direction: column; gap: 15px;">
     <div>
-      <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
-      <input type="text" id="username" name="username" required 
+      <label for="email" style="display: block; margin-bottom: 5px;">Email:</label>
+      <input type="email" id="email" name="email" required 
              style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
     </div>
     
@@ -37,12 +37,14 @@ permalink: /signin/
   </div>
   
   <div style="margin-top: 20px; padding: 15px; background-color: #f6f8fa; border-radius: 4px; font-size: 14px;">
-    <p><strong> Demo Credentials:</strong></p>
-    <p>Username: demo</p>
+    <p><strong>🎭 Demo Credentials (when Supabase not configured):</strong></p>
+    <p>Email: demo@burai.live</p>
     <p>Password: demo123</p>
     <p style="color: #666; font-size: 12px; margin-top: 10px;">
-      注: これは基本的なデモ実装です。本番環境では適切な認証サービスを使用してください。<br>
-      Note: This is a basic demo implementation. Use proper authentication service in production.
+      注: Supabaseを設定すると本格的な認証システムになります。<br>
+      Note: Configure Supabase for production-grade authentication.<br>
+      See <a href="https://github.com/tommyyama2020/burai-live-site/blob/demo/SUPABASE_SETUP.md" style="color: #0366d6;">SUPABASE_SETUP.md</a> for instructions.
     </p>
   </div>
 </div>
+

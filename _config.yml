@@ -35,14 +35,7 @@ keywords: >-
   AI, ウェブ開発, web development, クラウド運用, cloud operations, デジタルトランスフォーメーション,
   digital transformation, DX, ドローン撮影, drone services, burai
 navigation:
-  - title: Home
-    url: /
-  - title: About
-    url: /about/
-  - title: Services
-    url: /services/
-  - title: Contact
-    url: /contact/
+
 twitter_username: burai_live
 github_username: burai
 lang: ja
