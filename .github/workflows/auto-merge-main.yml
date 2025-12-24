@@ -1,4 +1,4 @@
-name: Auto Push and Merge to Main
+name: Auto Create PR from Demo to Main 
 
 on:
   schedule:
