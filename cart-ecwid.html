@@ -1,0 +1,22 @@
+---
+layout: default
+title: Cart (Ecwid)
+permalink: /cart-ecwid/
+---
+
+<div id="cart-area" style="max-width:600px; margin:40px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); display:none;">
+  <h2>Your Shopping Cart</h2>
+  <!-- Ecwid埋め込みコード例 -->
+  <div id="my-ecwid-store"></div>
+  <script type="text/javascript" src="https://app.ecwid.com/script.js?YOUR_STORE_ID&data_platform=code&data_date=2025-12-24" charset="utf-8" onload="if(window.Ecwid){Ecwid.init();}"></script>
+</div>
+<script>
+// Supabase認証状態でカート表示
+function showCartIfAuthenticated() {
+  var isAuth = localStorage.getItem('isAuthenticated') === 'true';
+  document.getElementById('cart-area').style.display = isAuth ? 'block' : 'none';
+}
+document.addEventListener('DOMContentLoaded', showCartIfAuthenticated);
+</script>
+
+<!-- ログインしていない場合はカート非表示 -->

@@ -117,8 +117,8 @@ if (document.getElementById('signin-form')) {
       messageDiv.style.color = '#155724';
       messageDiv.style.border = '1px solid #c3e6cb';
       messageDiv.textContent = result.demo 
-        ? '⚠️ Demo mode: Signin successful! Redirecting...'
-        : '✅ Signin successful! Redirecting...';
+        ? '⚠️ Demo mode: Sign In successful! Redirecting...'
+        : '✅ Sign In successful! Redirecting...';
       
       // Redirect to members area or home page
       const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || '/members/';
@@ -177,7 +177,7 @@ if (document.getElementById('signin-form')) {
     } else {
       authWidget.innerHTML = `
         <a href="/signin/" style="padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; display: inline-block;">
-          Signin
+          Sign In
         </a>
       `;
     }
@@ -186,8 +186,37 @@ if (document.getElementById('signin-form')) {
     // Fallback to signin button
     authWidget.innerHTML = `
       <a href="/signin/" style="padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; display: inline-block;">
-        Signin
+        Sign In
       </a>
     `;
   }
 })();
+  
+// パスワードリセット処理
+if (document.getElementById('forgot-password-form')) {
+  document.getElementById('forgot-password-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('forgot-email').value;
+    const messageDiv = document.getElementById('forgot-password-message');
+    messageDiv.textContent = '';
+    messageDiv.style.color = '#0b3d91';
+    // Supabase利用時
+    const supabaseClient = initAuth();
+    if (supabaseClient && window.isSupabaseConfigured()) {
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/reset-password/'
+      });
+      if (error) {
+        messageDiv.textContent = 'エラー: ' + error.message;
+        messageDiv.style.color = '#dc3545';
+      } else {
+        messageDiv.textContent = 'リセットリンクを送信しました。メールをご確認ください。';
+        messageDiv.style.color = '#0b3d91';
+      }
+    } else {
+      // デモモード
+      messageDiv.textContent = 'デモモードではパスワードリセットは利用できません。';
+      messageDiv.style.color = '#dc3545';
+    }
+  });
+}

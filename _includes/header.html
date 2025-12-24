@@ -28,6 +28,7 @@
         <a href="{{ '/en/' | relative_url }}">Home</a>
         <a href="{{ '/en/about/' | relative_url }}">About</a>
         <a href="{{ '/en/services/' | relative_url }}">Services</a>
+        <a href="{{ '/en/partners/' | relative_url }}">Partners</a>
         <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
       {% else %}
         {% if site.navigation %}
@@ -38,7 +39,15 @@
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/about/' | relative_url }}">事業概要</a>
             <a href="{{ '/services/' | relative_url }}">サービス</a>
-              <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
+            <a href="{{ '/partners/' | relative_url }}">パートナー</a>
+            <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
+              <a href="/cart-ecwid/" title="カート" style="margin-left:8px; vertical-align:middle; display:inline-block;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="vertical-align:middle;">
+                  <circle cx="9" cy="21" r="1"/>
+                  <circle cx="20" cy="21" r="1"/>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
         {% endif %}
       {% endif %}
     </nav>

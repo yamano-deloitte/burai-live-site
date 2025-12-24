@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Sign In
-permalink: /signin/
+description: English login page
+permalink: /en/signin/
 ---
 
 <div class="signin-container" style="max-width: 400px; margin: 50px auto; padding: 20px;">
@@ -26,7 +27,7 @@ permalink: /signin/
       Sign In
     </button>
       <div style="margin-top:10px; text-align:right;">
-        <a href="javascript:void(0);" onclick="openForgotPasswordModal();" style="color:#0366d6; text-decoration:underline; font-size:13px;">Forgot a password?</a>
+        <a href="javascript:void(0);" onclick="openForgotPasswordModal();" style="color:#0366d6; text-decoration:underline; font-size:13px;">Forgot your password?</a>
       </div>
   </form>
   
@@ -34,21 +35,19 @@ permalink: /signin/
     <p style="margin: 0; font-size: 14px; color: #666;">
        Don't have an account?
     </p>
-    <a href="/signup/" style="color: #0366d6; text-decoration: none; font-weight: 500;">
+    <a href="/en/signup/" style="color: #0366d6; text-decoration: none; font-weight: 500;">
       Sign Up
     </a>
   </div>
-  
   <div style="margin-top: 20px; padding: 15px; background-color: #f6f8fa; border-radius: 4px; font-size: 14px;">
     <p><strong>🎭 Demo Credentials (when Supabase not configured):</strong></p>
     <p>Email: demo@burai.live</p>
     <p>Password: demo123</p>
     <p style="color: #666; font-size: 12px; margin-top: 10px;">
-      注: Supabaseを設定すると本格的な認証システムになります。<br>
       Note: Configure Supabase for production-grade authentication.<br>
       See <a href="https://github.com/tommyyama2020/burai-live-site/blob/demo/SUPABASE_SETUP.md" style="color: #0366d6;">SUPABASE_SETUP.md</a> for instructions.
     </p>
-  {% include forgot-password-modal.html %}
+  {% include forgot-password-modal-en.html %}
   </div>
 </div>
 

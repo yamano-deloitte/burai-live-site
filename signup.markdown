@@ -10,19 +10,15 @@ permalink: /signup/
   <div id="signup-message" style="padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none;"></div>
   
   <form id="signup-form" style="display: flex; flex-direction: column; gap: 15px;">
-      <div>
-        <label for="signup-name" style="display: block; margin-bottom: 5px;">氏名:</label>
-        <input type="text" id="signup-name" name="name" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Taro Yamada">
-      </div>
     <div>
-      <label for="signup-email" style="display: block; margin-bottom: 5px;">Email:</label>
+      <label for="signup-email" style="display: block; margin-bottom: 5px;">メールアドレス / Email:</label>
       <input type="email" id="signup-email" name="email" required 
              style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"
              placeholder="your@email.com">
     </div>
     
     <div>
-      <label for="signup-password" style="display: block; margin-bottom: 5px;">Password:</label>
+      <label for="signup-password" style="display: block; margin-bottom: 5px;">パスワード / Password:</label>
       <input type="password" id="signup-password" name="password" required
              style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"
              minlength="6">
@@ -30,7 +26,7 @@ permalink: /signup/
     </div>
     
     <div>
-      <label for="signup-password-confirm" style="display: block; margin-bottom: 5px;">Confirm Password:</label>
+      <label for="signup-password-confirm" style="display: block; margin-bottom: 5px;">パスワード確認 / Confirm Password:</label>
       <input type="password" id="signup-password-confirm" name="password-confirm" required
              style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
     </div>
@@ -45,7 +41,7 @@ permalink: /signup/
       Already have an account?
     </p>
     <a href="/signin/" style="color: #0366d6; text-decoration: none; font-weight: 500;">
-       Signin
+       Sign In
     </a>
   </div>
   
