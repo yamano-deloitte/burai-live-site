@@ -25,7 +25,24 @@ jobs:
       - name: Merge demo into main
         run: |
           git checkout main
-          git merge --no-ff demo -m "Auto-merge demo into main"
+          if git merge --no-ff demo -m "Auto-merge demo into main"; then
+            echo "Merge successful"
+          else
+            echo "::error::Merge conflict detected between demo and main"
+            exit 1
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Auto-merge failed: Conflicts between demo and main',
+              body: 'The automated merge from demo to main failed due to conflicts. Please resolve manually.'
+            });
 
       - name: Push changes
         run: git push origin main
