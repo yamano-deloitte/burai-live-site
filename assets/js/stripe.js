@@ -16,7 +16,7 @@ document.getElementById('cart-link').addEventListener('click', async (event) => 
   const response = await fetch('/create-checkout-session', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ /* cart items */ })
+    body: JSON.stringify({ items: [] }) // Add cart items here
   });
   const session = await response.json();
   const result = await stripe.redirectToCheckout({ sessionId: session.id });
