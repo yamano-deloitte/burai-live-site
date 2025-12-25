@@ -1,14 +1,14 @@
 ---
 layout: default
-title: サービス | DX・ISR Drone・AI・Web・Cloud Services | Burai Live Japan
+title: 事業概要 | DX・ISR Drone・AI・Web・Cloud Services | Burai Live Japan
 permalink: /services/
 keywords: DX, ISR, ドローンシステム開発, drone system development, AI solutions, web development, cloud operations, Burai, Japan
-description: >-
+description: >
   日本でDX・ISRドローンシステム開発、AI開発、ウェブ・クラウドサービスを提供。
   DX & ISR drone system development, AI solutions, and digital services in Japan.
 ---
 
-## 提供サービス | Our Services
+## 事業概要 | Our Services
 
 Burai Live は、先進的なドローン技術とデジタルソリューションで企業の成長を支援します。
 

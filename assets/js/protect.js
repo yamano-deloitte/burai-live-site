@@ -1,26 +1,48 @@
 /**
- * Page Protection Script
+ * Page Protection Script with Supabase
  * Protects pages that require authentication
  */
 
-(function() {
+(async function() {
+  let supabaseClient = null;
+  
+  // Initialize Supabase client
+  function initProtect() {
+    supabaseClient = window.getSupabaseClient ? window.getSupabaseClient() : null;
+    return supabaseClient;
+  }
+  
   // Check if user is logged in
-  function isLoggedIn() {
+  async function isLoggedIn() {
+    initProtect();
+    
+    if (supabaseClient && window.isSupabaseConfigured()) {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      return session !== null;
+    }
+    
+    // Fallback to localStorage for demo mode
     return localStorage.getItem('isAuthenticated') === 'true';
   }
   
   // Get current user
-  function getCurrentUser() {
-    return localStorage.getItem('currentUser');
-  }
-  
-  // Get signin time
-  function getSigninTime() {
-    return localStorage.getItem('signinTime');
+  async function getCurrentUser() {
+    initProtect();
+    
+    if (supabaseClient && window.isSupabaseConfigured()) {
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      return user;
+    }
+    
+    // Fallback to localStorage for demo mode
+    return {
+      email: localStorage.getItem('currentUser'),
+      created_at: localStorage.getItem('signinTime')
+    };
   }
   
   // Show protected content or access denied message
-  function checkAccess() {
+  async function checkAccess() {
     const protectedContent = document.getElementById('protected-content');
     const accessDenied = document.getElementById('access-denied');
     
@@ -28,40 +50,29 @@
       return; // Not a protected page
     }
     
-    if (isLoggedIn()) {
+    const loggedIn = await isLoggedIn();
+    
+    if (loggedIn) {
       // Show protected content
       protectedContent.style.display = 'block';
       accessDenied.style.display = 'none';
       
       // Populate user information
-      const username = getCurrentUser();
-      const signinTime = getSigninTime();
+      const user = await getCurrentUser();
+      const email = user?.email || user?.email || 'Unknown';
       
       const memberNameElements = document.querySelectorAll('#member-name, #member-name-en');
-      memberNameElements.forEach(el => el.textContent = username);
+      memberNameElements.forEach(el => el.textContent = email);
       
       const accountUsername = document.getElementById('account-username');
-      if (accountUsername) accountUsername.textContent = username;
+      if (accountUsername) accountUsername.textContent = email;
       
       const loginTimeElement = document.getElementById('login-time');
-      if (loginTimeElement && signinTime) {
-        const date = new Date(signinTime);
-        loginTimeElement.textContent = date.toLocaleString();
-      }
-      
-      // Optional: Check session timeout (e.g., 24 hours)
-      if (signinTime) {
-        const signinDate = new Date(signinTime);
-        const now = new Date();
-        const hoursSinceSignin = (now - signinDate) / (1000 * 60 * 60);
-        
-        if (hoursSinceSignin > 24) {
-          // Session expired
-          alert('Session expired. Please login again.');
-          localStorage.removeItem('isAuthenticated');
-          localStorage.removeItem('currentUser');
-          localStorage.removeItem('signinTime');
-          window.location.href = '/login/?redirect=' + encodeURIComponent(window.location.pathname);
+      if (loginTimeElement) {
+        const timestamp = user?.created_at || localStorage.getItem('signinTime');
+        if (timestamp) {
+          const date = new Date(timestamp);
+          loginTimeElement.textContent = date.toLocaleString();
         }
       }
     } else {

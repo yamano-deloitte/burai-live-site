@@ -23,7 +23,7 @@ permalink: /logout/
     
     <div style="margin-top: 20px;">
       <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #0b3d91; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">
-        今すぐホームへ / Go to Home Now
+        Return to Home
       </a>
     </div>
   </div>
