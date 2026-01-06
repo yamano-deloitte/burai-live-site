@@ -60,4 +60,4 @@ Tokyo, Japan
 For general inquiries:
 📧 admin@burai.live
 
-© 2025 BURAI LIVE. All rights reserved. 🙏
+© 2026 BURAI LIVE. All rights reserved. 🙏
