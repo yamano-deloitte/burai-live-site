@@ -9,7 +9,7 @@ permalink: /en/
     <div class="left">
       <h1>Reliable Digital Partner — Burai Live</h1>
       <p>Professional web strategy and software development to support your company's growth.</p>
-      <p><a class="btn" href="{{ '/en/contact/' | relative_url }}">Contact</a></p>
+      <p><a class="btn" href="{{ '/en/contact/' | relative_url }}">Contact Us</a></p>
     </div>
   </div>
 </section>
@@ -24,7 +24,7 @@ permalink: /en/
       </div>
       <div class="card">
         <h3>Development</h3>
-        <p>We deliver robust, scalable web and mobile applications.</p>
+        <p>From dynamic web and mobile applications to next-gen drone and aviation system development, we build the technologies that drive innovation and growth.</p>
       </div>
       <div class="card">
         <h3>Operations & Maintenance</h3>
