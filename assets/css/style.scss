@@ -1,6 +1,17 @@
 ---
----
 @import "jekyll-theme-modernist";
+:root{
+  --color-bg:#ffffff;
+  --color-primary:#0b3d91; /* navy */
+  --color-accent:#007acc;
+  --color-muted:#6b7280;
+  --max-width:1100px;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root{
   --color-bg:#ffffff;
@@ -10,6 +21,7 @@
   --max-width:1100px;
 }
 *{box-sizing:border-box}
+
 body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--color-bg); color:#111}
 .container{max-width:var(--max-width); margin:0 auto; padding:2rem}
 .site-header{background:#fff; border-bottom:1px solid #e6e9ee}
@@ -22,6 +34,7 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .main-nav a{margin-left:1rem;color:var(--color-muted);text-decoration:none}
 .main-nav a:hover{color:var(--color-primary)}
 .brand-logo{height:60px;display:inline-block}
+
 
 /* Mobile menu */
 .main-nav{display:flex;gap:0.5rem;align-items:center}
@@ -199,6 +212,16 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   background:var(--color-primary);
   color:#fff;
 }
+.btn-outline1{
+  border:1px solid var(--color-primary);
+  background:transparent;
+  color:var(--color-primary);
+  transition:background 0.2s ease, color 0.2s ease;
+}
+.btn-outline1:hover{
+  background:var(--color-primary);
+  color:#fff;
+}
 .maintenance-note{
   font-size:0.95rem;
   color:var(--color-muted);
@@ -215,5 +238,334 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   .auth-widget{
     margin-left:0;
     margin-top:1rem;
+  }
+}
+.topnav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
+}
+body {
+  padding-top: 50px; /* ナビの高さ分余白を入れる（例: 50px） */
+}
+
+/* --- Sticky Narrow Topnav Bar --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: box-shadow 0.2s;
+  min-height: 48px;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.brand-link, .brand-logo, .site-title {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 48px;
+}
+
+.main-nav a {
+  color: #222;
+  text-decoration: none;
+  font-size: 0.98rem;
+  padding: 8px 0;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover, .main-nav a:focus {
+  color: #0077b6;
+  border-bottom: 2px solid #0077b6;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.lang-link {
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.lang-link.active {
+  font-weight: bold;
+  opacity: 1;
+}
+
+/* Auth widget placeholder */
+.auth-widget {
+  margin-left: 16px;
+}
+
+/* --- Hamburger menu for mobile --- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 4px 0;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* --- Responsive: Mobile --- */
+@media (max-width: 800px) {
+  .header-inner {
+    height: 48px;
+    padding: 0 10px;
+  }
+  .main-nav {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .main-nav.open {
+    display: flex;
+  }
+  .main-nav a {
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: none;
+    font-size: 1.05rem;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .lang-switch, .auth-widget {
+    margin-left: 0;
+  }
+}
+
+/* Optional: Hide nav-toggle on desktop */
+@media (min-width: 801px) {
+  .nav-toggle {
+    display: none !important;
+  }
+}
+
+/* Optional: Shrink header on scroll */
+.site-header.scrolled {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  background: #f8f8f8;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+/* 上段 */
+.topbar {
+  background: #f6f7f9;
+  font-size: 0.93rem;
+  border-bottom: 1px solid #ececec;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.topbar-info span {
+  margin-right: 20px;
+  color: #555;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 下段 */
+.mainbar {
+  background: #fff;
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 54px;
+  padding: 0 16px;
+}
+.brand-link, .brand-logo, .site-title {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+}
+.main-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  height: 54px;
+}
+.main-nav a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+.main-nav a:hover, .main-nav a:focus {
+  color: #0077b6;
+  border-bottom: 2px solid #0077b6;
+}
+
+/* ハンバーガーメニュー（スマホ用） */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 4px 0;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* 言語切替・ログイン */
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.lang-link {
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.lang-link.active {
+  font-weight: bold;
+  opacity: 1;
+}
+.auth-widget {
+  margin-left: 12px;
+}
+
+/* レスポンシブ */
+@media (max-width: 800px) {
+  .topbar-inner, .header-inner {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .main-nav {
+    position: absolute;
+    top: 90px; /* topbar+mainbarの高さ */
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .main-nav.open {
+    display: flex;
+  }
+  .main-nav a {
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: none;
+    font-size: 1.05rem;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .lang-switch, .auth-widget {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 801px) {
+  .nav-toggle {
+    display: none !important;
   }
 }

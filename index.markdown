@@ -14,7 +14,7 @@ keywords: >-
 ---
 <section class="maintenance">
 	<div class="maintenance-card">
-		<p class="maintenance-tag">Burai Live is temporarily under maintenance</p>
+		<!--<p class="maintenance-tag">Burai Live is temporarily under maintenance</p> -->
 		<h1>DX・ISRドローンシステム開発 | DX & ISR Drone System Development in Japan</h1>
 		<p class="ja-heading">日本でDX・ISRドローンシステム開発、AI・デジタルソリューションを提供</p>
 		<p>
@@ -35,7 +35,7 @@ keywords: >-
 			<li><strong>クラウド運用</strong> - AWS, Azure, GCP infrastructure and operations</li>
 		</ul>
 		<div class="maintenance-actions">
-			<a class="btn" href="/contact/">お問い合わせ Contact Us</a>
+			<a class="btn btn-outline1" href="/contact/">お問い合わせ</a>
 			<a class="btn btn-outline" href="mailto:admin@burai.live">Email the team</a>
 		</div>
 		<p class="maintenance-note">

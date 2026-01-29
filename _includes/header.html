@@ -1,67 +1,65 @@
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.svg' | relative_url }}">
-<link rel="icon" type="image/svg+xml" sizes="32x32" href="{{ '/assets/images/favicon-32x32.svg' | relative_url }}">
-<link rel="icon" type="image/svg+xml" sizes="16x16" href="{{ '/assets/images/favicon-16x16.svg' | relative_url }}">
-<!-- Manifest disabled in dev to avoid CORS issues with GitHub Codespaces -->
-<!-- <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}"> -->
-
 <header class="site-header" role="banner">
-  <div class="container header-inner">
-    <div class="brand">
-      <a class="brand-link" href="{{ '/' | relative_url }}">
-        {% if site.logo %}
-          <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}" class="brand-logo" />
-        {% else %}
-          <strong class="site-title">{{ site.title }}</strong>
-        {% endif %}
-      </a>
-      <!-- Tagline removed per request to simplify header and avoid aerial photography wording -->
+  <!-- 上段（インフォバー等） -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-info">
+        <!-- ここにお知らせや連絡先など任意要素 -->
+        <span class="topbar-tel">📞 03-1234-5678</span>
+        <span class="topbar-mail">✉ admin@burai.live</span>
+      </div>
+      <div class="topbar-actions">
+        <div class="lang-switch" aria-hidden="false">
+          <!-- 言語切替 -->
+          {% if page.url contains '/en/' %}
+            <span class="lang-link active" title="English (Current)">🇬🇧</span>
+            <a href="{{ '/' | relative_url }}" class="lang-link" title="日本語">🇯🇵</a>
+          {% else %}
+            <span class="lang-link active" title="日本語（現在）">🇯🇵</span>
+            <a href="{{ '/en/' | relative_url }}" class="lang-link" title="English">🇬🇧</a>
+          {% endif %}
+        </div>
+        <div id="auth-widget" class="auth-widget"></div>
+      </div>
     </div>
-
-    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-
-    <nav id="main-nav" class="main-nav" role="navigation">
-      {% if page.url contains '/en/' %}
-        <a href="{{ '/en/' | relative_url }}">Home</a>
-        <a href="{{ '/en/about/' | relative_url }}">About</a>
-        <a href="{{ '/en/services/' | relative_url }}">Services</a>
-        <a href="{{ '/en/partners/' | relative_url }}">Partners</a>
-        <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
-      {% else %}
-        {% if site.navigation %}
-          {% for item in site.navigation %}
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-          {% endfor %}
+  </div>
+  <!-- 下段（ロゴ＋ナビ） -->
+  <div class="mainbar">
+    <div class="container header-inner">
+      <div class="brand">
+        <a class="brand-link" href="{{ '/' | relative_url }}">
+          {% if site.logo %}
+            <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}" class="brand-logo" />
+          {% else %}
+            <strong class="site-title">{{ site.title }}</strong>
+          {% endif %}
+        </a>
+      </div>
+      <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav id="main-nav" class="main-nav" role="navigation">
+        {% if page.url contains '/en/' %}
+          <a href="{{ '/en/' | relative_url }}">Home</a>
+          <a href="{{ '/en/about/' | relative_url }}">About</a>
+          <a href="{{ '/en/services/' | relative_url }}">Services</a>
+          <a href="{{ '/en/partners/' | relative_url }}">Partners</a>
+          <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
         {% else %}
+          {% if site.navigation %}
+            {% for item in site.navigation %}
+              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {% endfor %}
+          {% else %}
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/about/' | relative_url }}">事業概要</a>
             <a href="{{ '/services/' | relative_url }}">サービス</a>
             <a href="{{ '/partners/' | relative_url }}">パートナー</a>
             <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
-              <a href="#" id="cart-link" title="カート" style="margin-left:8px; vertical-align:middle; display:inline-block;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="vertical-align:middle;">
-                  <circle cx="9" cy="21" r="1"/>
-                  <circle cx="20" cy="21" r="1"/>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
+          {% endif %}
         {% endif %}
-      {% endif %}
-    </nav>
-    <div class="lang-switch" aria-hidden="false">
-      {% if page.url contains '/en/' %}
-        <span class="lang-link active" title="English (Current)">🇬🇧</span>
-        <a href="{{ '/' | relative_url }}" class="lang-link" title="日本語">🇯🇵</a>
-      {% else %}
-        <span class="lang-link active" title="日本語（現在）">🇯🇵</span>
-        <a href="{{ '/en/' | relative_url }}" class="lang-link" title="English">🇬🇧</a>
-      {% endif %}
+      </nav>
     </div>
-    <div id="auth-widget" class="auth-widget"></div>
   </div>
 </header>
-
-<script src="{{ '/assets/js/header.js' | relative_url }}"></script>
