@@ -18,8 +18,11 @@
             <a href="{{ '/en/' | relative_url }}" class="lang-link" title="English">🇬🇧</a>
           {% endif %}
         </div>
-        <div id="auth-widget" class="auth-widget"></div>
-          <a href="/login" class="btn btn-outline" id="signin-btn">Sign in to register/login</a>
+       <!-- <div id="auth-widget" class="auth-widget"></div> -->
+         <a href="/login" class="auth-link" id="signin-link" aria-label="ログイン / 新規登録">
+          <svg class="icon-person" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span class="auth-text">ログイン/登録</span>
+         </a>
       </div>
     </div>
   </div>

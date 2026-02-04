@@ -43,7 +43,7 @@ keywords: >-
 			AI solutions, or digital transformation inquiries, please reach us via email.
 		</p>
 		<p class="ja-note">
-			ウェブサイト更新中です。DX・ISRドローンシステム開発、AIソリューション、デジタル変革のご相談は
+			DX・ISRドローンシステム開発、AIソリューション、デジタル変革のご相談は
 			メールでお気軽にお問い合わせください。
 		</p>
 	</div>
