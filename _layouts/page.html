@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'ja' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    {% if page.lang == 'en' %}
+      {% assign meta_desc = page.description | default: site.description_en %}
+    {% else %}
+      {% assign meta_desc = page.description | default: site.description %}
+    {% endif %}
+    <meta name="description" content="{{ meta_desc | escape }}" />
+    <meta name="keywords" content="{{ page.keywords | default: site.keywords }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:description" content="{{ meta_desc | escape }}" />
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-image.jpg" />
+    <meta property="og:site_name" content="Burai Live" />
+    <meta property="og:locale" content="{{ page.lang | default: 'ja_JP' }}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta name="twitter:description" content="{{ meta_desc | escape }}" />
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.jpg" />
+    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+
+    <!-- Geo Tags for Japan -->
+    <meta name="geo.region" content="JP" />
+    <meta name="geo.placename" content="Japan" />
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Burai Live",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/assets/images/logo.png",
+      "description": "{{ meta_desc | escape }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "{{ site.email }}",
+        "contactType": "Customer Service",
+        "areaServed": "JP",
+        "availableLanguage": ["Japanese", "English"]
+      },
+      "sameAs": [
+        "https://twitter.com/{{ site.twitter_username }}",
+        "https://github.com/{{ site.github_username }}"
+      ],
+      "keywords": "drone, Japan, DX, ISR, ドローン, ドローンシステム開発, drone system development, AI solutions, web development"
+    }
+    </script>
+
+    <!-- Favicons / PWA -->
+    <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
+    <meta name="theme-color" content="#0b3d91">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    {% include header.html %}
+
+    <main class="site-main">
+      <div class="container">
+        {{ content }}
+      </div>
+    </main>
+
+    {% include footer.html %}
+    {% include cookie-consent.html %}
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Stripe JS SDK -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Application Scripts -->
+    <script src="{{ '/assets/js/supabase-config.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/stripe.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/auth.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/protect.js' | relative_url }}"></script>
+  </body>
+</html>

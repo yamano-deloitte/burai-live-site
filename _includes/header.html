@@ -2,12 +2,15 @@
   <!-- 上段（インフォバー等） -->
   <div class="topbar">
     <div class="container topbar-inner">
-      <div class="topbar-info">
-        <!-- ここにお知らせや連絡先など任意要素 -->
-        <span class="topbar-tel">📞 03-1234-5678</span>
+      <div class="topbar-empty"></div>
+      <div class="topbar-right">
+        <a href="https://wa.me/+8107089300291" class="topbar-whatsapp" title="WhatsApp" aria-label="Contact us on WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.436 0-2.848.356-4.135 1.027l-.882-.468L4.9 4.719l.424 1.565c-.727 1.468-1.141 3.078-1.141 4.716 0 4.967 4.029 9 8.996 9 1.231 0 2.417-.259 3.56-.742 4.967-2.839 8.996-6.872 8.996-11.839 0-4.967-4.029-9-8.996-9z"/>
+          </svg>
+          +8107089300291
+        </a>
         <span class="topbar-mail">✉ admin@burai.live</span>
-      </div>
-      <div class="topbar-actions">
         <div class="lang-switch" aria-hidden="false">
           <!-- 言語切替 -->
           {% if page.url contains '/en/' %}
@@ -18,8 +21,11 @@
             <a href="{{ '/en/' | relative_url }}" class="lang-link" title="English">🇬🇧</a>
           {% endif %}
         </div>
-        <div id="auth-widget" class="auth-widget"></div>
-          <a href="/login" class="btn btn-outline" id="signin-btn">Sign in to register/login</a>
+       <!-- <div id="auth-widget" class="auth-widget"></div> -->
+         <!-- <a href="/login" class="auth-link" id="signin-link" aria-label="ログイン / 新規登録">
+          <svg class="icon-person" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span class="auth-text">ログイン/登録</span>
+         </a> -->
       </div>
     </div>
   </div>

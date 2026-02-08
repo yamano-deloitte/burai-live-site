@@ -1,4 +1,5 @@
 ---
+---
 @import "jekyll-theme-modernist";
 :root{
   --color-bg:#ffffff;
@@ -25,13 +26,14 @@ html, body {
 body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--color-bg); color:#111}
 .container{max-width:var(--max-width); margin:0 auto; padding:2rem}
 .site-header{background:#fff; border-bottom:1px solid #e6e9ee}
-.header-inner{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:1.5rem;flex:1}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.brand{display:flex;align-items:center;gap:1.5rem;flex-shrink:0}
 .brand a{color:var(--color-primary); text-decoration:none; font-size:1.15rem}
 .brand .tag{margin:0;font-size:0.9rem;color:var(--color-muted);max-width:600px;line-height:1.4}
+.header-right{display:flex;align-items:center;gap:1rem;flex:1;justify-content:flex-end}
 .nav-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer}
 .nav-toggle .bar{display:block;width:22px;height:2px;background:var(--color-primary);margin:4px 0;border-radius:2px}
-.main-nav a{margin-left:1rem;color:var(--color-muted);text-decoration:none}
+.main-nav a{margin-left:1rem;color:var(--color-muted);text-decoration:none;white-space:nowrap}
 .main-nav a:hover{color:var(--color-primary)}
 .brand-logo{height:60px;display:inline-block}
 
@@ -40,6 +42,7 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .main-nav{display:flex;gap:0.5rem;align-items:center}
 @media (max-width:700px){
   .nav-toggle{display:block}
+  .header-right{flex-direction:column;align-items:flex-end}
   .main-nav{position:absolute;top:64px;right:0;background:#fff;flex-direction:column;padding:1rem;border:1px solid #eef2f7;display:none;z-index:40}
   .main-nav.open{display:flex}
   .main-nav a{margin:0 0 0.5rem 0}
@@ -126,8 +129,14 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .lang-link.active{opacity:1;cursor:default}
 .lang-link:not(.active){opacity:0.6}
 
+/* WhatsApp link */
+.whatsapp-link{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:0.5rem;color:#25d366;text-decoration:none;border-radius:6px;transition:all 0.2s ease}
+.whatsapp-link:hover{background:rgba(37,211,102,0.1);transform:scale(1.05)}
+.whatsapp-link svg{width:24px;height:24px}
+
 @media (max-width:700px){
   .lang-switch{margin-top:0.5rem;margin-left:0}
+  .whatsapp-link{width:32px;height:32px;margin-left:0}
 }
 
 /* Cookie consent banner */
@@ -248,9 +257,6 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   z-index: 1000;
   border-bottom: 1px solid #ddd;
 }
-body {
-  padding-top: 50px; /* ナビの高さ分余白を入れる（例: 50px） */
-}
 
 /* --- Sticky Narrow Topnav Bar --- */
 .site-header {
@@ -263,7 +269,6 @@ body {
   transition: box-shadow 0.2s;
   min-height: 48px;
   padding: 0;
-  margin-top: 1.5rem;
 }
 
 .header-inner {
@@ -430,9 +435,36 @@ body {
   margin: 0 auto;
   padding: 0 16px;
 }
+.topbar-empty {
+  flex: 1;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: flex-end;
+}
 .topbar-info span {
   margin-right: 20px;
   color: #555;
+}
+.topbar-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 0;
+  color: #25d366;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.topbar-whatsapp:hover {
+  color: #1fab48;
+  transform: scale(1.05);
+}
+.topbar-whatsapp svg {
+  width: 18px;
+  height: 18px;
 }
 .topbar-actions {
   display: flex;
