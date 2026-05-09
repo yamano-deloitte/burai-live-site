@@ -414,46 +414,6 @@ keywords: >-
   line-height: 1.6;
 }
 
-/* ===== DOMAINS ===== */
-.lp-domains {
-  background: #050d1a;
-  padding: 6rem 2rem;
-}
-.lp-domains .lp-section-h2 { color: #fff; }
-.lp-domains .lp-section-lead { color: rgba(255,255,255,0.5); }
-.lp-domains__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  overflow: hidden;
-}
-.lp-domain-item {
-  background: #050d1a;
-  padding: 2rem;
-  transition: background 0.2s;
-}
-.lp-domain-item:hover { background: #0a1628; }
-.lp-domain-item__icon {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-.lp-domain-item__title {
-  font-size: 0.97rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 0.4rem;
-}
-.lp-domain-item__desc {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.6;
-  margin: 0;
-}
-
 /* ===== CTA ===== */
 .lp-cta {
   background: linear-gradient(135deg, #0b3d91 0%, #007acc 100%);
@@ -640,15 +600,15 @@ keywords: >-
           <span class="lp-tag">HIPAA対応</span>
         </div>
       </div>
-      <div class="lp-service-card lp-fade lp-fade-d3">
-        <div class="lp-service-card__icon">🚀</div>
-        <p class="lp-service-card__en">Business Launch</p>
-        <h3 class="lp-service-card__title">事業立ち上げ支援</h3>
-        <p class="lp-service-card__desc">戦略立案・MVP開発・市場検証・グロースハックまで一貫サポート。日本での事業立ち上げ・海外展開にも対応します。</p>
+      <div class="lp-service-card lp-fade lp-fade-d1">
+        <div class="lp-service-card__icon">📊</div>
+        <p class="lp-service-card__en">CFO & Back Office DX</p>
+        <h3 class="lp-service-card__title">CFOサービス・バックオフィスDX</h3>
+        <p class="lp-service-card__desc">経営財務戦略・管理会計・予実管理から、経理・人事・法務業務のデジタル化まで。バックオフィス全体を効率化し、経営の可視化と意思決定を加速します。</p>
         <div class="lp-service-card__tags">
-          <span class="lp-tag">MVP開発</span>
-          <span class="lp-tag">グロース</span>
-          <span class="lp-tag">日本市場</span>
+          <span class="lp-tag">CFOアドバイザリー</span>
+          <span class="lp-tag">経理DX</span>
+          <span class="lp-tag">業務自動化</span>
         </div>
       </div>
     </div>
@@ -722,41 +682,12 @@ keywords: >-
   </div>
 </section>
 
-<!-- ===== DOMAINS ===== -->
-<section class="lp-domains">
-  <div class="lp-section-inner">
-    <p class="lp-section-label lp-fade">Industries</p>
-    <h2 class="lp-section-h2 lp-fade lp-fade-d1">対応業種</h2>
-    <p class="lp-section-lead lp-fade lp-fade-d2">多様な業界・用途のデジタル変革を支援します。</p>
-    <div class="lp-domains__grid lp-fade lp-fade-d2">
-      <div class="lp-domain-item">
-        <span class="lp-domain-item__icon">🛡️</span>
-        <p class="lp-domain-item__title">防衛・安全保障</p>
-        <p class="lp-domain-item__desc">ISRドローン、監視システム、情報収集プラットフォーム</p>
-      </div>
-      <div class="lp-domain-item">
-        <span class="lp-domain-item__icon">🏥</span>
-        <p class="lp-domain-item__title">医療・ヘルスケア</p>
-        <p class="lp-domain-item__desc">遠隔医療、電子カルテ、医療データ分析</p>
-      </div>
-      <div class="lp-domain-item">
-        <span class="lp-domain-item__icon">📦</span>
-        <p class="lp-domain-item__title">物流・サプライチェーン</p>
-        <p class="lp-domain-item__desc">ドローン配送、倉庫自動化、可視化ダッシュボード</p>
-      </div>
-      <div class="lp-domain-item">
-        <span class="lp-domain-item__icon">💼</span>
-        <p class="lp-domain-item__title">エンタープライズDX</p>
-        <p class="lp-domain-item__desc">業務自動化、AI活用、新規事業立ち上げ支援</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ===== CTA ===== -->
 <section class="lp-cta">
   <div class="lp-section-inner">
-    <h2 class="lp-cta__h2 lp-fade">お問い合わせ</h2>
+    <h2 class="lp-cta__h2 lp-fade">プロジェクトについて<br>ご相談ください</h2>
     <p class="lp-cta__sub lp-fade lp-fade-d1">
       DX・ISRドローン開発、AIソリューション、ウェブ・クラウドなど、<br>
       まずはお気軽にお問い合わせください。
