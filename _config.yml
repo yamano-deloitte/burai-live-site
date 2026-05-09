@@ -28,7 +28,7 @@ description_en: >-
   Burai empowers businesses with modern technology and digital transformation services.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://burai.live" # the base hostname & protocol for your site
-logo: "/assets/images/logo.png"
+logo: "/assets/images/logo.svg"
 author: Burai Live
 keywords: >-
   ドローン, drone, Japan, 日本, 空撮, aerial photography, 映像制作, video production,
