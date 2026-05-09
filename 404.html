@@ -1,25 +1,167 @@
 ---
 permalink: /404.html
-layout: page
+layout: default
+title: 404 - ページが見つかりません | Burai Live
+description: お探しのページは見つかりませんでした。
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
+<style>
+.lp-404 {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.lp-404__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,122,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,122,204,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.lp-404__inner {
+  position: relative;
+  text-align: center;
+  max-width: 560px;
+}
+.lp-404__num {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(7rem, 20vw, 11rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #f0f4f8;
+  position: relative;
+  user-select: none;
+}
+.lp-404__num span {
+  position: relative;
+  display: inline-block;
+}
+.lp-404__num .zero {
+  color: transparent;
+  -webkit-text-stroke: 3px #007acc;
+  animation: spin-zero 8s linear infinite;
+  display: inline-block;
+}
+@keyframes spin-zero {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(0.92); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.lp-404__icon {
+  width: 56px;
+  height: 56px;
+  margin: -1.5rem auto 1.5rem;
+  background: linear-gradient(135deg, #eef4fb, #dbeeff);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,122,204,0.15);
+}
+.lp-404__icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #007acc;
+}
+.lp-404__title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0b1f3a;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+.lp-404__desc {
+  font-size: 1rem;
+  color: #5a6a80;
+  line-height: 1.7;
+  margin: 0 0 2.5rem;
+}
+.lp-404__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.lp-404__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #007acc;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.2s, transform 0.15s;
+}
+.lp-404__btn-primary:hover { background: #005fa3; transform: translateY(-2px); }
+.lp-404__btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #5a6a80;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid #d0d8e4;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.lp-404__btn-ghost:hover { border-color: #007acc; color: #007acc; transform: translateY(-2px); }
+.lp-404__links {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eef2f7;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.lp-404__links a {
+  font-size: 0.85rem;
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 500;
+}
+.lp-404__links a:hover { text-decoration: underline; }
 </style>
 
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+<div class="lp-404">
+  <div class="lp-404__grid"></div>
+  <div class="lp-404__inner">
+    <div class="lp-404__num">
+      <span>4</span><span class="zero">0</span><span>4</span>
+    </div>
+    <div class="lp-404__icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/>
+      </svg>
+    </div>
+    <h1 class="lp-404__title">ページが見つかりません</h1>
+    <p class="lp-404__desc">
+      お探しのページは移動または削除された可能性があります。<br>
+      URLをご確認いただくか、トップページからお探しください。
+    </p>
+    <div class="lp-404__actions">
+      <a href="/" class="lp-404__btn-primary">← トップページへ</a>
+      <a href="/contact/" class="lp-404__btn-ghost">お問い合わせ</a>
+    </div>
+    <div class="lp-404__links">
+      <a href="/services/">サービス</a>
+      <a href="/about/">事業概要</a>
+      <a href="/partners/">パートナー</a>
+      <a href="/en/">English</a>
+    </div>
+  </div>
 </div>
