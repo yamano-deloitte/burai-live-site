@@ -756,7 +756,7 @@ keywords: >-
 <!-- ===== CTA ===== -->
 <section class="lp-cta">
   <div class="lp-section-inner">
-    <h2 class="lp-cta__h2 lp-fade">プロジェクトについて<br>ご相談ください</h2>
+    <h2 class="lp-cta__h2 lp-fade">お問い合わせ</h2>
     <p class="lp-cta__sub lp-fade lp-fade-d1">
       DX・ISRドローン開発、AIソリューション、ウェブ・クラウドなど、<br>
       まずはお気軽にお問い合わせください。
