@@ -25,14 +25,14 @@ html, body {
 
 body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--color-bg); color:#111}
 .container{max-width:var(--max-width); margin:0 auto; padding:2rem}
-.site-header{background:#fff; border-bottom:1px solid #e6e9ee}
+.site-header{background:#ffffff; border-bottom:1px solid #e8edf2}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .brand{display:flex;align-items:center;gap:1.5rem;flex-shrink:0}
 .brand a{color:var(--color-primary); text-decoration:none; font-size:1.15rem}
 .brand .tag{margin:0;font-size:0.9rem;color:var(--color-muted);max-width:600px;line-height:1.4}
 .header-right{display:flex;align-items:center;gap:1rem;flex:1;justify-content:flex-end}
 .nav-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer}
-.nav-toggle .bar{display:block;width:22px;height:2px;background:var(--color-primary);margin:4px 0;border-radius:2px}
+.nav-toggle .bar{display:block;width:22px;height:2px;background:#1a2233;margin:4px 0;border-radius:2px}
 .main-nav a{margin-left:1rem;color:var(--color-muted);text-decoration:none;white-space:nowrap}
 .main-nav a:hover{color:var(--color-primary)}
 .brand-logo{height:60px;display:inline-block}
@@ -43,7 +43,7 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 @media (max-width:700px){
   .nav-toggle{display:block}
   .header-right{flex-direction:column;align-items:flex-end}
-  .main-nav{position:absolute;top:64px;right:0;background:#fff;flex-direction:column;padding:1rem;border:1px solid #eef2f7;display:none;z-index:40}
+  .main-nav{position:absolute;top:88px;right:0;background:#ffffff;flex-direction:column;padding:1rem;border:1px solid #e8edf2;box-shadow:0 8px 24px rgba(0,0,0,0.08);display:none;z-index:40}
   .main-nav.open{display:flex}
   .main-nav a{margin:0 0 0.5rem 0}
 }
@@ -298,8 +298,28 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   height: 48px;
 }
 
+
+/* 言語切替リンク */
+.main-nav a.lang-toggle {
+  margin-left: 8px;
+  padding: 4px 12px;
+  border: 1px solid #c8d0da;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #5a6a80;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.main-nav a.lang-toggle:hover {
+  border-color: #007acc;
+  color: #007acc;
+  background: #f0f7ff;
+  border-bottom: 1px solid #007acc;
+}
 .main-nav a {
-  color: #222;
+  color: #1a2233;
   text-decoration: none;
   font-size: 0.98rem;
   padding: 8px 0;
@@ -308,8 +328,8 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 }
 
 .main-nav a:hover, .main-nav a:focus {
-  color: #0077b6;
-  border-bottom: 2px solid #0077b6;
+  color: #007acc;
+  border-bottom: 2px solid #007acc;
 }
 
 .lang-switch {
@@ -418,64 +438,10 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
 }
 
 /* 上段 */
-.topbar {
-  background: #f6f7f9;
-  font-size: 0.93rem;
-  border-bottom: 1px solid #ececec;
-  height: 36px;
-  display: flex;
-  align-items: center;
-}
-.topbar-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 36px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-.topbar-empty {
-  flex: 1;
-}
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  justify-content: flex-end;
-}
-.topbar-info span {
-  margin-right: 20px;
-  color: #555;
-}
-.topbar-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-right: 0;
-  color: #25d366;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-.topbar-whatsapp:hover {
-  color: #1fab48;
-  transform: scale(1.05);
-}
-.topbar-whatsapp svg {
-  width: 18px;
-  height: 18px;
-}
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 /* 下段 */
 .mainbar {
-  background: #fff;
-  height: 54px;
+  background: #ffffff;
+  height: 88px;
   display: flex;
   align-items: center;
 }
@@ -485,13 +451,26 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   justify-content: space-between;
   max-width: 1100px;
   margin: 0 auto;
-  height: 54px;
+  width: 100%;
+  height: 88px;
   padding: 0 16px;
 }
-.brand-link, .brand-logo, .site-title {
+.brand {
+  flex-shrink: 0;
+  margin-right: auto;
+}
+.brand-link {
   display: flex;
   align-items: center;
-  height: 54px;
+  text-decoration: none;
+}
+.brand-logo {
+  height: 76px;
+  width: auto;
+  display: block;
+  background: transparent;
+}
+.site-title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #222;
@@ -503,8 +482,28 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   align-items: center;
   height: 54px;
 }
+
+/* 言語切替リンク */
+.main-nav a.lang-toggle {
+  margin-left: 8px;
+  padding: 4px 12px;
+  border: 1px solid #c8d0da;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #5a6a80;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.main-nav a.lang-toggle:hover {
+  border-color: #007acc;
+  color: #007acc;
+  background: #f0f7ff;
+  border-bottom: 1px solid #007acc;
+}
 .main-nav a {
-  color: #222;
+  color: #1a2233;
   text-decoration: none;
   font-size: 1rem;
   padding: 8px 0;
@@ -512,8 +511,8 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   transition: border-color 0.2s, color 0.2s;
 }
 .main-nav a:hover, .main-nav a:focus {
-  color: #0077b6;
-  border-bottom: 2px solid #0077b6;
+  color: #007acc;
+  border-bottom: 2px solid #007acc;
 }
 
 /* ハンバーガーメニュー（スマホ用） */
@@ -568,7 +567,7 @@ body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "
   }
   .main-nav {
     position: absolute;
-    top: 90px; /* topbar+mainbarの高さ */
+    top: 88px; /* mainbarの高さ */
     left: 0;
     right: 0;
     background: #fff;

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="160" viewBox="0 0 600 160" role="img">
+<title>Burai Live — Global Tech Solution</title>
+<desc>Burai Live wordmark logo with geometric accent bar and gradient dot</desc>
+<defs>
+  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#007acc"/>
+    <stop offset="100%" stop-color="#00b4d8"/>
+  </linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#00b4d8"/>
+    <stop offset="100%" stop-color="#007acc"/>
+  </linearGradient>
+</defs>
+
+<!-- 左アクセントバー -->
+<rect x="0" y="18" width="5" height="90" rx="2.5" fill="url(#g3)"/>
+
+<!-- 上段ボックスアクセント -->
+<rect x="14" y="18" width="42" height="42" fill="none" stroke="#007acc" stroke-width="1" stroke-opacity="0.35" rx="4"/>
+
+<!-- BURAI ワードマーク -->
+<text x="14" y="88"
+  font-family="'Helvetica Neue', Arial, sans-serif"
+  font-size="72"
+  font-weight="800"
+  letter-spacing="-2"
+  fill="#ffffff">BURAI</text>
+
+<!-- I の上のアクセントドット -->
+<circle cx="534" cy="26" r="8" fill="url(#g1)"/>
+
+<!-- 区切り線 -->
+<line x1="14" y1="100" x2="586" y2="100" stroke="#007acc" stroke-width="0.8" stroke-opacity="0.3"/>
+
+<!-- LIVE + サブテキスト -->
+<text x="14" y="124"
+  font-family="'Helvetica Neue', Arial, sans-serif"
+  font-size="16"
+  font-weight="700"
+  letter-spacing="5"
+  fill="url(#g1)">LIVE</text>
+
+<text x="72" y="124"
+  font-family="'Helvetica Neue', Arial, sans-serif"
+  font-size="16"
+  font-weight="400"
+  letter-spacing="3"
+  fill="rgba(255,255,255,0.45)">  GLOBAL TECH SOLUTION</text>
+
+<!-- タグライン -->
+<text x="14" y="148"
+  font-family="'Helvetica Neue', Arial, sans-serif"
+  font-size="10"
+  font-weight="600"
+  letter-spacing="2.5"
+  fill="rgba(255,255,255,0.3)">DX · ISR DRONE · AI · WEB · CLOUD</text>
+</svg>
