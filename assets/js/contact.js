@@ -14,6 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
     error:    isEn ? 'An error occurred. Please try again.' : '送信に失敗しました。もう一度お試しください。',
   };
 
+
+  /* ── サニタイズ（XSS対策） ── */
+  function sanitize(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;')
+      .replace(/\/g, '&#x2F;');
+  }
+
+  function sanitizeFormData(formData) {
+    const clean = new FormData();
+    for (const [key, value] of formData.entries()) {
+      clean.append(key, typeof value === 'string' ? sanitize(value) : value);
+    }
+    return clean;
+  }
+
   /* ── ヘルパー ── */
   function getField(id)  { return form.querySelector('#' + id); }
   function showError(el, msg) {
@@ -93,11 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let ok = true;
 
     if (!nameEl || !nameEl.value.trim())          { showError(nameEl, MSG.name);    ok = false; }
+    else if (nameEl.value.trim().length > 100)     { showError(nameEl, isEn ? 'Name must be under 100 characters.' : '100文字以内で入力してください。'); ok = false; }
     if (!emailEl || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim()))
                                                    { showError(emailEl, MSG.email); ok = false; }
     const checked = radioGroup && radioGroup.querySelector('input[type="radio"]:checked');
     if (!checked)                                  { showGroupError(radioGroup, MSG.subject); ok = false; }
     if (!messageEl || !messageEl.value.trim())     { showError(messageEl, MSG.message); ok = false; }
+    else if (messageEl.value.trim().length > 3000) { showError(messageEl, isEn ? 'Message must be under 3000 characters.' : '3000文字以内で入力してください。'); ok = false; }
     if (!privacyEl || !privacyEl.checked)          { showError(privacyEl, MSG.privacy); ok = false; }
 
     return ok;
@@ -118,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch(form.action, {
       method: 'POST',
-      body: new FormData(form),
+      body: sanitizeFormData(new FormData(form)),
       headers: { Accept: 'application/json' },
     })
       .then(res => {
