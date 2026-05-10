@@ -1,0 +1,171 @@
+/* テーマのcenter寄せを上書き */
+.contact-form,
+.contact-form .form-row,
+.contact-form .form-radio,
+.contact-form label,
+.contact-form p {
+  text-align: left;
+}
+
+/* =============================================
+   Contact Form — validation styles
+   style.scssの末尾に追記してください
+   ============================================= */
+
+.contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.contact-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a2233;
+  letter-spacing: 0.01em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  border: 1.5px solid #d0d8e4;
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: #1a2233;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0,122,204,0.12);
+}
+
+/* バリデーションエラー状態 */
+.contact-form input.cf-invalid,
+.contact-form textarea.cf-invalid {
+  border-color: #e03131;
+  box-shadow: 0 0 0 3px rgba(224,49,49,0.1);
+}
+
+.contact-form .form-radio.cf-invalid {
+  padding: 0.75rem;
+  border: 1.5px solid #e03131;
+  border-radius: 8px;
+  background: rgba(224,49,49,0.03);
+}
+
+/* エラーメッセージ */
+.cf-error {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e03131;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cf-error::before {
+  content: '!';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  background: #e03131;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ラジオボタン */
+.contact-form .form-radio p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a2233;
+  margin: 0 0 0.5rem;
+}
+.contact-form .radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #4a5568;
+  cursor: pointer;
+  padding: 0.3rem 0;
+}
+.contact-form .radio-label input[type="radio"] {
+  accent-color: #007acc;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* チェックボックス（プライバシー同意） */
+.contact-form .form-checkbox {
+  margin-bottom: 1.25rem;
+}
+.contact-form .checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.contact-form .checkbox-label input[type="checkbox"] {
+  accent-color: #007acc;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.contact-form .checkbox-label input.cf-invalid {
+  outline: 2px solid #e03131;
+  outline-offset: 2px;
+  box-shadow: none;
+  border: none;
+}
+.contact-form .checkbox-text {
+  font-size: 0.85rem;
+  color: #5a6a80;
+  line-height: 1.55;
+}
+.contact-form .checkbox-text a {
+  color: #007acc;
+  text-decoration: underline;
+}
+
+/* 送信ボタン */
+.contact-form button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+.contact-form button[type="submit"]:hover:not(:disabled) {
+  background: #005fa3;
+  transform: translateY(-1px);
+}
+.contact-form button[type="submit"]:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
