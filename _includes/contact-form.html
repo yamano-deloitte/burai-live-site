@@ -65,24 +65,15 @@
   </div>
 
   <!-- お問い合わせ種別 -->
-  <div class="form-row form-radio" id="cf-subject-group">
-    <p>{{ subject_heading }} <span class="cf-required">*</span></p>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_general }}" required>
-      {{ subject_general }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_service }}">
-      {{ subject_service }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_quote }}">
-      {{ subject_quote }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_other }}">
-      {{ subject_other }}
-    </label>
+  <div class="form-row">
+    <label for="cf-subject">{{ subject_heading }} <span class="cf-required">*</span></label>
+    <select id="cf-subject" name="_subject" required>
+      <option value="">{% if form_lang == "en" %}— Please select —{% else %}— 選択してください —{% endif %}</option>
+      <option value="{{ subject_general }}">{{ subject_general }}</option>
+      <option value="{{ subject_service }}">{{ subject_service }}</option>
+      <option value="{{ subject_quote }}">{{ subject_quote }}</option>
+      <option value="{{ subject_other }}">{{ subject_other }}</option>
+    </select>
   </div>
 
   <!-- メッセージ -->
@@ -119,7 +110,7 @@
 
 .radio-label {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   gap: 10px !important;
   padding: 0.65rem 0.75rem !important;
   border: 1px solid #e2e8f0;
