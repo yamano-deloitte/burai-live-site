@@ -1,29 +1,10 @@
-/* ===== テーマ強制上書き ===== */
-#contact-form,
-#contact-form *,
-#contact-form .form-row,
-#contact-form .form-radio,
-#contact-form .radio-label,
-#contact-form label,
-#contact-form p {
-  text-align: left !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-#contact-form .form-radio {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 8px !important;
-}
-
-#contact-form .radio-label {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 8px !important;
-  width: 100% !important;
+/* テーマのcenter寄せを上書き */
+.contact-form,
+.contact-form .form-row,
+.contact-form .form-radio,
+.contact-form label,
+.contact-form p {
+  text-align: left;
 }
 
 /* =============================================
@@ -135,8 +116,7 @@
 }
 .contact-form .checkbox-label {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   cursor: pointer;
 }
@@ -188,4 +168,35 @@
 .contact-form button[type="submit"]:disabled {
   opacity: 0.65;
   cursor: not-allowed;
+}
+
+/* Select dropdown */
+.contact-form select {
+  border: 1.5px solid #d0d8e4;
+  border-radius: 8px;
+  padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: #1a2233;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23007acc' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form select:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0,122,204,0.12);
+}
+.contact-form select.cf-invalid {
+  border-color: #e03131;
+  box-shadow: 0 0 0 3px rgba(224,49,49,0.1);
+}
+
+/* Checkbox horizontal */
+.contact-form .checkbox-label {
+  flex-direction: row !important;
+  align-items: center !important;
 }
