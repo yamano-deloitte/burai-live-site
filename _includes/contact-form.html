@@ -23,6 +23,7 @@
   {% assign label_sector      = "セクター" %}
   {% assign sector_public     = "公共セクター（行政・自治体・公的機関）" %}
   {% assign sector_private    = "民間セクター（企業・スタートアップ）" %}
+  {% assign sector_other      = "その他" %}
   {% assign subject_heading   = "お問い合わせ種別" %}
   {% assign subject_general   = "ご質問" %}
   {% assign subject_service   = "サービス依頼" %}
@@ -55,34 +56,26 @@
   </div>
 
   <!-- セクター選択 -->
-  <div class="form-row" id="cf-sector-group">
+  <div class="form-row">
     <label for="cf-sector">{{ label_sector }} <span class="cf-required">*</span></label>
     <select id="cf-sector" name="sector" required>
-      <option value="" disabled selected>{% if form_lang == "en" %}Please select{% else %}選択してください{% endif %}</option>
-      <option value="{{ sector_public }}">{% if form_lang == "en" %}Public Sector{% else %}公共セクター{% endif %}</option>
-      <option value="{{ sector_private }}">{% if form_lang == "en" %}Private Sector{% else %}民間セクター{% endif %}</option>
+      <option value="">{% if form_lang == "en" %}— Please select —{% else %}— 選択してください —{% endif %}</option>
+      <option value="{{ sector_public }}">{% if form_lang == "en" %}Public Sector (Government / Municipality / Public Institution){% else %}公共セクター（行政・自治体・公的機関）{% endif %}</option>
+      <option value="{{ sector_private }}">{% if form_lang == "en" %}Private Sector (Company / Startup / Enterprise){% else %}民間セクター（企業・スタートアップ・法人）{% endif %}</option>
     </select>
   </div>
 
   <!-- お問い合わせ種別 -->
-  <div class="form-row form-radio" id="cf-subject-group">
-    <p>{{ subject_heading }} <span class="cf-required">*</span></p>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_general }}" required>
-      {{ subject_general }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_service }}">
-      {{ subject_service }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_quote }}">
-      {{ subject_quote }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_other }}">
-      {{ subject_other }}
-    </label>
+   <!-- お問い合わせ種別 -->
+  <div class="form-row">
+    <label for="cf-subject">{{ subject_heading }} <span class="cf-required">*</span></label>
+    <select id="cf-subject" name="_subject" required>
+      <option value="">{% if form_lang == "en" %}— Please select —{% else %}— 選択してください —{% endif %}</option>
+      <option value="{{ subject_general }}">{{ subject_general }}</option>
+      <option value="{{ subject_service }}">{{ subject_service }}</option>
+      <option value="{{ subject_quote }}">{{ subject_quote }}</option>
+      <option value="{{ subject_other }}">{{ subject_other }}</option>
+    </select>
   </div>
 
   <!-- メッセージ -->
@@ -115,6 +108,30 @@
 </form>
 
 <style>
+.contact-form select {
+  border: 1.5px solid #d0d8e4;
+  border-radius: 8px;
+  padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: #1a2233;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23007acc' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form select:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0,122,204,0.12);
+}
+.contact-form select.cf-invalid {
+  border-color: #e03131;
+  box-shadow: 0 0 0 3px rgba(224,49,49,0.1);
+}
+
 .cf-required { color: #e03131; font-size: 0.8rem; margin-left: 2px; }
 
 .radio-label {

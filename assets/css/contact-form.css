@@ -1,10 +1,29 @@
-/* テーマのcenter寄せを上書き */
-.contact-form,
-.contact-form .form-row,
-.contact-form .form-radio,
-.contact-form label,
-.contact-form p {
-  text-align: left;
+/* ===== テーマ強制上書き ===== */
+#contact-form,
+#contact-form *,
+#contact-form .form-row,
+#contact-form .form-radio,
+#contact-form .radio-label,
+#contact-form label,
+#contact-form p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+#contact-form .form-radio {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+
+#contact-form .radio-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  width: 100% !important;
 }
 
 /* =============================================
@@ -116,7 +135,8 @@
 }
 .contact-form .checkbox-label {
   display: flex;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: 10px;
   cursor: pointer;
 }
