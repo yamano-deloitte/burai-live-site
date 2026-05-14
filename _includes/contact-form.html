@@ -1,78 +1,147 @@
 {% assign form_lang = page.lang | default: site.lang | default: "ja" %}
 {% if form_lang == "en" %}
-  {% assign subject_heading = "Subject" %}
-  {% assign subject_label_general = "General Inquiry" %}
-  {% assign subject_label_service = "Service Request" %}
-  {% assign subject_label_quote = "Estimate Request" %}
-  {% assign subject_label_other = "Other" %}
-  {% assign privacy_text = "I agree to the Privacy Policy and consent to the processing of my personal information." %}
-  {% assign submit_button = "Send" %}
+  {% assign label_name        = "Name" %}
+  {% assign label_org         = "Organization / Company" %}
+  {% assign label_email       = "Email" %}
+  {% assign label_sector      = "Sector" %}
+  {% assign sector_public     = "Public Sector (Government / Municipality / Public Institution)" %}
+  {% assign sector_private    = "Private Sector (Company / Startup)" %}
+  {% assign sector_other      = "Other" %}
+  {% assign subject_heading   = "Inquiry Type" %}
+  {% assign subject_general   = "General Inquiry" %}
+  {% assign subject_service   = "Service Request" %}
+  {% assign subject_quote     = "Estimate Request" %}
+  {% assign subject_other     = "Other" %}
+  {% assign label_message     = "Message" %}
+  {% assign privacy_text      = "I agree to the Privacy Policy and consent to the processing of my personal information." %}
+  {% assign label_privacy     = "Privacy Policy" %}
+  {% assign submit_button     = "Send Message" %}
 {% else %}
-  {% assign subject_heading = "件名" %}
-  {% assign subject_label_general = "ご質問" %}
-  {% assign subject_label_service = "サービス依頼" %}
-  {% assign subject_label_quote = "見積もり依頼" %}
-  {% assign subject_label_other = "その他" %}
-  {% assign privacy_text = "プライバシーポリシーに同意し、個人情報の取り扱いに同意します。" %}
-  {% assign submit_button = "送信" %}
+  {% assign label_name        = "お名前" %}
+  {% assign label_org         = "組織・会社名" %}
+  {% assign label_email       = "メールアドレス" %}
+  {% assign label_sector      = "セクター" %}
+  {% assign sector_public     = "公共セクター（行政・自治体・公的機関）" %}
+  {% assign sector_private    = "民間セクター（企業・スタートアップ）" %}
+  {% assign subject_heading   = "お問い合わせ種別" %}
+  {% assign subject_general   = "ご質問" %}
+  {% assign subject_service   = "サービス依頼" %}
+  {% assign subject_quote     = "見積もり依頼" %}
+  {% assign subject_other     = "その他" %}
+  {% assign label_message     = "メッセージ" %}
+  {% assign privacy_text      = "プライバシーポリシーに同意し、個人情報の取り扱いに同意します。" %}
+  {% assign label_privacy     = "プライバシーポリシー" %}
+  {% assign submit_button     = "送信する" %}
 {% endif %}
+
 <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate>
 
+  <!-- 名前 -->
   <div class="form-row">
-    <label for="cf-name">{% if form_lang == "en" %}Name{% else %}名前{% endif %}</label>
-    <input id="cf-name" name="name" type="text" required>
+    <label for="cf-name">{{ label_name }} <span class="cf-required">*</span></label>
+    <input id="cf-name" name="name" type="text" required placeholder="{% if form_lang == 'en' %}John Smith{% else %}山田 太郎{% endif %}">
   </div>
 
+  <!-- 組織・会社名 -->
   <div class="form-row">
-    <label for="cf-email">{% if form_lang == "en" %}Email{% else %}メールアドレス{% endif %}</label>
-    <input id="cf-email" name="email" type="email" required>
+    <label for="cf-org">{{ label_org }}</label>
+    <input id="cf-org" name="organization" type="text" placeholder="{% if form_lang == 'en' %}Acme Corp{% else %}株式会社〇〇{% endif %}">
   </div>
 
-  <div class="form-row form-radio">
-    <p>{{ subject_heading }}</p>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_general }}" required>
-      {{ subject_label_general }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_service }}">
-      {{ subject_label_service }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_quote }}">
-      {{ subject_label_quote }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_other }}">
-      {{ subject_label_other }}
-    </label>
-  </div>
-
+  <!-- メールアドレス -->
   <div class="form-row">
-    <label for="cf-message">{% if form_lang == "en" %}Message{% else %}メッセージ{% endif %}</label>
-    <textarea id="cf-message" name="message" rows="6" required></textarea>
+    <label for="cf-email">{{ label_email }} <span class="cf-required">*</span></label>
+    <input id="cf-email" name="email" type="email" required placeholder="{% if form_lang == 'en' %}you@example.com{% else %}your@email.com{% endif %}">
   </div>
 
-  <!-- Simple honeypot to reduce spam -->
+  <!-- セクター選択 -->
+  <div class="form-row" id="cf-sector-group">
+    <label for="cf-sector">{{ label_sector }} <span class="cf-required">*</span></label>
+    <select id="cf-sector" name="sector" required>
+      <option value="" disabled selected>{% if form_lang == "en" %}Please select{% else %}選択してください{% endif %}</option>
+      <option value="{{ sector_public }}">{% if form_lang == "en" %}Public Sector{% else %}公共セクター{% endif %}</option>
+      <option value="{{ sector_private }}">{% if form_lang == "en" %}Private Sector{% else %}民間セクター{% endif %}</option>
+    </select>
+  </div>
+
+  <!-- お問い合わせ種別 -->
+  <div class="form-row form-radio" id="cf-subject-group">
+    <p>{{ subject_heading }} <span class="cf-required">*</span></p>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="{{ subject_general }}" required>
+      {{ subject_general }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="{{ subject_service }}">
+      {{ subject_service }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="{{ subject_quote }}">
+      {{ subject_quote }}
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="_subject" value="{{ subject_other }}">
+      {{ subject_other }}
+    </label>
+  </div>
+
+  <!-- メッセージ -->
+  <div class="form-row">
+    <label for="cf-message">{{ label_message }} <span class="cf-required">*</span></label>
+    <textarea id="cf-message" name="message" rows="6" required placeholder="{% if form_lang == 'en' %}Please describe your inquiry or project in detail.{% else %}お問い合わせ内容・プロジェクトの詳細をご記入ください。{% endif %}"></textarea>
+  </div>
+
+  <!-- Honeypot -->
   <div style="display:none;">
     <label>Leave this field empty</label>
     <input name="_gotcha" tabindex="-1" autocomplete="off">
   </div>
 
+  <!-- プライバシー同意 -->
   <div class="form-row form-checkbox">
     <label class="checkbox-label">
       <input id="cf-privacy" name="privacy-consent" type="checkbox" required>
       <span class="checkbox-text">
-        {{ privacy_text }} <a href="/privacy-policy/" target="_blank" rel="noopener">{% if form_lang == "en" %}Privacy Policy{% else %}プライバシーポリシー{% endif %}</a>
+        {{ privacy_text }} <a href="/privacy-policy/" target="_blank" rel="noopener">{{ label_privacy }}</a>
       </span>
     </label>
   </div>
 
+  <!-- 送信ボタン -->
   <div class="form-row">
     <button type="submit">{{ submit_button }}</button>
   </div>
 
-  <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->
 </form>
+
+<style>
+.cf-required { color: #e03131; font-size: 0.8rem; margin-left: 2px; }
+
+.radio-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  padding: 0.65rem 0.75rem !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.radio-label:hover { border-color: #007acc; background: #f0f7ff; }
+.radio-label input[type="radio"] { margin-top: 3px; flex-shrink: 0; }
+.radio-label__icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.radio-label__text { font-size: 0.9rem; color: #1a2233; line-height: 1.4; }
+.radio-label__text strong { display: block; font-weight: 600; }
+.radio-label__text small { color: #5a6a80; font-size: 0.8rem; }
+
+/* 選択済みスタイル */
+.radio-label:has(input:checked) {
+  border-color: #007acc;
+  background: #f0f7ff;
+}
+</style>
 
 <script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
