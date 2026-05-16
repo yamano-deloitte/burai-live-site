@@ -60,14 +60,6 @@ description: >-
         9:00 AM – 5:00 PM (Japan Standard Time)
       </div>
     </div>
-    <div class="cp-info-card">
-      <div class="cp-info-card__icon">🌏</div>
-      <div class="cp-info-card__title">Languages</div>
-      <div class="cp-info-card__body">
-        Japanese & English<br>
-        We welcome inquiries from clients worldwide.
-      </div>
-    </div>
     <div class="cp-services">
       <p class="cp-services__title">Common Inquiry Topics</p>
       <ul class="cp-services__list">
