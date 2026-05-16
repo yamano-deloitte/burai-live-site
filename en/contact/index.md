@@ -76,16 +76,5 @@ description: >-
         午前9時〜午後5時（日本時間）
       </div>
     </div>
-    <div class="cp-services">
-      <p class="cp-services__title">ご相談内容の例</p>
-      <ul class="cp-services__list">
-        <li>DX・ISRドローンシステム開発</li>
-        <li>AIエージェント・ML開発</li>
-        <li>Webアプリ・クラウド構築</li>
-        <li>ヘルスケアDX</li>
-        <li>CFOサービス・バックオフィスDX</li>
-        <li>その他デジタル変革全般</li>
-      </ul>
-    </div>
   </div>
 </div>
