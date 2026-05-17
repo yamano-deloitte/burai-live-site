@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Burai Live：ウェブサイトをリニューアルしました。"
+title: "Burai Live: We Have Relaunched Our Website."
 date: 2026-05-17 09:00:00 +0900
-categories: [ニュース]
+categories: [news]
 tags: [news]
-lang: ja
+lang: en
 author: Burai Live
 description: >-
-  Burai Liveは、ウェブサイトを全面リニューアルしました。
+  Burai Live has completely relaunched its website.
 ---
 
 
@@ -50,10 +50,10 @@ description: >-
 </style>
 
 
-<a class="back-button" href="javascript:history.back()">← 前のページに戻る</a>
+<a class="back-button" href="javascript:history.back()">← Back to Previous Page</a>
 
-Burai Live は、このたびウェブサイト（[burai.live](https://burai.live)）を全面的にリニューアルしましたのでお知らせいたします。
+We are pleased to announce that Burai Live has completely relaunched its website ([burai.live](https://burai.live)).
 
-## お問い合わせ
+## Contact Us
 
-ご相談・お見積りは[お問い合わせページ](/contact/)またはメール [admin@burai.live](mailto:admin@burai.live) までお気軽にどうぞ。
+For inquiries or quotes, please feel free to reach out via our [contact page](/contact/) or by email at [admin@burai.live](mailto:admin@burai.live).
