@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dental AI Platform | Burai Live</title>
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+---
+layout: default
+title: Dental AI Platform | 歯科AIプラットフォーム | Burai Live
+permalink: /services/dental-ai/
+lang: ja
+description: >-
+  Burai Liveの歯科AIプラットフォーム。AI電話予約システムとAIインターコムシステムで
+  歯科クリニックの業務効率化を実現。HIPAA準拠・多言語対応・EHR自動連携。
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
-  body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fb; color: #0b1f3a; margin: 0; padding: 0; }
-  button { font-family: inherit; border: 1px solid #d0d8e4; background: transparent; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
-  button:hover { background: #eef4fb; border-color: #007acc; color: #007acc; }
+.dental-wrap { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: #0b1f3a; }
+.dental-wrap button { font-family: inherit; border: 1px solid #d0d8e4; background: transparent; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+.dental-wrap button:hover { background: #eef4fb; border-color: #007acc; color: #007acc; }
 </style>
-</head>
-<body>
-<div id="root"></div>
+
+<div class="dental-wrap">
+  <div id="dental-root"></div>
+</div>
+
 <script type="text/babel" data-presets="react">
 const { useState } = React;
 
@@ -228,6 +233,11 @@ function App() {
   ];
   return (
     <div style={{ maxWidth: 740, margin: "0 auto", padding: "2rem 1.25rem", background: "#f8f9fb", minHeight: "100vh" }}>
+      <a href="/en/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "#5a6a80", textDecoration: "none", marginBottom: "1rem", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0", background: "#fff", transition: "all 0.15s" }}
+        onMouseOver={e => { e.currentTarget.style.color="#007acc"; e.currentTarget.style.borderColor="#007acc"; }}
+        onMouseOut={e => { e.currentTarget.style.color="#5a6a80"; e.currentTarget.style.borderColor="#e2e8f0"; }}>
+        ← Back to Home
+      </a>
       <div style={{ fontSize: 11, fontWeight: 700, color: "#007acc", letterSpacing: "0.18em", textTransform: "uppercase", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}><span style={{display:"inline-block", width:5, height:5, borderRadius:"50%", background:"#007acc"}}></span>Dental AI Platform · Powered by Burai Live</div>
       <div style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#0b1f3a", letterSpacing: "-0.02em", lineHeight: 1.2 }}>AI Systems for Dental Clinics</div>
       <div style={{ fontSize: 13, color: "#5a6a80", margin: "0 0 1.75rem", lineHeight: 1.6 }}>AI-powered phone booking & intercom systems — designed for modern dental clinics in Japan.</div>
@@ -351,64 +361,5 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('dental-root')).render(<App />);
 </script>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">&copy; 2026 Burai Live. All rights reserved.</p>
-    <nav class="footer-nav">
-      <a href="mailto:admin@burai.live">admin@burai.live</a>
-      <span class="footer-separator">|</span>
-      <a href="/en/">Home</a>
-      <a href="/en/about/">About</a>
-      <a href="/en/contact/">Contact</a>
-      <a href="/en/privacy-policy/">Privacy Policy</a>
-    </nav>
-  </div>
-</footer>
-
-<style>
-  .site-footer {
-    margin-top: 3rem;
-    border-top: none;
-    background: #3d4559;
-    padding: 1.25rem 1.5rem;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .footer-inner {
-    max-width: 740px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-  .footer-copy {
-    margin: 0;
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-  }
-  .footer-nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 13px;
-  }
-  .footer-nav a {
-    color: rgba(255,255,255,0.65);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .footer-nav a:hover {
-    color: #fff;
-  }
-  .footer-separator {
-    color: rgba(255,255,255,0.25);
-  }
-</style>
-
-</body>
-</html>
