@@ -1,78 +1,225 @@
 {% assign form_lang = page.lang | default: site.lang | default: "ja" %}
 {% if form_lang == "en" %}
-  {% assign subject_heading = "Subject" %}
-  {% assign subject_label_general = "General Inquiry" %}
-  {% assign subject_label_service = "Service Request" %}
-  {% assign subject_label_quote = "Estimate Request" %}
-  {% assign subject_label_other = "Other" %}
-  {% assign privacy_text = "I agree to the Privacy Policy and consent to the processing of my personal information." %}
-  {% assign submit_button = "Send" %}
+  {% assign label_name        = "Name" %}
+  {% assign label_org         = "Organization / Company" %}
+  {% assign label_email       = "Email" %}
+  {% assign label_sector      = "Sector" %}
+  {% assign sector_public     = "Public Sector (Government / Municipality / Public Institution)" %}
+  {% assign sector_private    = "Private Sector (Company / Startup)" %}
+  {% assign subject_heading   = "Inquiry Type" %}
+  {% assign subject_general   = "General Inquiry" %}
+  {% assign subject_service   = "Service Request" %}
+  {% assign subject_quote     = "Estimate Request" %}
+  {% assign subject_other     = "Other" %}
+  {% assign label_message     = "Message" %}
+  {% assign privacy_text      = "I agree to the Privacy Policy and consent to the processing of my personal information." %}
+  {% assign label_privacy     = "Privacy Policy" %}
+  {% assign submit_button     = "Send Message" %}
 {% else %}
-  {% assign subject_heading = "件名" %}
-  {% assign subject_label_general = "ご質問" %}
-  {% assign subject_label_service = "サービス依頼" %}
-  {% assign subject_label_quote = "見積もり依頼" %}
-  {% assign subject_label_other = "その他" %}
-  {% assign privacy_text = "プライバシーポリシーに同意し、個人情報の取り扱いに同意します。" %}
-  {% assign submit_button = "送信" %}
+  {% assign label_name        = "お名前" %}
+  {% assign label_org         = "組織・会社名" %}
+  {% assign label_email       = "メールアドレス" %}
+  {% assign label_sector      = "セクター" %}
+  {% assign sector_public     = "公共セクター（行政・自治体・公的機関）" %}
+  {% assign sector_private    = "民間セクター（企業・スタートアップ）" %}
+  {% assign subject_heading   = "お問い合わせ種別" %}
+  {% assign subject_general   = "ご質問" %}
+  {% assign subject_service   = "サービス依頼" %}
+  {% assign subject_quote     = "見積もり依頼" %}
+  {% assign subject_other     = "その他" %}
+  {% assign label_message     = "メッセージ" %}
+  {% assign privacy_text      = "プライバシーポリシーに同意し、個人情報の取り扱いに同意します。" %}
+  {% assign label_privacy     = "プライバシーポリシー" %}
+  {% assign submit_button     = "送信する" %}
 {% endif %}
-<form id="contact-form" class="contact-form" action="https://formspree.io/f/mwpzzkdk" method="POST" novalidate>
 
+<form id="contact-form" class="contact-form" novalidate>
+
+  <!-- Web3Forms: ★ bd6068c6-fe44-492a-b05f-627805145956 を実際のキーに置き換えてください -->
+  <input type="hidden" name="access_key" value="bd6068c6-fe44-492a-b05f-627805145956">
+  <input type="hidden" name="redirect" value="false">
+  <input type="checkbox" name="botcheck" style="display:none;">
+
+  <!-- 名前 -->
   <div class="form-row">
-    <label for="cf-name">{% if form_lang == "en" %}Name{% else %}名前{% endif %}</label>
-    <input id="cf-name" name="name" type="text" required>
+    <label for="cf-name">{{ label_name }} <span class="cf-required">*</span></label>
+    <input id="cf-name" name="name" type="text" required placeholder="{% if form_lang == 'en' %}John Smith{% else %}山田 太郎{% endif %}">
   </div>
 
+  <!-- 組織・会社名 -->
   <div class="form-row">
-    <label for="cf-email">{% if form_lang == "en" %}Email{% else %}メールアドレス{% endif %}</label>
-    <input id="cf-email" name="email" type="email" required>
+    <label for="cf-org">{{ label_org }}</label>
+    <input id="cf-org" name="organization" type="text" placeholder="{% if form_lang == 'en' %}Acme Corp{% else %}株式会社〇〇{% endif %}">
   </div>
 
-  <div class="form-row form-radio">
-    <p>{{ subject_heading }}</p>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_general }}" required>
-      {{ subject_label_general }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_service }}">
-      {{ subject_label_service }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_quote }}">
-      {{ subject_label_quote }}
-    </label>
-    <label class="radio-label">
-      <input type="radio" name="_subject" value="{{ subject_label_other }}">
-      {{ subject_label_other }}
-    </label>
-  </div>
-
+  <!-- メールアドレス -->
   <div class="form-row">
-    <label for="cf-message">{% if form_lang == "en" %}Message{% else %}メッセージ{% endif %}</label>
-    <textarea id="cf-message" name="message" rows="6" required></textarea>
+    <label for="cf-email">{{ label_email }} <span class="cf-required">*</span></label>
+    <input id="cf-email" name="email" type="email" required placeholder="{% if form_lang == 'en' %}you@example.com{% else %}your@email.com{% endif %}">
   </div>
 
-  <!-- Simple honeypot to reduce spam -->
-  <div style="display:none;">
-    <label>Leave this field empty</label>
-    <input name="_gotcha" tabindex="-1" autocomplete="off">
+  <!-- セクター -->
+  <div class="form-row" id="cf-sector-group">
+    <label for="cf-sector">{{ label_sector }} <span class="cf-required">*</span></label>
+    <select id="cf-sector" name="sector" required>
+      <option value="" disabled selected>{% if form_lang == "en" %}Please select{% else %}選択してください{% endif %}</option>
+      <option value="{{ sector_public }}">{% if form_lang == "en" %}Public Sector{% else %}公共セクター{% endif %}</option>
+      <option value="{{ sector_private }}">{% if form_lang == "en" %}Private Sector{% else %}民間セクター{% endif %}</option>
+    </select>
+    <div id="cf-public-notice" style="display:none;margin-top:0.6rem;padding:0.75rem 1rem;background:#fff8e1;border:1px solid #f9a825;border-radius:8px;font-size:0.83rem;color:#7a5c00;line-height:1.6;">
+      {% if form_lang == "en" %}
+        ⚠️ <strong>Notice:</strong> Do not include classified or confidential information. For sensitive matters, email us directly at <a href="mailto:{{ site.email }}" style="color:#7a5c00;">{{ site.email }}</a>.
+      {% else %}
+        ⚠️ <strong>公共セクターの方へ：</strong>機密情報・個人情報・予算・調達に関わる情報は記入しないでください。機密性の高いご相談は <a href="mailto:{{ site.email }}" style="color:#7a5c00;">{{ site.email }}</a> まで直接ご連絡ください。
+      {% endif %}
+    </div>
   </div>
 
+  <!-- お問い合わせ種別 -->
+  <div class="form-row">
+    <label for="cf-inquiry">{{ subject_heading }} <span class="cf-required">*</span></label>
+    <select id="cf-inquiry" name="inquiry_type" required>
+      <option value="">{% if form_lang == "en" %}— Please select —{% else %}— 選択してください —{% endif %}</option>
+      <option value="{{ subject_general }}">{{ subject_general }}</option>
+      <option value="{{ subject_service }}">{{ subject_service }}</option>
+      <option value="{{ subject_quote }}">{{ subject_quote }}</option>
+      <option value="{{ subject_other }}">{{ subject_other }}</option>
+    </select>
+  </div>
+
+  <!-- メッセージ -->
+  <div class="form-row">
+    <label for="cf-message">{{ label_message }} <span class="cf-required">*</span></label>
+    <textarea id="cf-message" name="message" rows="6" required placeholder="{% if form_lang == 'en' %}Please describe your inquiry or project in detail.{% else %}お問い合わせ内容・プロジェクトの詳細をご記入ください。{% endif %}"></textarea>
+  </div>
+
+  <!-- プライバシー同意 -->
   <div class="form-row form-checkbox">
     <label class="checkbox-label">
-      <input id="cf-privacy" name="privacy-consent" type="checkbox" required>
+      <input id="cf-privacy" type="checkbox" required>
+      <span class="cf-required" style="flex-shrink:0;">*</span>
       <span class="checkbox-text">
-        {{ privacy_text }} <a href="/privacy-policy/" target="_blank" rel="noopener">{% if form_lang == "en" %}Privacy Policy{% else %}プライバシーポリシー{% endif %}</a>
+        {{ privacy_text }} <a href="/privacy-policy/" target="_blank" rel="noopener">{{ label_privacy }}</a>
       </span>
     </label>
   </div>
 
+  <!-- 送信ボタン -->
   <div class="form-row">
-    <button type="submit">{{ submit_button }}</button>
+    <button type="submit" id="cf-submit">{{ submit_button }}</button>
   </div>
 
-  <!-- <p class="form-note">Replace the `action` URL with your Formspree endpoint or other form backend.</p> -->
+  <!-- 結果表示 -->
+  <div id="cf-result" style="display:none;margin-top:1rem;padding:1rem 1.25rem;border-radius:10px;font-size:0.9rem;line-height:1.6;"></div>
+
 </form>
 
-<script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
+<script>
+(function(){
+  var form=document.getElementById('contact-form');
+  var result=document.getElementById('cf-result');
+  var btn=document.getElementById('cf-submit');
+  var sectorEl=document.getElementById('cf-sector');
+  var notice=document.getElementById('cf-public-notice');
+  var isEn=document.documentElement.lang==='en';
+  var origBtn=btn?btn.textContent:'';
+
+  var MSG={
+    name:    isEn?'Please enter your name.':'お名前を入力してください。',
+    email:   isEn?'Please enter a valid email address.':'有効なメールアドレスを入力してください。',
+    sector:  isEn?'Please select a sector.':'セクターを選択してください。',
+    inquiry: isEn?'Please select an inquiry type.':'お問い合わせ種別を選択してください。',
+    message: isEn?'Please enter your message.':'メッセージを入力してください。',
+    privacy: isEn?'Please agree to the Privacy Policy.':'プライバシーポリシーへの同意が必要です。',
+    sending: isEn?'Sending…':'送信中…',
+    ok:      isEn?'Message Sent!':'送信が完了しました',
+    okBody:  isEn?"Thank you for reaching out. We'll get back to you within 1–2 business days.":'お問い合わせありがとうございます。1〜2営業日以内にご返信いたします。',
+    redir:   isEn?'Redirecting…':'トップページに戻ります…',
+    err:     isEn?'An error occurred. Please try again.':'送信に失敗しました。もう一度お試しください。'
+  };
+
+  if(sectorEl){
+    sectorEl.addEventListener('change',function(){
+      var pub=this.value.indexOf('Public')!==-1||this.value.indexOf('公共')!==-1;
+      if(notice)notice.style.display=pub?'block':'none';
+    });
+  }
+
+  function showErr(el,msg){
+    el.style.borderColor='#e03131';
+    var e=el.parentElement.querySelector('.cf-err');
+    if(!e){e=document.createElement('span');e.className='cf-err';e.style.cssText='font-size:0.78rem;color:#e03131;margin-top:3px;display:block;';el.parentElement.appendChild(e);}
+    e.textContent=msg;
+  }
+  function clearErr(el){
+    el.style.borderColor='';
+    var e=el.parentElement.querySelector('.cf-err');
+    if(e)e.remove();
+  }
+
+  function validate(){
+    var ok=true;
+    var n=document.getElementById('cf-name');
+    var em=document.getElementById('cf-email');
+    var s=document.getElementById('cf-sector');
+    var inq=document.getElementById('cf-inquiry');
+    var m=document.getElementById('cf-message');
+    var p=document.getElementById('cf-privacy');
+    [n,em,s,inq,m].forEach(function(el){if(el)clearErr(el);});
+    var privRow=p?p.closest('.form-row'):null;
+    if(privRow){var pe=privRow.querySelector('.cf-err');if(pe)pe.remove();}
+
+    if(!n.value.trim()){showErr(n,MSG.name);ok=false;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){showErr(em,MSG.email);ok=false;}
+    if(!s.value){showErr(s,MSG.sector);ok=false;}
+    if(!inq.value){showErr(inq,MSG.inquiry);ok=false;}
+    if(!m.value.trim()){showErr(m,MSG.message);ok=false;}
+    else if(m.value.trim().length>3000){showErr(m,isEn?'Max 3000 characters.':'3000文字以内で入力してください。');ok=false;}
+    if(!p.checked&&privRow){
+      var pe2=document.createElement('span');pe2.className='cf-err';
+      pe2.style.cssText='font-size:0.78rem;color:#e03131;margin-top:3px;display:block;';
+      pe2.textContent=MSG.privacy;privRow.appendChild(pe2);ok=false;
+    }
+    return ok;
+  }
+
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!validate()){
+      var first=form.querySelector('[style*="e03131"]')||form.querySelector('.cf-err');
+      if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    btn.textContent=MSG.sending;btn.disabled=true;result.style.display='none';
+
+    var inqVal=document.getElementById('cf-inquiry').value;
+    var data=new FormData(form);
+    data.set('subject','burai.live | '+inqVal);
+
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{Accept:'application/json'},
+      body:data
+    })
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(j.success){
+        result.style.cssText='display:block;padding:1rem 1.25rem;border-radius:10px;background:#eaf3de;border:1px solid #3b6d11;color:#27500a;';
+        result.innerHTML='<strong>'+MSG.ok+'</strong><br>'+MSG.okBody+'<br><small style="color:#639922;margin-top:6px;display:block;">'+MSG.redir+'</small>';
+        form.reset();if(notice)notice.style.display='none';
+        setTimeout(function(){window.location.href=isEn?'/en/':'/';},3500);
+      }else{throw new Error(j.message||'failed');}
+    })
+    .catch(function(){
+      result.style.cssText='display:block;padding:1rem 1.25rem;border-radius:10px;background:#fcebeb;border:1px solid #a32d2d;color:#791f1f;';
+      result.textContent=MSG.err;btn.textContent=origBtn;btn.disabled=false;
+    });
+  });
+
+  ['cf-name','cf-email','cf-sector','cf-inquiry','cf-message'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el){el.addEventListener('input',function(){clearErr(this);});el.addEventListener('change',function(){clearErr(this);});}
+  });
+})();
+</script>

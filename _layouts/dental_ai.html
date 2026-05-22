@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>歯科AI システム</title>
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  body { font-family: sans-serif; background: #fff; color: #1a1a1a; margin: 0; padding: 1rem; }
+  button { font-family: inherit; border: 0.5px solid #ccc; background: transparent; border-radius: 8px; cursor: pointer; }
+  button:hover { background: #f5f5f5; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState } = React;
+
+const teal = "#0F6E56";
+const teal2 = "#1D9E75";
+const tealLight = "#E1F5EE";
+const tealMid = "#9FE1CB";
+const blue = "#185FA5";
+const blueLight = "#E6F1FB";
+const amber = "#BA7517";
+const amberLight = "#FAEEDA";
+
+const PHONE_FLOW = [
+  { id: 1, icon: "ti-phone-incoming", label: "着信検知", desc: "患者からの電話を受信", color: teal },
+  { id: 2, icon: "ti-robot", label: "AI音声認識", desc: "自然言語で会話・意図を把握", color: blue },
+  { id: 3, icon: "ti-calendar-check", label: "空き確認", desc: "リアルタイムで予約枠を検索", color: teal2 },
+  { id: 4, icon: "ti-database", label: "予約登録", desc: "電子カルテと自動連携", color: amber },
+  { id: 5, icon: "ti-message-check", label: "確認SMS", desc: "患者へ自動リマインド送信", color: teal },
+];
+
+const INTERCOM_FLOW = [
+  { id: 1, icon: "ti-microphone", label: "音声入力", desc: "診療室インカムで発話", color: teal },
+  { id: 2, icon: "ti-brain", label: "AI解析", desc: "コンテキスト理解・分類", color: blue },
+  { id: 3, icon: "ti-list-check", label: "指示変換", desc: "タスクへ自動変換", color: teal2 },
+  { id: 4, icon: "ti-users", label: "スタッフ配信", desc: "担当者へリアルタイム配信", color: amber },
+  { id: 5, icon: "ti-chart-bar", label: "記録・分析", desc: "業務ログ・改善提案", color: teal },
+];
+
+const PHONE_FEATURES = [
+  { icon: "ti-clock-24", title: "24時間365日対応", desc: "深夜・休日も患者の予約受付が可能。取りこぼしゼロ。" },
+  { icon: "ti-language", title: "多言語サポート", desc: "日本語・英語・中国語など複数言語で自動対応。" },
+  { icon: "ti-heartbeat", title: "症状ヒアリング", desc: "痛みの種類・緊急度を判断し、適切な診療枠を提案。" },
+  { icon: "ti-refresh", title: "キャンセル・変更", desc: "既存予約の変更・キャンセルも音声で即時対応。" },
+  { icon: "ti-shield-check", title: "個人情報保護", desc: "通話内容の暗号化・個人情報保護法準拠。" },
+  { icon: "ti-chart-dots", title: "分析ダッシュボード", desc: "通話数・予約転換率・混雑時間帯をリアルタイム可視化。" },
+];
+
+const INTERCOM_FEATURES = [
+  { icon: "ti-bolt", title: "ハンズフリー操作", desc: "治療中の手袋着用でも音声だけでカルテ入力・指示出し。" },
+  { icon: "ti-stethoscope", title: "医療用語認識", desc: "歯科専門用語・処置コードを高精度で認識・入力。" },
+  { icon: "ti-arrows-sort", title: "優先度判定", desc: "緊急度に応じてスタッフへの通知順を自動ソート。" },
+  { icon: "ti-clipboard-text", title: "自動カルテ連携", desc: "音声メモをSOAP形式でカルテへ自動フォーマット入力。" },
+  { icon: "ti-speakerphone", title: "ノイズキャンセル", desc: "診療室の機械音・BGMを除去し発話のみを高精度抽出。" },
+  { icon: "ti-lock", title: "セキュアチャンネル", desc: "院内専用ネットワークで音声データを外部に出さない設計。" },
+];
+
+function FlowDiagram({ steps }) {
+  const [active, setActive] = useState(null);
+  return (
+    <div style={{ display: "flex", alignItems: "flex-start", gap: 0, flexWrap: "wrap", justifyContent: "center", padding: "1.5rem 0 1rem" }}>
+      {steps.map((step, i) => (
+        <div key={step.id} style={{ display: "flex", alignItems: "center" }}>
+          <div onClick={() => setActive(active === step.id ? null : step.id)}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, cursor: "pointer" }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: "50%",
+              background: active === step.id ? step.color : tealLight,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              border: `2px solid ${active === step.id ? step.color : tealMid}`,
+            }}>
+              <i className={`ti ${step.icon}`} style={{ fontSize: 22, color: active === step.id ? "#fff" : step.color }} />
+            </div>
+            <div style={{ textAlign: "center", width: 72 }}>
+              <div style={{ fontSize: 12, fontWeight: 500, color: active === step.id ? step.color : "#1a1a1a", lineHeight: 1.3 }}>{step.label}</div>
+              {active === step.id && (
+                <div style={{ fontSize: 11, color: "#888", marginTop: 4, lineHeight: 1.4 }}>{step.desc}</div>
+              )}
+            </div>
+          </div>
+          {i < steps.length - 1 && (
+            <div style={{ width: 24, height: 2, background: tealMid, margin: "0 4px", marginBottom: 16, opacity: 0.6, flexShrink: 0 }} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FeatureGrid({ features }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginTop: "1rem" }}>
+      {features.map((f, i) => (
+        <div key={i} style={{ background: "#fff", border: "0.5px solid #ddd", borderRadius: 12, padding: "1rem 1.25rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: tealLight, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <i className={`ti ${f.icon}`} style={{ fontSize: 16, color: teal }} />
+            </div>
+            <span style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.3 }}>{f.title}</span>
+          </div>
+          <p style={{ fontSize: 12, color: "#666", margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PhoneDemo() {
+  const [step, setStep] = useState(0);
+  const conversation = [
+    { role: "ai", text: "こんにちは、さくら歯科クリニックのAI予約受付です。ご用件をどうぞ。" },
+    { role: "user", text: "来週、歯が痛くて…定期検診も兼ねて診てもらいたいんですが。" },
+    { role: "ai", text: "痛みがあるとのことで、できるだけ早めにご案内します。来週ですと、火曜日10:00と木曜日14:30に空きがございます。どちらがよろしいですか？" },
+    { role: "user", text: "木曜日の14:30でお願いします。" },
+    { role: "ai", text: "木曜日14:30で承りました。確認SMSをお送りします。ご予約完了です。どうぞお大事に。" },
+  ];
+  return (
+    <div style={{ background: "#f8f8f8", borderRadius: 12, padding: "1rem", marginTop: "1rem" }}>
+      <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>通話デモ — ステップを進めてください</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 160 }}>
+        {conversation.slice(0, step + 1).map((msg, i) => (
+          <div key={i} style={{ display: "flex", justifyContent: msg.role === "ai" ? "flex-start" : "flex-end" }}>
+            <div style={{
+              maxWidth: "78%", padding: "8px 12px", borderRadius: 12,
+              background: msg.role === "ai" ? tealLight : blueLight,
+              fontSize: 13, lineHeight: 1.6,
+              borderBottomLeftRadius: msg.role === "ai" ? 2 : 12,
+              borderBottomRightRadius: msg.role === "user" ? 2 : 12,
+            }}>
+              {msg.role === "ai" && <span style={{ fontSize: 11, color: teal, display: "block", marginBottom: 2, fontWeight: 500 }}>AI受付</span>}
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 11, color: "#888" }}>{step + 1} / {conversation.length}</span>
+        <button onClick={() => setStep(s => Math.min(s + 1, conversation.length - 1))}
+          disabled={step >= conversation.length - 1}
+          style={{ fontSize: 12, padding: "6px 16px", opacity: step >= conversation.length - 1 ? 0.4 : 1 }}>
+          次のターン →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function IntercomDemo() {
+  const [active, setActive] = useState(null);
+  const commands = [
+    { voice: "「4番チェアに麻酔お願いします」", action: "スタッフ割当", detail: "助手：田中 → 4番チェアへ通知送信", icon: "ti-arrows-right", color: teal },
+    { voice: "「患者さん、リンスを2回してください」", action: "患者指示", detail: "4番チェア 音声アナウンス再生", icon: "ti-speakerphone", color: blue },
+    { voice: "「次の患者、下顎右6番 CR 修復」", action: "カルテ更新", detail: "SOAP形式でカルテ自動入力", icon: "ti-clipboard-text", color: amber },
+    { voice: "「バキューム持ってきて、至急」", action: "緊急タスク", detail: "全スタッフへ緊急プッシュ通知", icon: "ti-bolt", color: "#A32D2D" },
+  ];
+  return (
+    <div style={{ marginTop: "1rem", display: "flex", flexDirection: "column", gap: 8 }}>
+      {commands.map((cmd, i) => (
+        <div key={i} onClick={() => setActive(active === i ? null : i)}
+          style={{ background: active === i ? "#fff" : "#f8f8f8", border: `0.5px solid ${active === i ? cmd.color : "#ddd"}`, borderRadius: 8, padding: "10px 14px", cursor: "pointer" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <i className="ti ti-microphone" style={{ fontSize: 14, color: "#888", flexShrink: 0 }} />
+            <span style={{ fontSize: 13, flex: 1 }}>{cmd.voice}</span>
+            <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: cmd.color + "20", color: cmd.color, fontWeight: 500 }}>{cmd.action}</span>
+          </div>
+          {active === i && (
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: "0.5px solid #eee", display: "flex", alignItems: "center", gap: 8 }}>
+              <i className={`ti ${cmd.icon}`} style={{ fontSize: 14, color: cmd.color }} />
+              <span style={{ fontSize: 12, color: "#666" }}>{cmd.detail}</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SpecTable({ rows }) {
+  return (
+    <div style={{ marginTop: "1rem", border: "0.5px solid #ddd", borderRadius: 8, overflow: "hidden" }}>
+      {rows.map((r, i) => (
+        <div key={i} style={{ display: "flex", borderBottom: i < rows.length - 1 ? "0.5px solid #eee" : "none", background: i % 2 === 0 ? "#fff" : "#f8f8f8" }}>
+          <div style={{ padding: "9px 14px", fontSize: 12, fontWeight: 500, color: teal, width: 160, flexShrink: 0, borderRight: "0.5px solid #eee" }}>{r[0]}</div>
+          <div style={{ padding: "9px 14px", fontSize: 12 }}>{r[1]}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const phoneSpecs = [
+  ["音声認識精度", "99.2%"],
+  ["同時対応回線", "最大50回線（スケール対応可）"],
+  ["対応言語", "日本語 / 英語 "],
+  ["カルテ連携", "Orca / Denty / 独自EMR API対応"],
+  ["平均応答時間", "< 1.5秒（エンドツーエンド）"],
+  ["稼働率SLA", "99.9%"],
+  ["SMS/通知", "SNS / LINE / メール 自動送信"],
+  ["データ保存", "国内リージョン / AES-256暗号化"],
+];
+
+const intercomSpecs = [
+  ["認識精度", "98.7%（歯科診療室ノイズ環境下）"],
+  ["遅延", "< 0.3秒（リアルタイム認識）"],
+  ["デバイス", "ヘッドセット / 卓上マイク / スマートフォン"],
+  ["EMR連携", "SOAP形式自動フォーマット入力"],
+  ["スタッフ通知", "iOS / Android アプリ + タブレット"],
+  ["ノイズ除去", "タービン音 / バキューム音 / 空調対応"],
+  ["セキュリティ", "院内LAN完結設計 / 外部送信なし"],
+  ["分析機能", "指示頻度 / 応答時間 / 業務改善提案"],
+];
+
+function App() {
+  const [tab, setTab] = useState(0);
+  const tabs = [
+    { label: "AI電話予約", icon: "ti-phone" },
+    { label: "AIインカム", icon: "ti-speakerphone" },
+    { label: "システム連携", icon: "ti-git-merge" },
+  ];
+  return (
+    <div style={{ maxWidth: 700, margin: "0 auto", padding: "1.5rem 0" }}>
+      <div style={{ fontSize: 11, fontWeight: 500, color: teal, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 6px" }}>Dental AI Platform</div>
+      <div style={{ fontSize: 22, fontWeight: 500, margin: "0 0 4px" }}>歯科医院向け AI システム</div>
+      <div style={{ fontSize: 13, color: "#888", margin: "0 0 1.5rem" }}>電話予約・インカム、2システムの設計概要</div>
+
+      <div style={{ display: "flex", gap: 4, marginBottom: "1.5rem", background: "#f0f0f0", padding: 4, borderRadius: 12 }}>
+        {tabs.map((t, i) => (
+          <button key={i} onClick={() => setTab(i)} style={{
+            flex: 1, padding: "8px 4px", fontSize: 12, fontWeight: tab === i ? 500 : 400,
+            background: tab === i ? "#fff" : "transparent",
+            border: tab === i ? "0.5px solid #ccc" : "0.5px solid transparent",
+            borderRadius: 8, cursor: "pointer",
+            color: tab === i ? teal : "#888",
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+          }}>
+            <i className={`ti ${t.icon}`} style={{ fontSize: 14 }} />
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {tab === 0 && (
+        <div>
+          <div style={{ background: tealLight, borderRadius: 12, padding: "1rem 1.25rem", marginBottom: "1.25rem", display: "flex", gap: 12 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <i className="ti ti-phone-call" style={{ fontSize: 20, color: "#fff" }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: teal, marginBottom: 4 }}>AI電話予約システム</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>24時間365日、患者からの予約電話をAIが自動応対。自然な日本語会話で症状ヒアリングから予約登録・リマインドSMS送信まで全自動化します。</div>
+            </div>
+          </div>
+          <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 4 }}>処理フロー</div>
+          <FlowDiagram steps={PHONE_FLOW} />
+          <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 4 }}>会話デモ</div>
+          <PhoneDemo />
+          <div style={{ fontSize: 13, fontWeight: 500, margin: "1.5rem 0 4px" }}>主要機能</div>
+          <FeatureGrid features={PHONE_FEATURES} />
+          <div style={{ fontSize: 13, fontWeight: 500, margin: "1.5rem 0 4px" }}>技術仕様</div>
+          <SpecTable rows={phoneSpecs} />
+        </div>
+      )}
+
+      {tab === 1 && (
+        <div>
+          <div style={{ background: blueLight, borderRadius: 12, padding: "1rem 1.25rem", marginBottom: "1.25rem", display: "flex", gap: 12 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: blue, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <i className="ti ti-speakerphone" style={{ fontSize: 20, color: "#fff" }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: blue, marginBottom: 4 }}>AIインカムシステム</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>診療室スタッフ間の音声コミュニケーションをAIが解析・仲介。ハンズフリーで指示伝達・カルテ入力・タスク管理を実現します。</div>
+            </div>
+          </div>
+          <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 4 }}>処理フロー</div>
+          <FlowDiagram steps={INTERCOM_FLOW} />
+          <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 4 }}>音声コマンドデモ</div>
+          <div style={{ fontSize: 12, color: "#888", marginBottom: 8 }}>タップして AI の解釈結果を確認</div>
+          <IntercomDemo />
+          <div style={{ fontSize: 13, fontWeight: 500, margin: "1.5rem 0 4px" }}>主要機能</div>
+          <FeatureGrid features={INTERCOM_FEATURES} />
+          <div style={{ fontSize: 13, fontWeight: 500, margin: "1.5rem 0 4px" }}>技術仕様</div>
+          <SpecTable rows={intercomSpecs} />
+        </div>
+      )}
+
+      {tab === 2 && (
+        <div>
+          <div style={{ background: amberLight, borderRadius: 12, padding: "1rem 1.25rem", marginBottom: "1.25rem", display: "flex", gap: 12 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: amber, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <i className="ti ti-git-merge" style={{ fontSize: 20, color: "#fff" }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: amber, marginBottom: 4 }}>2システム連携アーキテクチャ</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>電話予約とインカムは同一の患者DB・カルテに接続。予約情報がリアルタイムで診療室へ反映されます。</div>
+            </div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+            {[
+              { title: "AI電話予約", icon: "ti-phone", color: teal, bg: tealLight, items: ["音声認識エンジン", "予約管理API", "SMS通知サービス", "多言語対応モジュール"] },
+              { title: "AIインカム", icon: "ti-speakerphone", color: blue, bg: blueLight, items: ["リアルタイム音声認識", "NLU・意図理解", "スタッフ通知アプリ", "カルテ自動入力"] },
+            ].map((s, i) => (
+              <div key={i} style={{ background: s.bg, borderRadius: 12, padding: "1rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
+                  <i className={`ti ${s.icon}`} style={{ fontSize: 16, color: s.color }} />
+                  <span style={{ fontSize: 13, fontWeight: 500, color: s.color }}>{s.title}</span>
+                </div>
+                {s.items.map((item, j) => (
+                  <div key={j} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 5 }}>
+                    <div style={{ width: 4, height: 4, borderRadius: "50%", background: s.color, flexShrink: 0 }} />
+                    <span style={{ fontSize: 12, color: "#555" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div style={{ background: "#fff", border: `1.5px solid ${amber}`, borderRadius: 12, padding: "1rem 1.25rem", marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: amber, marginBottom: 8 }}>共有基盤レイヤー</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8 }}>
+              {[
+                { icon: "ti-database", label: "患者マスタDB" },
+                { icon: "ti-file-text", label: "電子カルテEMR" },
+                { icon: "ti-bell", label: "通知オーケストレーター" },
+                { icon: "ti-chart-bar", label: "統合分析基盤" },
+              ].map((c, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 10px", background: amberLight, borderRadius: 8 }}>
+                  <i className={`ti ${c.icon}`} style={{ fontSize: 14, color: amber }} />
+                  <span style={{ fontSize: 12 }}>{c.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

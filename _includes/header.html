@@ -19,7 +19,13 @@
         {% if page.url contains '/en/' %}
           <a href="{{ '/en/' | relative_url }}">Home</a>
           <a href="{{ '/en/about/' | relative_url }}">About</a>
-          <a href="{{ '/en/services/' | relative_url }}">Services</a>
+          <div class="nav-dropdown">
+            <a href="{{ '/en/services/' | relative_url }}" class="nav-dropdown__trigger">Services <span class="nav-dropdown__arrow">▾</span></a>
+            <div class="nav-dropdown__menu">
+              <a href="{{ '/services/dental-ai/' | relative_url }}" class="nav-dropdown__highlight">🦷 Dental AI Platform</a>
+            </div>
+          </div>
+          <a href="{{ '/en/news/' | relative_url }}">News</a>
           <a href="{{ '/en/partners/' | relative_url }}">Partners</a>
           <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
           <a href="{{ '/' | relative_url }}" class="lang-toggle">日本語</a>
@@ -31,7 +37,13 @@
           {% else %}
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/about/' | relative_url }}">事業概要</a>
-            <a href="{{ '/services/' | relative_url }}">サービス</a>
+            <div class="nav-dropdown">
+              <a href="{{ '/services/' | relative_url }}" class="nav-dropdown__trigger">サービス <span class="nav-dropdown__arrow">▾</span></a>
+              <div class="nav-dropdown__menu">
+                <a href="{{ '/services/dental-ai/' | relative_url }}" class="nav-dropdown__highlight">🦷 Dental AI Platform</a>
+              </div>
+            </div>
+            <a href="{{ '/news/' | relative_url }}">ニュース</a>
             <a href="{{ '/partners/' | relative_url }}">パートナー</a>
             <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
           {% endif %}
@@ -40,4 +52,38 @@
       </nav>
     </div>
   </div>
+
+<script>
+(function() {
+  function initDropdowns() {
+    var dropdowns = document.querySelectorAll('.nav-dropdown');
+    // 初期状態：全て閉じる
+    dropdowns.forEach(function(d) { d.classList.remove('open'); });
+
+    dropdowns.forEach(function(dd) {
+      var trigger = dd.querySelector('.nav-dropdown__trigger');
+      if (!trigger) return;
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = dd.classList.contains('open');
+        dropdowns.forEach(function(d) { d.classList.remove('open'); });
+        if (!isOpen) dd.classList.add('open');
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-dropdown')) {
+        dropdowns.forEach(function(d) { d.classList.remove('open'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDropdowns);
+  } else {
+    initDropdowns();
+  }
+})();
+</script>
 </header>

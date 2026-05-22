@@ -4,45 +4,60 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{{ page.title | default: site.title }}</title>
+
     {% if page.lang == 'en' %}
       {% assign meta_desc = page.description | default: site.description_en %}
+      {% assign og_locale = 'en_US' %}
+      {% assign lang_self = '/en/' %}
+      {% assign lang_alt  = '/' %}
     {% else %}
       {% assign meta_desc = page.description | default: site.description %}
+      {% assign og_locale = 'ja_JP' %}
+      {% assign lang_self = page.url %}
+      {% assign lang_alt  = '/en/' | append: page.url | remove_first: '/' %}
     {% endif %}
+
     <meta name="description" content="{{ meta_desc | escape }}" />
-    <meta name="keywords" content="{{ page.keywords | default: site.keywords }}" />
-    <meta name="author" content="{{ site.author }}" />
-    <link rel="canonical" href="{{ page.url | absolute_url }}" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta name="keywords"    content="{{ page.keywords | default: site.keywords }}" />
+    <meta name="author"      content="{{ site.author }}" />
+    <link rel="canonical"    href="{{ page.url | absolute_url }}" />
+
+    <!-- hreflang: 日英ページを紐付け -->
+    <link rel="alternate" hreflang="ja" href="{{ site.url }}{{ lang_self }}" />
+    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ lang_alt }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="{{ page.url | absolute_url }}" />
+    <meta property="og:title"       content="{{ page.title | default: site.title }}" />
     <meta property="og:description" content="{{ meta_desc | escape }}" />
-    <meta property="og:image" content="{{ site.url }}/assets/images/og-image.jpg" />
-    <meta property="og:site_name" content="Burai Live" />
-    <meta property="og:locale" content="{{ page.lang | default: 'ja_JP' }}" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
-    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:image"       content="{{ site.url }}/assets/images/og-image.png" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name"   content="Burai Live" />
+    <meta property="og:locale"      content="{{ og_locale }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:url"         content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title"       content="{{ page.title | default: site.title }}" />
     <meta name="twitter:description" content="{{ meta_desc | escape }}" />
-    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.jpg" />
-    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
-    
-    <!-- Geo Tags for Japan -->
-    <meta name="geo.region" content="JP" />
+    <meta name="twitter:image"       content="{{ site.url }}/assets/images/og-image.png" />
+    <meta name="twitter:site"        content="@{{ site.twitter_username }}" />
+
+    <!-- Geo (Japan local SEO) -->
+    <meta name="geo.region"    content="JP" />
     <meta name="geo.placename" content="Japan" />
-    
-    <!-- Structured Data - Organization -->
+
+    <!-- Structured Data: Organization + Services -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Burai Live",
       "url": "{{ site.url }}",
-      "logo": "{{ site.url }}/assets/images/logo.svg",
+      "logo": "{{ site.url }}/assets/images/logo.png",
       "description": "{{ meta_desc | escape }}",
       "address": {
         "@type": "PostalAddress",
@@ -59,23 +74,72 @@
         "https://twitter.com/{{ site.twitter_username }}",
         "https://github.com/{{ site.github_username }}"
       ],
-      "keywords": "drone, Japan, DX, ISR, ドローン, ドローンシステム開発, drone system development, AI solutions, web development"
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital & Drone Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "DX・ISRドローンシステム開発",
+              "description": "DX and ISR drone system development including autonomous flight, real-time surveillance, and data analytics platforms."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AIソリューション",
+              "description": "AI agent development, machine learning models, and generative AI integration for business automation."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ウェブ開発",
+              "description": "End-to-end web application development using modern frameworks and technology stacks."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "クラウド運用",
+              "description": "Cloud infrastructure design, CI/CD, and 24/7 operations on AWS, Azure, and GCP."
+            }
+          }
+        ]
+      }
     }
     </script>
-    
+
     <!-- Favicons / PWA -->
     <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
-    <!-- Manifest disabled in development to avoid CORS issues with GitHub Codespaces -->
-    <!-- <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}"> -->
+    <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
     <meta name="theme-color" content="#0b3d91">
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/contact-form.css' | relative_url }}">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KDLD6LQW');</script>
+    <!-- End Google Tag Manager -->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDLD6LQW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     {% include header.html %}
+
 
     <main class="site-main">
       <div class="container">
@@ -85,6 +149,14 @@
 
     {% include footer.html %}
     {% include cookie-consent.html %}
-    
+
+    <!-- Apollo.io Web Visitor Tracking -->
+    <script>
+    function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+    o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+    o.onload=function(){window.trackingFunctions.onLoad({appId:"6a01a39cb6fcca0015f04c44"})},
+    document.head.appendChild(o)}initApollo();
+    </script>
+    <!-- End Apollo.io Web Visitor Tracking -->
   </body>
 </html>

@@ -1,13 +1,20 @@
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  <div class="footer-inner">
+    <p class="footer-copy">&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
     <nav class="footer-nav">
       <a href="mailto:{{ site.email }}">{{ site.email }}</a>
       <span class="footer-separator">|</span>
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/contact/' | relative_url }}">Contact</a>
-      <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> 
+      {% if page.url contains '/en/' %}
+        <a href="{{ '/en/' | relative_url }}">Home</a>
+        <a href="{{ '/en/about/' | relative_url }}">About</a>
+        <a href="{{ '/en/contact/' | relative_url }}">Contact</a>
+        <a href="{{ '/en/privacy-policy/' | relative_url }}">Privacy Policy</a>
+      {% else %}
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about/' | relative_url }}">事業概要</a>
+        <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
+        <a href="{{ '/privacy-policy/' | relative_url }}">プライバシーポリシー</a>
+      {% endif %}
     </nav>
   </div>
 </footer>
