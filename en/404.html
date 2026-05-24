@@ -101,6 +101,28 @@ description: The page you were looking for could not be found.
   var path = ref ? ref.replace(location.origin, '') : '';
   var isEn = path.indexOf('/en/') === 0 || navigator.language.startsWith('en');
 
+  // ヘッダーのナビリンクを英語に切り替え
+  if (isEn) {
+    var navLinks = document.querySelectorAll('#main-nav a:not(.lang-toggle):not(.nav-dropdown__trigger):not(.nav-dropdown__highlight)');
+    var enMap = {
+      'Home': 'Home', '事業概要': 'About', 'サービス': 'Services',
+      'ニュース': 'News', 'パートナー': 'Partners', 'お問い合わせ': 'Contact'
+    };
+    navLinks.forEach(function(a) {
+      var txt = a.textContent.trim();
+      if (enMap[txt]) {
+        a.textContent = enMap[txt];
+        // リンク先も /en/ に変更
+        if (a.href && !a.href.includes('/en/') && !a.href.includes('mailto')) {
+          a.href = a.href.replace(location.origin, location.origin + '/en');
+        }
+      }
+    });
+    // 言語トグルを日本語に
+    var langToggle = document.querySelector('.lang-toggle');
+    if (langToggle) { langToggle.textContent = '日本語'; langToggle.href = '/'; }
+  }
+
   var T = isEn ? {
     title: "Page Not Found",
     desc: "The page you were looking for may have been moved or deleted.<br>Please check the URL or head back to the homepage.",
