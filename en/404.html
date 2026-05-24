@@ -1,0 +1,159 @@
+---
+permalink: /en/404.html
+
+layout: default
+title: "404 - Page Not Found | Burai Live"
+description: The page you were looking for could not be found.
+---
+
+<style>
+.lp-404 {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.lp-404__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,122,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,122,204,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.lp-404__inner { position: relative; text-align: center; max-width: 560px; }
+.lp-404__num {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(7rem, 20vw, 11rem);
+  font-weight: 800; line-height: 1;
+  letter-spacing: -0.05em; color: #f0f4f8; user-select: none;
+}
+.lp-404__num span { position: relative; display: inline-block; }
+.lp-404__num .zero {
+  color: transparent; -webkit-text-stroke: 3px #007acc;
+  animation: spin-zero 8s linear infinite; display: inline-block;
+}
+@keyframes spin-zero {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(0.92); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.lp-404__icon {
+  width: 56px; height: 56px; margin: -1.5rem auto 1.5rem;
+  background: linear-gradient(135deg, #eef4fb, #dbeeff);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(0,122,204,0.15);
+}
+.lp-404__icon svg { width: 28px; height: 28px; stroke: #007acc; }
+.lp-404__title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem; font-weight: 700; color: #0b1f3a;
+  margin: 0 0 0.75rem; letter-spacing: -0.02em;
+}
+.lp-404__desc { font-size: 1rem; color: #5a6a80; line-height: 1.7; margin: 0 0 2.5rem; }
+.lp-404__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.lp-404__btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #007acc; color: #fff; padding: 0.75rem 1.5rem;
+  border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+  transition: background 0.2s, transform 0.15s;
+}
+.lp-404__btn-primary:hover { background: #005fa3; transform: translateY(-2px); }
+.lp-404__btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: #5a6a80; padding: 0.75rem 1.5rem;
+  border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+  border: 1px solid #d0d8e4; transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.lp-404__btn-ghost:hover { border-color: #007acc; color: #007acc; transform: translateY(-2px); }
+.lp-404__links {
+  margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eef2f7;
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+}
+.lp-404__links a { font-size: 0.85rem; color: #007acc; text-decoration: none; font-weight: 500; }
+.lp-404__links a:hover { text-decoration: underline; }
+</style>
+
+<div class="lp-404">
+  <div class="lp-404__grid"></div>
+  <div class="lp-404__inner">
+    <div class="lp-404__num">
+      <span>4</span><span class="zero">0</span><span>4</span>
+    </div>
+    <div class="lp-404__icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/>
+      </svg>
+    </div>
+    <h1 class="lp-404__title" id="lp-title"></h1>
+    <p class="lp-404__desc" id="lp-desc"></p>
+    <div class="lp-404__actions" id="lp-actions"></div>
+    <div class="lp-404__links" id="lp-links"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var ref = document.referrer;
+  var path = ref ? ref.replace(location.origin, '') : '';
+  var isEn = path.indexOf('/en/') === 0 || navigator.language.startsWith('en');
+
+  // ヘッダーのナビリンクを英語に切り替え
+  if (isEn) {
+    var navLinks = document.querySelectorAll('#main-nav a:not(.lang-toggle):not(.nav-dropdown__trigger):not(.nav-dropdown__highlight)');
+    var enMap = {
+      'Home': 'Home', '事業概要': 'About', 'サービス': 'Services',
+      'ニュース': 'News', 'パートナー': 'Partners', 'お問い合わせ': 'Contact'
+    };
+    navLinks.forEach(function(a) {
+      var txt = a.textContent.trim();
+      if (enMap[txt]) {
+        a.textContent = enMap[txt];
+        // リンク先も /en/ に変更
+        if (a.href && !a.href.includes('/en/') && !a.href.includes('mailto')) {
+          a.href = a.href.replace(location.origin, location.origin + '/en');
+        }
+      }
+    });
+    // 言語トグルを日本語に
+    var langToggle = document.querySelector('.lang-toggle');
+    if (langToggle) { langToggle.textContent = '日本語'; langToggle.href = '/'; }
+  }
+
+  var T = isEn ? {
+    title: "Page Not Found",
+    desc: "The page you were looking for may have been moved or deleted.<br>Please check the URL or head back to the homepage.",
+    home: "← Back to Home", homeUrl: "/en/",
+    contact: "Contact Us", contactUrl: "/en/contact/",
+    links: [
+      { label: "Services",  url: "/en/services/" },
+      { label: "About",     url: "/en/about/" },
+      { label: "Partners",  url: "/en/partners/" },
+      { label: "日本語",    url: "/" }
+    ]
+  } : {
+    title: "ページが見つかりません",
+    desc: "お探しのページは移動または削除された可能性があります。<br>URLをご確認いただくか、トップページからお探しください。",
+    home: "← トップページへ", homeUrl: "/",
+    contact: "お問い合わせ", contactUrl: "/contact/",
+    links: [
+      { label: "サービス",   url: "/services/" },
+      { label: "事業概要",   url: "/about/" },
+      { label: "パートナー", url: "/partners/" },
+      { label: "English",    url: "/en/" }
+    ]
+  };
+
+  document.getElementById("lp-title").textContent = T.title;
+  document.getElementById("lp-desc").innerHTML = T.desc;
+  document.getElementById("lp-actions").innerHTML =
+    '<a href="' + T.homeUrl + '" class="lp-404__btn-primary">' + T.home + '</a>' +
+    '<a href="' + T.contactUrl + '" class="lp-404__btn-ghost">' + T.contact + '</a>';
+  document.getElementById("lp-links").innerHTML =
+    T.links.map(function(l) { return '<a href="' + l.url + '">' + l.label + '</a>'; }).join('');
+})();
+</script>
