@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Dental AI Platform | Burai Live"
-permalink: /en/services/dental-ai-en/
-lang: en
+title: "歯科AIプラットフォーム | Burai Live"
+permalink: /services/dental-ai/
+lang: ja
 description: >-
-  Burai Live Dental AI Platform. AI-powered phone booking and intercom systems
-  for modern dental clinics. HIPAA-compliant, multilingual, EHR-integrated.
+  Burai Liveの歯科AIプラットフォーム。AI電話予約システムとAIインターコムシステムで
+  歯科クリニックの業務効率化を実現。HIPAA準拠・多言語対応・EHR自動連携。
 ---
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -37,37 +37,37 @@ const amber = "#0b3d91";
 const amberLight = "#eef4fb";
 
 const PHONE_FLOW = [
-  { id: 1, icon: "ti-phone-incoming", label: "Incoming Call", desc: "Patient call is received", color: teal },
-  { id: 2, icon: "ti-robot", label: "AI Recognition", desc: "Natural language conversation & intent detection", color: blue },
-  { id: 3, icon: "ti-calendar-check", label: "Availability", desc: "Real-time appointment slot search", color: teal2 },
-  { id: 4, icon: "ti-database", label: "Booking", desc: "Auto-sync with electronic health record", color: amber },
-  { id: 5, icon: "ti-message-check", label: "SMS Reminder", desc: "Automated confirmation sent to patient", color: teal },
+  { id: 1, icon: "ti-phone-incoming", label: "着信", desc: "患者からの電話を受信", color: teal },
+  { id: 2, icon: "ti-robot", label: "AI認識", desc: "自然言語対話と意図検出", color: blue },
+  { id: 3, icon: "ti-calendar-check", label: "空き確認", desc: "リアルタイム予約枠の検索", color: teal2 },
+  { id: 4, icon: "ti-database", label: "予約確定", desc: "電子カルテへの自動連携", color: amber },
+  { id: 5, icon: "ti-message-check", label: "SMS通知", desc: "患者への自動確認メッセージ", color: teal },
 ];
 
 const INTERCOM_FLOW = [
-  { id: 1, icon: "ti-microphone", label: "Voice Input", desc: "Staff speaks via clinic intercom", color: teal },
-  { id: 2, icon: "ti-brain", label: "AI Analysis", desc: "Context understanding & classification", color: blue },
-  { id: 3, icon: "ti-list-check", label: "Task Convert", desc: "Voice command converted to task", color: teal2 },
-  { id: 4, icon: "ti-users", label: "Staff Dispatch", desc: "Real-time delivery to assigned staff", color: amber },
-  { id: 5, icon: "ti-chart-bar", label: "Log & Insights", desc: "Workflow logging & improvement tips", color: teal },
+  { id: 1, icon: "ti-microphone", label: "音声入力", desc: "スタッフがインターコムで発話", color: teal },
+  { id: 2, icon: "ti-brain", label: "AI解析", desc: "文脈理解とタスク分類", color: blue },
+  { id: 3, icon: "ti-list-check", label: "タスク変換", desc: "音声指示をタスクに変換", color: teal2 },
+  { id: 4, icon: "ti-users", label: "スタッフ通知", desc: "担当スタッフへリアルタイム配信", color: amber },
+  { id: 5, icon: "ti-chart-bar", label: "ログ分析", desc: "業務記録と改善インサイト", color: teal },
 ];
 
 const PHONE_FEATURES = [
-  { icon: "ti-clock-24", title: "24/7 Availability", desc: "Accepts bookings overnight and on holidays — zero missed calls." },
-  { icon: "ti-language", title: "Multilingual Support", desc: "Handles English, Japanese, Chinese, Korean, and more automatically." },
-  { icon: "ti-heartbeat", title: "Symptom Triage", desc: "Assesses pain type and urgency, then suggests the right appointment slot." },
-  { icon: "ti-refresh", title: "Cancel & Reschedule", desc: "Existing appointments can be changed or cancelled by voice, instantly." },
-  { icon: "ti-shield-check", title: "Privacy Compliant", desc: "Encrypted calls, HIPAA-aligned data handling, and local storage options." },
-  { icon: "ti-chart-dots", title: "Analytics Dashboard", desc: "Live view of call volume, booking conversion rate, and peak hours." },
+  { icon: "ti-clock-24", title: "24時間365日対応", desc: "夜間・休日も自動応答。取りこぼしゼロを実現します。" },
+  { icon: "ti-language", title: "多言語対応", desc: "日本語・英語・中国語・韓国語など自動で対応します。" },
+  { icon: "ti-heartbeat", title: "症状トリアージ", desc: "痛みの種類と緊急度を判定し、最適な予約枠を提案します。" },
+  { icon: "ti-refresh", title: "変更・キャンセル", desc: "音声で即座に予約変更・キャンセルが可能です。" },
+  { icon: "ti-shield-check", title: "プライバシー準拠", desc: "通話暗号化・HIPAA準拠・ローカルストレージ対応。" },
+  { icon: "ti-chart-dots", title: "分析ダッシュボード", desc: "通話数・予約転換率・ピーク時間帯をリアルタイム表示。" },
 ];
 
 const INTERCOM_FEATURES = [
-  { icon: "ti-bolt", title: "Hands-Free Operation", desc: "Record notes and issue instructions by voice even with gloves on." },
-  { icon: "ti-stethoscope", title: "Dental Terminology", desc: "High-accuracy recognition of procedure codes and clinical vocabulary." },
-  { icon: "ti-arrows-sort", title: "Priority Sorting", desc: "Urgent requests are automatically escalated to the top of the queue." },
-  { icon: "ti-clipboard-text", title: "Auto Chart Entry", desc: "Voice memos are formatted into SOAP notes and written to the EHR." },
-  { icon: "ti-speakerphone", title: "Noise Cancellation", desc: "Filters out turbines, suction, and HVAC — captures voice only." },
-  { icon: "ti-lock", title: "Secure Channel", desc: "On-premises network design — audio data never leaves the clinic." },
+  { icon: "ti-bolt", title: "ハンズフリー操作", desc: "グローブ着用中も音声でメモ・指示を記録できます。" },
+  { icon: "ti-stethoscope", title: "歯科用語対応", desc: "処置コードや臨床用語を高精度で認識します。" },
+  { icon: "ti-arrows-sort", title: "優先度ソート", desc: "緊急リクエストを自動的にキューの先頭に移動します。" },
+  { icon: "ti-clipboard-text", title: "自動カルテ入力", desc: "音声メモをSOAPノート形式に整形してEHRに書き込みます。" },
+  { icon: "ti-speakerphone", title: "ノイズキャンセル", desc: "タービン・吸引・空調音をフィルタリングし、声だけを収音。" },
+  { icon: "ti-lock", title: "セキュア通信", desc: "オンプレミス設計で音声データがクリニック外に出ません。" },
 ];
 
 function FlowDiagram({ steps }) {
@@ -123,15 +123,15 @@ function FeatureGrid({ features }) {
 function PhoneDemo() {
   const [step, setStep] = useState(0);
   const conversation = [
-    { role: "ai", text: "Thank you for calling Sakura Dental Clinic. This is our AI receptionist — how can I help you today?" },
-    { role: "user", text: "Hi, I've been having some tooth pain and I'd also like to schedule a routine check-up next week." },
-    { role: "ai", text: "I'm sorry to hear about the pain — let's get you seen as soon as possible. Next week I have Tuesday at 10:00 AM and Thursday at 2:30 PM available. Which works better for you?" },
-    { role: "user", text: "Thursday at 2:30 PM, please." },
-    { role: "ai", text: "Thursday at 2:30 PM is confirmed. I'll send a confirmation SMS shortly. We look forward to seeing you — please take care!" },
+    { role: "ai", text: "さくら歯科クリニックにお電話いただきありがとうございます。AIレセプションです。本日はどのようなご用件でしょうか？" },
+    { role: "user", text: "歯が痛くて、来週の定期検診も予約したいのですが。" },
+    { role: "ai", text: "それは大変でしたね。できるだけ早くご案内します。来週は火曜日10時と木曜日14時30分が空いております。どちらがよろしいでしょうか？" },
+    { role: "user", text: "木曜日の14時30分でお願いします。" },
+    { role: "ai", text: "木曜日14時30分にご予約を確定しました。確認SMSをお送りします。お大事にどうぞ。ご来院お待ちしております！" },
   ];
   return (
     <div style={{ background: "#f0f4f8", borderRadius: 12, padding: "1rem", marginTop: "1rem", border: "1px solid #e2e8f0" }}>
-      <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>AI Platform Call demo &nbsp;·&nbsp; <span style={{ fontWeight: 600, color: "#0b3d91" }}> Sakura Dental Clinic🌸</span></div>
+      <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>AI Platform Call demo &nbsp;·&nbsp; <span style={{ fontWeight: 600, color: "#0b3d91" }}> さくら歯科クリニック</span></div>
       <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 160 }}>
         {conversation.slice(0, step + 1).map((msg, i) => (
           <div key={i} style={{ display: "flex", justifyContent: msg.role === "ai" ? "flex-start" : "flex-end" }}>
@@ -161,19 +161,19 @@ function App() {
 
   return (
     <div style={{ maxWidth: 740, margin: "0 auto", padding: "2rem 1.25rem", background: "#f8f9fb", minHeight: "100vh" }}>
-      <a href="/en/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "#5a6a80", textDecoration: "none", marginBottom: "1rem", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0", background: "#fff" }}>
-        ← Back to Home
+      <a href="/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "#5a6a80", textDecoration: "none", marginBottom: "1rem", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0", background: "#fff" }}>
+        ← ホームに戻る
       </a>
 
       <div style={{ fontSize: 11, fontWeight: 700, color: "#007acc", letterSpacing: "0.18em", textTransform: "uppercase", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
         <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#007acc" }}></span>
-        Dental AI Platform · Powered by Burai Live
+        歯科AIプラットフォーム · Powered by Burai Live
       </div>
-      <div style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#0b1f3a", letterSpacing: "-0.02em", lineHeight: 1.2 }}>AI Systems for Dental Clinics</div>
-      <div style={{ fontSize: 13, color: "#5a6a80", margin: "0 0 1.75rem", lineHeight: 1.6 }}>AI-powered phone booking & intercom systems — designed for modern dental clinics in Japan.</div>
+      <div style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#0b1f3a", letterSpacing: "-0.02em", lineHeight: 1.2 }}>歯科クリニック向けAIシステム</div>
+      <div style={{ fontSize: 13, color: "#5a6a80", margin: "0 0 1.75rem", lineHeight: 1.6 }}>AI電話予約・インターコムシステムで、歯科クリニックの業務を自動化・効率化します。</div>
 
       <div style={{ display: "flex", gap: 4, marginBottom: "1.75rem", background: "#e8edf2", padding: 4, borderRadius: 12 }}>
-        {[{ id: "phone", label: "📞 AI Phone Booking" }, { id: "intercom", label: "🎙️ AI Intercom" }].map(t => (
+        {[{ id: "phone", label: "📞 AI電話予約" }, { id: "intercom", label: "🎙️ AIインターコム" }].map(t => (
           <button key={t.id} onClick={() => setTab(t.id)} style={{
             flex: 1, padding: "8px 0", fontSize: 13, fontWeight: 500, borderRadius: 8,
             background: tab === t.id ? "#fff" : "transparent",
@@ -190,8 +190,8 @@ function App() {
 
       <div style={{ marginTop: "2rem", padding: "1.25rem", background: "#fff", borderRadius: 12, border: "1px solid #e2e8f0", textAlign: "center" }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: "#0b1f3a", marginBottom: 6 }}>Interested in Dental AI?</div>
-        <div style={{ fontSize: 13, color: "#5a6a80", marginBottom: 12 }}>Contact us for a demo or custom quote.</div>
-        <a href="/en/contact/" style={{ display: "inline-block", background: "#007acc", color: "#fff", padding: "8px 24px", borderRadius: 8, textDecoration: "none", fontSize: 13, fontWeight: 600 }}>Contact Us →</a>
+        <div style={{ fontSize: 13, color: "#5a6a80", marginBottom: 12 }}>デモや見積りのご相談はこちらから。</div>
+        <a href="/contact/" style={{ display: "inline-block", background: "#007acc", color: "#fff", padding: "8px 24px", borderRadius: 8, textDecoration: "none", fontSize: 13, fontWeight: 600 }}>お問い合わせ →</a>
       </div>
     </div>
   );
