@@ -17,6 +17,9 @@ description: >-
 .dental-wrap { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: #0b1f3a; }
 .dental-wrap button { font-family: inherit; border: 1px solid #d0d8e4; background: transparent; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
 .dental-wrap button:hover { background: #eef4fb; border-color: #007acc; color: #007acc; }
+@keyframes typingBounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-6px); opacity: 1; } }
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
 </style>
 
 <div class="dental-wrap">
@@ -121,36 +124,98 @@ function FeatureGrid({ features }) {
 }
 
 function PhoneDemo() {
-  const [step, setStep] = useState(0);
   const conversation = [
-    { role: "ai", text: "さくら歯科クリニックにお電話いただきありがとうございます。AIレセプションです。本日はどのようなご用件でしょうか？" },
+    { role: "ai",   text: "さくら歯科クリニックにお電話いただきありがとうございます。AIレセプションです。本日はどのようなご用件でしょうか？" },
     { role: "user", text: "歯が痛くて、来週の定期検診も予約したいのですが。" },
-    { role: "ai", text: "それは大変でしたね。できるだけ早くご案内します。来週は火曜日10時と木曜日14時30分が空いております。どちらがよろしいでしょうか？" },
+    { role: "ai",   text: "それは大変でしたね。できるだけ早くご案内します。来週は火曜日10時と木曜日14時30分が空いております。どちらがよろしいでしょうか？" },
     { role: "user", text: "木曜日の14時30分でお願いします。" },
-    { role: "ai", text: "木曜日14時30分にご予約を確定しました。確認SMSをお送りします。お大事にどうぞ。ご来院お待ちしております！" },
+    { role: "ai",   text: "木曜日14時30分にご予約を確定しました。確認SMSをお送りします。お大事にどうぞ。ご来院お待ちしております！" },
   ];
+  const [visible, setVisible] = React.useState(0);
+  const [typing, setTyping]   = React.useState(false);
+  const [done, setDone]       = React.useState(false);
+
+  React.useEffect(() => {
+    if (visible >= conversation.length) { setDone(true); return; }
+    setTyping(true);
+    const delay = conversation[visible].role === "ai" ? 1400 : 900;
+    const t = setTimeout(() => {
+      setTyping(false);
+      setTimeout(() => setVisible(v => v + 1), 400);
+    }, delay);
+    return () => clearTimeout(t);
+  }, [visible]);
+
+  const replay = () => { setVisible(0); setTyping(false); setDone(false); };
+
   return (
-    <div style={{ background: "#f0f4f8", borderRadius: 12, padding: "1rem", marginTop: "1rem", border: "1px solid #e2e8f0" }}>
-      <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>AI Platform Call demo &nbsp;·&nbsp; <span style={{ fontWeight: 600, color: "#0b3d91" }}> さくら歯科クリニック</span></div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 160 }}>
-        {conversation.slice(0, step + 1).map((msg, i) => (
+    <div style={{ background: "#f0f4f8", borderRadius: 12, padding: "1rem 1.25rem", marginTop: "1rem", border: "1px solid #e2e8f0" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.07 3.4 2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span style={{ fontSize: 12, color: "#555", fontWeight: 500 }}>AI Platform 通話デモ — </span>
+        <span style={{ fontSize: 12, color: "#bbb" }}>·</span>
+        <span style={{ fontSize: 12, fontWeight: 700, color: "#0b3d91" }}>さくら歯科クリニック🌸</span>
+        <span style={{
+          marginLeft: "auto", fontSize: 10, fontWeight: 700,
+          padding: "2px 10px", borderRadius: 100,
+          background: done ? "#eef4fb" : "#eaf6ee",
+          color: done ? "#0b3d91" : "#1a7a3a"
+        }}>
+          {done ? "✓ 完了" : "● 通話中"}
+        </span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 230 }}>
+        {conversation.slice(0, visible).map((msg, i) => (
           <div key={i} style={{ display: "flex", justifyContent: msg.role === "ai" ? "flex-start" : "flex-end" }}>
             <div style={{
-              maxWidth: "78%", padding: "8px 12px", borderRadius: 12, fontSize: 13, lineHeight: 1.4,
+              maxWidth: "80%", padding: "9px 13px", fontSize: 13, lineHeight: 1.6,
+              borderRadius: 14,
+              borderBottomLeftRadius: msg.role === "ai" ? 4 : 14,
+              borderBottomRightRadius: msg.role === "user" ? 4 : 14,
               background: msg.role === "ai" ? "#fff" : teal,
               color: msg.role === "ai" ? "#1a1a1a" : "#fff",
-              boxShadow: "0 1px 4px rgba(0,0,0,0.03)"
+              boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
             }}>
-              {msg.role === "ai" && <span style={{ fontSize: 11, color: "#007acc", display: "block", marginBottom: 2, fontWeight: 600, letterSpacing: "0.04em" }}>AI Receptionist</span>}
+              {msg.role === "ai" && (
+                <span style={{ fontSize: 10, color: "#007acc", display: "block", marginBottom: 4, fontWeight: 700, letterSpacing: "0.06em" }}>
+                   AIレセプション
+                </span>
+              )}
               {msg.text}
             </div>
           </div>
         ))}
+        {typing && !done && visible < conversation.length && (
+          <div style={{ display: "flex", justifyContent: conversation[visible].role === "ai" ? "flex-start" : "flex-end" }}>
+            <div style={{
+              padding: "10px 16px", borderRadius: 14,
+              background: conversation[visible].role === "ai" ? "#fff" : teal,
+              boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
+              display: "flex", gap: 5, alignItems: "center"
+            }}>
+              {[0,1,2].map(d => (
+                <span key={d} style={{
+                  width: 7, height: 7, borderRadius: "50%",
+                  background: conversation[visible].role === "ai" ? "#007acc" : "rgba(255,255,255,0.8)",
+                  display: "inline-block",
+                  animation: "typingBounce 1.2s ease-in-out " + (d * 0.18) + "s infinite"
+                }}/>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-      <div style={{ display: "flex", gap: 8, marginTop: 16, justifyContent: "flex-end" }}>
-        <button onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0} style={{ padding: "6px 12px", fontSize: 12, opacity: step === 0 ? 0.5 : 1 }}>Back</button>
-        <button onClick={() => setStep(Math.min(conversation.length - 1, step + 1))} disabled={step === conversation.length - 1} style={{ padding: "6px 12px", fontSize: 12, opacity: step === conversation.length - 1 ? 0.5 : 1, background: teal, color: "#fff", borderColor: teal }}>Next</button>
-      </div>
+      {done && (
+        <div style={{ marginTop: 14, textAlign: "right" }}>
+          <button onClick={replay} style={{
+            padding: "7px 18px", fontSize: 12, fontWeight: 700,
+            background: teal, color: "#fff", border: "none",
+            borderRadius: 8, cursor: "pointer"
+          }}>↺ もう一度</button>
+        </div>
+      )}
     </div>
   );
 }

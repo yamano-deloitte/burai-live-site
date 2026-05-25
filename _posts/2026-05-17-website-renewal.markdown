@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Burai Live：ウェブサイトをリニューアルしました。"
 date: 2026-05-17 09:00:00 +0900
 categories: [ニュース]
