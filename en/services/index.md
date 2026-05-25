@@ -28,7 +28,7 @@ We deliver advanced drone system development services in Japan:
 - **Integrated Fleet Management**: Multi-drone integrated management and operations systems
 - **Custom Payload Development**: Sensor and camera system integration tailored to your use case
 
-### 🤖 AI Solutions
+### AI Solutions
 
 Cutting-edge AI-powered business solutions:
 
