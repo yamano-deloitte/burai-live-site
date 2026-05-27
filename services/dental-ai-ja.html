@@ -58,7 +58,7 @@ const INTERCOM_FLOW = [
 const PHONE_FEATURES = [
   { icon: "ti-clock-24", title: "24時間365日対応", desc: "夜間・休日も自動応答。取りこぼしゼロを実現します。" },
   { icon: "ti-language", title: "多言語対応", desc: "日本語・英語・中国語・韓国語など自動で対応します。" },
-  { icon: "ti-heartbeat", title: "症状トリアージ", desc: "痛みの種類と緊急度を判定し、最適な予約枠を提案します。" },
+  { icon: "ti-heartbeat", title: "症状トリアージ", desc: "痛みの種類と緊急度を判定し、最適な予約枠を提案します。", addon: true },
   { icon: "ti-refresh", title: "変更・キャンセル", desc: "音声で即座に予約変更・キャンセルが可能です。" },
   { icon: "ti-shield-check", title: "プライバシー準拠", desc: "通話暗号化・HIPAA準拠・ローカルストレージ対応。" },
   { icon: "ti-chart-dots", title: "分析ダッシュボード", desc: "通話数・予約転換率・ピーク時間帯をリアルタイム表示。" },
@@ -109,14 +109,28 @@ function FeatureGrid({ features }) {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginTop: "1rem" }}>
       {features.map((f, i) => (
-        <div key={i} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 12, padding: "1rem 1.25rem", boxShadow: "0 2px 8px rgba(11,61,145,0.04)" }}>
+        <div key={i} style={{ background: "#fff", border: f.addon ? "1px solid #f9a825" : "1px solid #e2e8f0", borderRadius: 12, padding: "1rem 1.25rem", boxShadow: "0 2px 8px rgba(11,61,145,0.04)", position: "relative" }}>
+          {f.addon && (
+            <span style={{
+              position: "absolute", top: -10, right: 10,
+              fontSize: 10, fontWeight: 700, padding: "2px 8px",
+              background: "#fff8e1", color: "#b45309",
+              border: "1px solid #f9a825", borderRadius: 100,
+              letterSpacing: "0.05em"
+            }}>＋ アドオン</span>
+          )}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, background: tealLight, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <i className={"ti " + f.icon} style={{ fontSize: 16, color: teal }} />
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: f.addon ? "#fff8e1" : tealLight, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <i className={"ti " + f.icon} style={{ fontSize: 16, color: f.addon ? "#b45309" : teal }} />
             </div>
             <span style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.3 }}>{f.title}</span>
           </div>
           <p style={{ fontSize: 12, color: "#666", margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
+          {f.addon && (
+            <p style={{ fontSize: 11, color: "#b45309", margin: "6px 0 0", fontWeight: 600 }}>
+              ※ 追加料金が発生します
+            </p>
+          )}
         </div>
       ))}
     </div>
@@ -124,6 +138,7 @@ function FeatureGrid({ features }) {
 }
 
 function PhoneDemo() {
+  const [step, setStep] = React.useState(0);
   const conversation = [
     { role: "ai",   text: "さくら歯科クリニックにお電話いただきありがとうございます。AIレセプションです。本日はどのようなご用件でしょうか？" },
     { role: "user", text: "歯が痛くて、来週の定期検診も予約したいのですが。" },
@@ -131,43 +146,18 @@ function PhoneDemo() {
     { role: "user", text: "木曜日の14時30分でお願いします。" },
     { role: "ai",   text: "木曜日14時30分にご予約を確定しました。確認SMSをお送りします。お大事にどうぞ。ご来院お待ちしております！" },
   ];
-  const [visible, setVisible] = React.useState(0);
-  const [typing, setTyping]   = React.useState(false);
-  const [done, setDone]       = React.useState(false);
-
-  React.useEffect(() => {
-    if (visible >= conversation.length) { setDone(true); return; }
-    setTyping(true);
-    const delay = conversation[visible].role === "ai" ? 1400 : 900;
-    const t = setTimeout(() => {
-      setTyping(false);
-      setTimeout(() => setVisible(v => v + 1), 400);
-    }, delay);
-    return () => clearTimeout(t);
-  }, [visible]);
-
-  const replay = () => { setVisible(0); setTyping(false); setDone(false); };
-
   return (
     <div style={{ background: "#f0f4f8", borderRadius: 12, padding: "1rem 1.25rem", marginTop: "1rem", border: "1px solid #e2e8f0" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.07 3.4 2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
         </svg>
-        <span style={{ fontSize: 12, color: "#555", fontWeight: 500 }}>AI Platform 通話デモ — </span>
+        <span style={{ fontSize: 12, color: "#555", fontWeight: 500 }}>通話デモ</span>
         <span style={{ fontSize: 12, color: "#bbb" }}>·</span>
         <span style={{ fontSize: 12, fontWeight: 700, color: "#0b3d91" }}>さくら歯科クリニック🌸</span>
-        <span style={{
-          marginLeft: "auto", fontSize: 10, fontWeight: 700,
-          padding: "2px 10px", borderRadius: 100,
-          background: done ? "#eef4fb" : "#eaf6ee",
-          color: done ? "#0b3d91" : "#1a7a3a"
-        }}>
-          {done ? "✓ 完了" : "● 通話中"}
-        </span>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 230 }}>
-        {conversation.slice(0, visible).map((msg, i) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 160 }}>
+        {conversation.slice(0, step + 1).map((msg, i) => (
           <div key={i} style={{ display: "flex", justifyContent: msg.role === "ai" ? "flex-start" : "flex-end" }}>
             <div style={{
               maxWidth: "80%", padding: "9px 13px", fontSize: 13, lineHeight: 1.6,
@@ -180,42 +170,24 @@ function PhoneDemo() {
             }}>
               {msg.role === "ai" && (
                 <span style={{ fontSize: 10, color: "#007acc", display: "block", marginBottom: 4, fontWeight: 700, letterSpacing: "0.06em" }}>
-                   AIレセプション
+                  🤖 AIレセプション
                 </span>
               )}
               {msg.text}
             </div>
           </div>
         ))}
-        {typing && !done && visible < conversation.length && (
-          <div style={{ display: "flex", justifyContent: conversation[visible].role === "ai" ? "flex-start" : "flex-end" }}>
-            <div style={{
-              padding: "10px 16px", borderRadius: 14,
-              background: conversation[visible].role === "ai" ? "#fff" : teal,
-              boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
-              display: "flex", gap: 5, alignItems: "center"
-            }}>
-              {[0,1,2].map(d => (
-                <span key={d} style={{
-                  width: 7, height: 7, borderRadius: "50%",
-                  background: conversation[visible].role === "ai" ? "#007acc" : "rgba(255,255,255,0.8)",
-                  display: "inline-block",
-                  animation: "typingBounce 1.2s ease-in-out " + (d * 0.18) + "s infinite"
-                }}/>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
-      {done && (
-        <div style={{ marginTop: 14, textAlign: "right" }}>
-          <button onClick={replay} style={{
-            padding: "7px 18px", fontSize: 12, fontWeight: 700,
-            background: teal, color: "#fff", border: "none",
-            borderRadius: 8, cursor: "pointer"
-          }}>↺ もう一度</button>
-        </div>
-      )}
+      <div style={{ display: "flex", gap: 8, marginTop: 16, justifyContent: "flex-end" }}>
+        <button onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}
+          style={{ padding: "6px 14px", fontSize: 12, opacity: step === 0 ? 0.45 : 1 }}>
+          ← 戻る
+        </button>
+        <button onClick={() => setStep(Math.min(conversation.length - 1, step + 1))} disabled={step === conversation.length - 1}
+          style={{ padding: "6px 14px", fontSize: 12, opacity: step === conversation.length - 1 ? 0.45 : 1, background: teal, color: "#fff", borderColor: teal }}>
+          次へ →
+        </button>
+      </div>
     </div>
   );
 }
