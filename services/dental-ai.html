@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歯科AIプラットフォーム | Burai Live</title>
+  <meta name="description" content="Burai Liveの歯科AIプラットフォーム。AI電話予約システムとAIインターコムシステムで歯科クリニックの業務効率化を実現。HIPAA準拠・多言語対応・EHR自動連携。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: #0b1f3a; background: #f8f9fb; }
+    button { font-family: inherit; border: 1px solid #d0d8e4; background: transparent; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    button:hover:not(:disabled) { background: #eef4fb; border-color: #007acc; color: #007acc; }
+    button:disabled { cursor: default; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <div id="dental-root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+  <script type="text/babel" data-presets="react">
+    const { useState } = React;
+
+    const teal = "#0b3d91";
+    const teal2 = "#007acc";
+    const tealLight = "#eef4fb";
+    const tealMid = "#a8cef0";
+    const blue = "#005fa3";
+
+    const PHONE_FLOW = [
+      { id: 1, icon: "ti-phone-incoming", label: "着信", desc: "患者からの電話を受信", color: teal },
+      { id: 2, icon: "ti-robot", label: "AI認識", desc: "自然言語対話と意図検出", color: blue },
+      { id: 3, icon: "ti-calendar-check", label: "空き確認", desc: "リアルタイム予約枠の検索", color: teal2 },
+      { id: 4, icon: "ti-database", label: "予約確定", desc: "電子カルテへの自動連携", color: teal },
+      { id: 5, icon: "ti-message-check", label: "SMS通知", desc: "患者への自動確認メッセージ", color: teal },
+    ];
+
+    const INTERCOM_FLOW = [
+      { id: 1, icon: "ti-microphone", label: "音声入力", desc: "スタッフがインターコムで発話", color: teal },
+      { id: 2, icon: "ti-brain", label: "AI解析", desc: "文脈理解とタスク分類", color: blue },
+      { id: 3, icon: "ti-list-check", label: "タスク変換", desc: "音声指示をタスクに変換", color: teal2 },
+      { id: 4, icon: "ti-users", label: "スタッフ通知", desc: "担当スタッフへリアルタイム配信", color: teal },
+      { id: 5, icon: "ti-chart-bar", label: "ログ分析", desc: "業務記録と改善インサイト", color: teal },
+    ];
+
+    const PHONE_FEATURES = [
+      { icon: "ti-clock-24", title: "24時間365日対応", desc: "夜間・休日も自動応答。取りこぼしゼロを実現します。" },
+      { icon: "ti-language", title: "多言語対応", desc: "日本語・英語・中国語・韓国語など自動で対応します。" },
+      { icon: "ti-heartbeat", title: "症状トリアージ", desc: "痛みの種類と緊急度を判定し、最適な予約枠を提案します。", addon: true },
+      { icon: "ti-refresh", title: "変更・キャンセル", desc: "音声で即座に予約変更・キャンセルが可能です。" },
+      { icon: "ti-shield-check", title: "プライバシー準拠", desc: "通話暗号化・HIPAA準拠・ローカルストレージ対応。" },
+      { icon: "ti-chart-dots", title: "分析ダッシュボード", desc: "通話数・予約転換率・ピーク時間帯をリアルタイム表示。" },
+    ];
+
+    const INTERCOM_FEATURES = [
+      { icon: "ti-bolt", title: "ハンズフリー操作", desc: "グローブ着用中も音声でメモ・指示を記録できます。" },
+      { icon: "ti-stethoscope", title: "歯科用語対応", desc: "処置コードや臨床用語を高精度で認識します。" },
+      { icon: "ti-arrows-sort", title: "優先度ソート", desc: "緊急リクエストを自動的にキューの先頭に移動します。" },
+      { icon: "ti-clipboard-text", title: "自動カルテ入力", desc: "音声メモをSOAPノート形式に整形してEHRに書き込みます。", addon: true },
+      { icon: "ti-speakerphone", title: "ノイズキャンセル", desc: "タービン・吸引・空調音をフィルタリングし、声だけを収音。" },
+      { icon: "ti-lock", title: "セキュア通信", desc: "オンプレミス設計で音声データがクリニック外に出ません。" },
+    ];
+
+    function FlowDiagram({ steps }) {
+      const [active, setActive] = useState(null);
+      return (
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 0, flexWrap: "wrap", justifyContent: "center", padding: "1.5rem 0 1rem" }}>
+          {steps.map((step, i) => (
+            <div key={step.id} style={{ display: "flex", alignItems: "center" }}>
+              <div onClick={() => setActive(active === step.id ? null : step.id)}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, cursor: "pointer" }}>
+                <div style={{
+                  width: 56, height: 56, borderRadius: "50%",
+                  background: active === step.id ? step.color : tealLight,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  border: "2px solid " + (active === step.id ? step.color : tealMid),
+                  transition: "all 0.2s",
+                }}>
+                  <i className={"ti " + step.icon} style={{ fontSize: 22, color: active === step.id ? "#fff" : step.color }} />
+                </div>
+                <div style={{ textAlign: "center", width: 80 }}>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: active === step.id ? step.color : "#1a1a1a", lineHeight: 1.3 }}>{step.label}</div>
+                  {active === step.id && (
+                    <div style={{ fontSize: 10, color: "#888", marginTop: 4, lineHeight: 1.4, animation: "fadeSlideIn 0.15s ease" }}>{step.desc}</div>
+                  )}
+                </div>
+              </div>
+              {i < steps.length - 1 && (
+                <div style={{ width: 24, height: 2, background: tealMid, margin: "0 4px", marginBottom: 16, opacity: 0.6, flexShrink: 0 }} />
+              )}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function FeatureGrid({ features }) {
+      return (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginTop: "1rem" }}>
+          {features.map((f, i) => (
+            <div key={i} style={{ background: "#fff", border: f.addon ? "1px solid #f9a825" : "1px solid #e2e8f0", borderRadius: 12, padding: "1rem 1.25rem", boxShadow: "0 2px 8px rgba(11,61,145,0.04)", position: "relative" }}>
+              {f.addon && (
+                <span style={{
+                  position: "absolute", top: -10, right: 10,
+                  fontSize: 10, fontWeight: 700, padding: "2px 8px",
+                  background: "#fff8e1", color: "#b45309",
+                  border: "1px solid #f9a825", borderRadius: 100,
+                  letterSpacing: "0.05em"
+                }}>＋ アドオン</span>
+              )}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <div style={{ width: 32, height: 32, borderRadius: 8, background: f.addon ? "#fff8e1" : tealLight, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <i className={"ti " + f.icon} style={{ fontSize: 16, color: f.addon ? "#b45309" : teal }} />
+                </div>
+                <span style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.3 }}>{f.title}</span>
+              </div>
+              <p style={{ fontSize: 12, color: "#666", margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function PhoneDemo() {
+      const [step, setStep] = useState(0);
+      const conversation = [
+        { role: "ai",   text: "さくら歯科クリニックにお電話いただきありがとうございます。AIレセプションです。本日はどのようなご用件でしょうか？" },
+        { role: "user", text: "歯が痛くて、来週の定期検診も予約したいのですが。" },
+        { role: "ai",   text: "それは大変でしたね。できるだけ早くご案内します。来週は火曜日10時と木曜日14時30分が空いております。どちらがよろしいでしょうか？" },
+        { role: "user", text: "木曜日の14時30分でお願いします。" },
+        { role: "ai",   text: "木曜日14時30分にご予約を確定しました。確認SMSをお送りします。お大事にどうぞ。ご来院お待ちしております！" },
+      ];
+      return (
+        <div style={{ background: "#f0f4f8", borderRadius: 12, padding: "1rem 1.25rem", marginTop: "1rem", border: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.07 3.4 2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span style={{ fontSize: 12, color: "#555", fontWeight: 500 }}>通話デモ</span>
+            <span style={{ fontSize: 12, color: "#bbb" }}>·</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#0b3d91" }}> さくら歯科クリニック🌸</span>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 160 }}>
+            {conversation.slice(0, step + 1).map((msg, i) => (
+              <div key={i} style={{ display: "flex", justifyContent: msg.role === "ai" ? "flex-start" : "flex-end", animation: "fadeSlideIn 0.2s ease" }}>
+                <div style={{
+                  maxWidth: "80%", padding: "9px 13px", fontSize: 13, lineHeight: 1.6,
+                  borderRadius: 14,
+                  borderBottomLeftRadius: msg.role === "ai" ? 4 : 14,
+                  borderBottomRightRadius: msg.role === "user" ? 4 : 14,
+                  background: msg.role === "ai" ? "#fff" : teal,
+                  color: msg.role === "ai" ? "#1a1a1a" : "#fff",
+                  boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
+                }}>
+                  {msg.role === "ai" && (
+                    <span style={{ fontSize: 10, color: "#007acc", display: "block", marginBottom: 4, fontWeight: 700, letterSpacing: "0.06em" }}>
+                      🤖 AIレセプション
+                    </span>
+                  )}
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 8, marginTop: 16, justifyContent: "flex-end" }}>
+            <button onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}
+              style={{ padding: "6px 14px", fontSize: 12, opacity: step === 0 ? 0.45 : 1 }}>
+              ← 戻る
+            </button>
+            <button onClick={() => setStep(Math.min(conversation.length - 1, step + 1))} disabled={step === conversation.length - 1}
+              style={{ padding: "6px 14px", fontSize: 12, opacity: step === conversation.length - 1 ? 0.45 : 1, background: teal, color: "#fff", borderColor: teal }}>
+              次へ →
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    function PhoneSequence() {
+      const [enlarged, setEnlarged] = useState(false);
+
+      const actors = [
+        { id: "patient", label: "患者", x: 80, color: "#007acc" },
+        { id: "ai", label: "AI電話", x: 240, color: "#0b3d91" },
+        { id: "ehr", label: "電子カルテ", x: 400, color: "#5a6a80" },
+        { id: "sms", label: "SMS", x: 540, color: "#25a244" },
+      ];
+
+      // sections: { label, y } — horizontal divider with section title
+      const sections = [
+        { label: "📅 新規予約", y: 96 },
+        { label: "🔄 リスケジュール", y: 536 },
+        { label: "❌ キャンセル", y: 736 },
+      ];
+
+      const messages = [
+        // ── 新規予約 ──
+        { from: 0, to: 1, label: "電話をかける", y: 120, type: "solid" },
+        { from: 1, to: 0, label: "自動応答・用件確認", y: 160, type: "dashed" },
+        { from: 0, to: 1, label: "症状・希望日時を伝える", y: 200, type: "solid" },
+        { from: 1, to: 2, label: "空き枠を照会", y: 240, type: "solid" },
+        { from: 2, to: 1, label: "空き枠を返す", y: 280, type: "dashed" },
+        { from: 1, to: 0, label: "日時を提案", y: 320, type: "dashed" },
+        { from: 0, to: 1, label: "日時を確定", y: 360, type: "solid" },
+        { from: 1, to: 2, label: "予約を登録", y: 400, type: "solid" },
+        { from: 1, to: 3, label: "確認SMSを送信", y: 440, type: "solid" },
+        { from: 3, to: 0, label: "SMS到着", y: 480, type: "dashed" },
+        // ── リスケジュール ──
+        { from: 0, to: 1, label: "予約変更の電話", y: 560, type: "solid" },
+        { from: 1, to: 0, label: "予約情報を確認", y: 600, type: "dashed" },
+        { from: 1, to: 2, label: "新しい空き枠を照会", y: 640, type: "solid" },
+        { from: 2, to: 1, label: "空き枠を返す", y: 680, type: "dashed" },
+        { from: 0, to: 1, label: "新日時を確定", y: 720, type: "solid" },
+        // ── キャンセル ──
+        { from: 0, to: 1, label: "キャンセルの電話", y: 760, type: "solid" },
+        { from: 1, to: 0, label: "予約情報を確認", y: 800, type: "dashed" },
+        { from: 0, to: 1, label: "キャンセルを確定", y: 840, type: "solid" },
+        { from: 1, to: 2, label: "予約を削除", y: 880, type: "solid" },
+        { from: 1, to: 3, label: "キャンセルSMSを送信", y: 920, type: "solid" },
+        { from: 3, to: 0, label: "SMS到着", y: 960, type: "dashed" },
+      ];
+
+      const svgH = 1000;
+      const lifelineY2 = svgH - 20;
+
+      const aiActivations = [
+        120,160,200,240,280,320,360,400,440,
+        560,600,640,680,720,
+        760,800,840,880,920,
+      ];
+
+      const svgContent = (
+        <svg width="100%" viewBox={"0 0 620 " + svgH} style={{ display: "block" }}>
+          <defs>
+            <marker id="arrowSeqJa" viewBox="0 0 10 10" refX={8} refY={5}
+              markerWidth={5} markerHeight={5} orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#007acc"
+                strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+            </marker>
+          </defs>
+
+          {/* Lifelines */}
+          {actors.map((a, i) => (
+            <g key={a.id}>
+              {i === 0 ? (
+                <>
+                  {/* 患者 — person icon */}
+                  {/* head */}
+                  <circle cx={a.x} cy={9} r={7}
+                    fill={a.color} fillOpacity={0.15} stroke={a.color} strokeWidth={1.5} />
+                  {/* body / shoulders */}
+                  <path d={`M${a.x - 12} 32 C${a.x - 12} 22 ${a.x - 5} 19 ${a.x} 19 C${a.x + 5} 19 ${a.x + 12} 22 ${a.x + 12} 32`}
+                    fill={a.color} fillOpacity={0.15} stroke={a.color} strokeWidth={1.5} strokeLinecap="round" />
+                  <rect x={a.x - 32} y={34} width={64} height={18} rx={4}
+                    fill={a.color} fillOpacity={0.12} stroke={a.color} strokeWidth={1} />
+                  <text x={a.x} y={46} textAnchor="middle" dominantBaseline="central"
+                    fontSize={11} fontWeight={600} fill={a.color}>{a.label}</text>
+                  <line x1={a.x} y1={52} x2={a.x} y2={lifelineY2}
+                    stroke={a.color} strokeWidth={1} strokeOpacity={0.3} />
+                </>
+              ) : (
+                <>
+                  <rect x={a.x - 50} y={20} width={100} height={36} rx={6}
+                    fill={a.color} fillOpacity={0.12} stroke={a.color} strokeWidth={1} />
+                  <text x={a.x} y={42} textAnchor="middle" dominantBaseline="central"
+                    fontSize={11} fontWeight={600} fill={a.color}>{a.label}</text>
+                  <line x1={a.x} y1={56} x2={a.x} y2={lifelineY2}
+                    stroke={a.color} strokeWidth={1} strokeOpacity={0.3}
+                    strokeDasharray="4 3" />
+                </>
+              )}
+            </g>
+          ))}
+
+          {/* Section dividers */}
+          {sections.map((s, i) => (
+            <g key={"sec" + i}>
+              <line x1={16} y1={s.y} x2={604} y2={s.y}
+                stroke="#e2e8f0" strokeWidth={1} strokeDasharray="4 3" />
+              <rect x={16} y={s.y - 11} width={130} height={18} rx={4}
+                fill={i === 0 ? "#eef4fb" : i === 1 ? "#fff8e1" : "#fef2f2"}
+                stroke={i === 0 ? "#a8cef0" : i === 1 ? "#f9a825" : "#fca5a5"}
+                strokeWidth={0.8} />
+              <text x={24} y={s.y + 2} fontSize={10} fontWeight={600}
+                fill={i === 0 ? "#0b3d91" : i === 1 ? "#b45309" : "#dc2626"}>
+                {s.label}
+              </text>
+            </g>
+          ))}
+
+          {/* Messages */}
+          {messages.map((m, i) => {
+            const x1 = actors[m.from].x;
+            const x2 = actors[m.to].x;
+            const dir = x2 > x1 ? 1 : -1;
+            const x1e = x1 + dir * 4;
+            const x2e = x2 - dir * 8;
+            const midX = (x1 + x2) / 2;
+            const isCancel = m.y >= 760;
+            const isResched = m.y >= 560 && m.y < 760;
+            const arrowColor = isCancel ? "#dc2626" : isResched ? "#b45309" : "#007acc";
+            return (
+              <g key={i}>
+                <line x1={x1e} y1={m.y} x2={x2e} y2={m.y}
+                  stroke={arrowColor} strokeWidth={1.2}
+                  strokeDasharray={m.type === "dashed" ? "5 3" : "none"}
+                  markerEnd="url(#arrowSeqJa)" />
+                <rect x={midX - 68} y={m.y - 16} width={136} height={14} rx={3}
+                  fill="white" fillOpacity={0.88} />
+                <text x={midX} y={m.y - 5} textAnchor="middle"
+                  fontSize={10} fill="#1a2233" fontWeight={400}>{m.label}</text>
+              </g>
+            );
+          })}
+
+          {/* AI activation boxes */}
+          {aiActivations.map(y => (
+            <rect key={y} x={actors[1].x - 6} y={y - 10} width={12} height={20}
+              rx={2} fill="#0b3d91" fillOpacity={0.2} stroke="#0b3d91" strokeWidth={0.5} />
+          ))}
+        </svg>
+      );
+
+      return (
+        <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+            <div style={{ fontSize: 12, color: "#888", fontWeight: 500 }}>AI電話予約の流れ</div>
+            <button onClick={() => setEnlarged(true)} style={{
+              display: "flex", alignItems: "center", gap: 4,
+              fontSize: 11, color: "#007acc", padding: "4px 10px",
+              border: "1px solid #c8dff0", borderRadius: 6, background: "#eef4fb",
+            }}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+              拡大
+            </button>
+          </div>
+          {svgContent}
+
+          {enlarged && (
+            <div onClick={() => setEnlarged(false)} style={{
+              position: "fixed", inset: 0, background: "rgba(11,31,58,0.7)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              zIndex: 1000, padding: "1.5rem", backdropFilter: "blur(2px)",
+            }}>
+              <div onClick={e => e.stopPropagation()} style={{
+                background: "#fff", borderRadius: 16, padding: "1.5rem",
+                width: "100%", maxWidth: 860, maxHeight: "90vh", overflowY: "auto",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.3)",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#0b1f3a" }}>AI電話予約の流れ</div>
+                  <button onClick={() => setEnlarged(false)} style={{
+                    fontSize: 11, color: "#5a6a80", padding: "4px 10px",
+                    border: "1px solid #e2e8f0", borderRadius: 6, background: "#f8f9fb",
+                  }}>✕ 閉じる</button>
+                </div>
+                {svgContent}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function App() {
+      const [tab, setTab] = useState("phone");
+      const isPhone = tab === "phone";
+
+      return (
+        <div style={{ maxWidth: 740, margin: "0 auto", padding: "2rem 1.25rem", background: "#f8f9fb", minHeight: "100vh" }}>
+          <a href="/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "#5a6a80", textDecoration: "none", marginBottom: "1rem", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0", background: "#fff" }}>
+            ← ホームに戻る
+          </a>
+
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#007acc", letterSpacing: "0.18em", textTransform: "uppercase", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#007acc" }}></span>
+            歯科AIプラットフォーム · Powered by Burai Live
+          </div>
+          <div style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#0b1f3a", letterSpacing: "-0.02em", lineHeight: 1.2 }}>歯科クリニック向けAIシステム</div>
+          <div style={{ fontSize: 13, color: "#5a6a80", margin: "0 0 1.75rem", lineHeight: 1.6 }}>AI電話予約・インターコムシステムで、歯科クリニックの業務を自動化・効率化します。</div>
+
+          <div style={{ display: "flex", gap: 4, marginBottom: "1.75rem", background: "#e8edf2", padding: 4, borderRadius: 12 }}>
+            {[{ id: "phone", label: "📞 AI電話予約" }, { id: "intercom", label: "🎙️ AIインターコム" }].map(t => (
+              <button key={t.id} onClick={() => setTab(t.id)} style={{
+                flex: 1, padding: "8px 0", fontSize: 13, fontWeight: 500, borderRadius: 8,
+                background: tab === t.id ? "#fff" : "transparent",
+                color: tab === t.id ? teal : "#888",
+                border: tab === t.id ? "1px solid #e2e8f0" : "1px solid transparent",
+                boxShadow: tab === t.id ? "0 1px 4px rgba(0,0,0,0.06)" : "none",
+              }}>{t.label}</button>
+            ))}
+          </div>
+
+          <FlowDiagram steps={isPhone ? PHONE_FLOW : INTERCOM_FLOW} />
+          <FeatureGrid features={isPhone ? PHONE_FEATURES : INTERCOM_FEATURES} />
+          {isPhone && <PhoneDemo />}
+          {isPhone && <PhoneSequence />}
+
+          <div style={{ marginTop: "2rem", padding: "1.25rem", background: "#fff", borderRadius: 12, border: "1px solid #e2e8f0", textAlign: "center" }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: "#0b1f3a", marginBottom: 6 }}>Interested in Dental AI?</div>
+            <div style={{ fontSize: 13, color: "#5a6a80", marginBottom: 12 }}>デモや見積りのご相談はこちらから。</div>
+            <a href="/contact/" style={{ display: "inline-block", background: "#007acc", color: "#fff", padding: "8px 24px", borderRadius: 8, textDecoration: "none", fontSize: 13, fontWeight: 600 }}>お問い合わせ →</a>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("dental-root")).render(<App />);
+  </script>
+</body>
+</html>
